@@ -15,8 +15,8 @@ Route::middleware('guest')->group(function () {
 });
 
 // Authenticated routes
-Route::middleware('auth')->group(function () {
+//Route::middleware('auth')->group(function () {
     Route::get('/home',        fn() => view('home'))->name('home');
     Route::get('/add-student', fn() => view('add_student'))->name('add-student');
     Route::post('/logout',     [AuthController::class, 'logout'])->name('logout');
-});
+//});
