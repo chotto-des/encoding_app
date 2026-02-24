@@ -43,15 +43,21 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validated = $request->validate([
-            'name'     => ['required', 'string', 'max:255'],
-            'email'    => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:8', 'confirmed'],
+            'last_name'      => ['required', 'string', 'max:255'],
+            'first_name'     => ['required', 'string', 'max:255'],
+            'middle_name'    => ['nullable', 'string', 'max:255'],
+            'extension_name' => ['nullable', 'string', 'max:50'],
+            'email'          => ['required', 'email', 'unique:users'],
+            'password'       => ['required', 'min:8', 'confirmed'],
         ]);
 
         $user = User::create([
-            'name'     => $validated['name'],
-            'email'    => $validated['email'],
-            'password' => Hash::make($validated['password']),
+            'last_name'      => $validated['last_name'],
+            'first_name'     => $validated['first_name'],
+            'middle_name'    => $validated['middle_name'] ?? null,
+            'extension_name' => $validated['extension_name'] ?? null,
+            'email'          => $validated['email'],
+            'password'       => Hash::make($validated['password']),
         ]);
 
         Auth::login($user);
