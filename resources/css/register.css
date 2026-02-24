@@ -108,7 +108,58 @@ body {
     color: #6b7280;
 }
 
-.btn-register {
+.step-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    gap: 0;
+}
+
+.step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #e5e7eb;
+    color: #9ca3af;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.step.active {
+    background-color: #F5A800;
+    color: #1a1a2e;
+}
+
+.step.done {
+    background-color: #1a1a2e;
+    color: #ffffff;
+}
+
+.step-line {
+    flex: 1;
+    max-width: 60px;
+    height: 2px;
+    background-color: #e5e7eb;
+}
+
+.step-label {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.optional {
+    font-weight: 400;
+    color: #9ca3af;
+}
+
+.btn-next {
     width: 100%;
     padding: 14px;
     background-color: #F5A800;
@@ -119,6 +170,54 @@ body {
     border-radius: 8px;
     cursor: pointer;
     margin-top: 8px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-next:hover {
+    background-color: #e09900;
+}
+
+.btn-next:active {
+    transform: scale(0.98);
+}
+
+.step-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.btn-back {
+    flex: 1;
+    padding: 14px;
+    background-color: #f3f4f6;
+    color: #374151;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-back:hover {
+    background-color: #e5e7eb;
+}
+
+.btn-register {
+    flex: 2;
+    padding: 14px;
+    background-color: #F5A800;
+    color: #1a1a2e;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
     transition: background-color 0.2s, transform 0.1s;
 }
 

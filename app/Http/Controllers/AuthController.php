@@ -33,29 +33,56 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
-    // Show register form
+    // Show register step 1
     public function showRegister()
     {
         return view('register');
     }
 
-    // Handle registration
-    public function register(Request $request)
+    // Handle register step 1 - store in session, redirect to step 2
+    public function registerStep1(Request $request)
     {
         $validated = $request->validate([
             'last_name'      => ['required', 'string', 'max:255'],
             'first_name'     => ['required', 'string', 'max:255'],
             'middle_name'    => ['nullable', 'string', 'max:255'],
             'extension_name' => ['nullable', 'string', 'max:50'],
-            'email'          => ['required', 'email', 'unique:users'],
-            'password'       => ['required', 'min:8', 'confirmed'],
         ]);
 
+        $request->session()->put('register_step1', $validated);
+
+        return redirect()->route('register.step2');
+    }
+
+    // Show register step 2
+    public function showRegisterStep2(Request $request)
+    {
+        if (!$request->session()->has('register_step1')) {
+            return redirect()->route('register');
+        }
+
+        return view('register_step2');
+    }
+
+    // Handle final registration
+    public function register(Request $request)
+    {
+        if (!$request->session()->has('register_step1')) {
+            return redirect()->route('register');
+        }
+
+        $validated = $request->validate([
+            'email'    => ['required', 'email', 'unique:users'],
+            'password' => ['required', 'min:8', 'confirmed'],
+        ]);
+
+        $step1 = $request->session()->pull('register_step1');
+
         $user = User::create([
-            'last_name'      => $validated['last_name'],
-            'first_name'     => $validated['first_name'],
-            'middle_name'    => $validated['middle_name'] ?? null,
-            'extension_name' => $validated['extension_name'] ?? null,
+            'last_name'      => $step1['last_name'],
+            'first_name'     => $step1['first_name'],
+            'middle_name'    => $step1['middle_name'] ?? null,
+            'extension_name' => $step1['extension_name'] ?? null,
             'email'          => $validated['email'],
             'password'       => Hash::make($validated['password']),
         ]);
