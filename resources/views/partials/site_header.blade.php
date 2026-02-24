@@ -1,19 +1,19 @@
-<header class="w-full bg-white border-b-4 border-amber-400">
-	@php
-		$containerClass = ($fullWidth ?? false)
-			? 'px-8 lg:px-10 py-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'
-			: 'max-w-6xl mx-auto px-6 py-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between';
-	@endphp
-	<div class="{{ $containerClass }}">
-		<div class="flex items-center gap-3">
-			<div class="h-11 w-11 rounded-full bg-amber-400 flex items-center justify-center">
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+@php
+	$innerClass = ($fullWidth ?? false)
+		? 'site-header__inner site-header__inner--full'
+		: 'site-header__inner site-header__inner--centered';
+@endphp
+<header class="site-header">
+	<div class="{{ $innerClass }}">
+		<div class="site-header__brand">
+			<div class="site-header__logo">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 					<path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3Zm0 14L5.5 13.45V17L12 21l6.5-4v-3.55L12 17Z"/>
 				</svg>
 			</div>
 			<div>
-				<h1 class="text-[34px] leading-none font-semibold text-slate-800">Pampanga High School</h1>
-				<p class="text-sm text-slate-500">Student Management System</p>
+				<h1 class="site-header__school-name">Pampanga High School</h1>
+				<p class="site-header__system-name">Student Management System</p>
 			</div>
 		</div>
 
