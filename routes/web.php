@@ -1,11 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
-    return view('home');
+// Guest routes
+Route::middleware('guest')->group(function () {
+    Route::get('/',               [AuthController::class, 'showLogin'])->name('login');
+    Route::get('/login',          [AuthController::class, 'showLogin'])->name('login.page');
+    Route::post('/login',         [AuthController::class, 'login'])->name('login.submit');
+    Route::get('/register',       [AuthController::class, 'showRegister'])->name('register');
+    Route::post('/register',      [AuthController::class, 'registerStep1'])->name('register.submit');
+    Route::get('/register/step2', [AuthController::class, 'showRegisterStep2'])->name('register.step2');
+    Route::post('/register/step2',[AuthController::class, 'register'])->name('register.step2.submit');
 });
 
-Route::get('/add-student', function () {
-    return view('add_student');
+// Authenticated routes
+Route::middleware('auth')->group(function () {
+    Route::get('/home',        fn() => view('home'))->name('home');
+    Route::get('/add-student', fn() => view('add_student'))->name('add-student');
+    Route::post('/logout',     [AuthController::class, 'logout'])->name('logout');
 });
