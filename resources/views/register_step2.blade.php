@@ -58,7 +58,7 @@
                         type="password"
                         id="password"
                         name="password"
-                        placeholder="••••••••"
+                        placeholder="Enter your password"
                         required
                     >
                     <button type="button" class="toggle-password" onclick="togglePassword('password', 'eye-icon-password')">
@@ -76,7 +76,7 @@
                         type="password"
                         id="password_confirmation"
                         name="password_confirmation"
-                        placeholder="••••••••"
+                        placeholder="Confirm your password"
                         required
                     >
                     <button type="button" class="toggle-password" onclick="togglePassword('password_confirmation', 'eye-icon-confirm')">
