@@ -22,4 +22,17 @@ class Student extends Model
     {
         return $this->belongsTo(GradeLevel::class, 'grade_level_id', 'grade_level_id');
     }
+    
+    //full name helper
+    public function getFullNameAttribute()
+    {
+        return trim("{$this->first_name} {$this->middle_name} {$this->last_name}");
+    }   
+
+    //full address helper
+    public function getFullAddressAttribute()
+    {
+        return trim("{$this->barangay}, {$this->municipality}, {$this->province}");
+    }
+
 }

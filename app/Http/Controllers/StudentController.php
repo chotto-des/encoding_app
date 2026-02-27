@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    //Home page show all students
+    public function index()
+    {
+        $students = Student::with('gradeLevel')->get();
+        return view('home', compact('students'));
+    }
+
     public function create()
     {
         $gradeLevels = GradeLevel::orderBy('grade_level_id')->get();
@@ -32,5 +39,9 @@ class StudentController extends Controller
 
         return redirect()->route('add-student')
             ->with('success', "Student {$validated['first_name']} {$validated['last_name']} added successfully!");
+
+        //Home page show all students
+
+        
     }
 }
