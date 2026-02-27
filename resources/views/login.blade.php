@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Pampanga High School</title>
-    @vite('resources/css/login.css')
+    @vite(['resources/css/login.css', 'resources/css/site_header.css','resources/css/site_footer.css'])
+    
+
 </head>
 <body>
-
+    @include('partials.site_header-guest')
     <div class="card">
         <!-- Icon -->
         <div class="icon-wrapper">
@@ -72,6 +74,7 @@
         </p>
     </div>
 
+    @include('partials.site_footer')
     <script>
         function togglePassword() {
             const input = document.getElementById('password');

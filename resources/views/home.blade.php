@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Student Records</title>
-	@vite(['resources/css/site_header.css', 'resources/css/home.css'])
+	 @vite(['resources/css/home.css', 'resources/css/site_header.css','resources/css/site_footer.css'])
 </head>
 <body>
 	@include('partials.site_header', ['active' => 'home', 'fullWidth' => true])
@@ -87,5 +87,7 @@
 			</div>
 		</section>
 	</main>
+
+@include('partials.site_footer')
 </body>
 </html>

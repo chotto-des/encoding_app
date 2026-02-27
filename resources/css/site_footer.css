@@ -1,0 +1,19 @@
+.site-footer {
+    background-color: #ffffff;
+    border-top: 6px solid #FAD97A;  /* ← yellow border sa taas */
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 2rem 2.5rem;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;  /* ← 3 equal columns */
+    gap: 2rem;
+    padding-bottom: 1.5rem;
+}

@@ -5,14 +5,15 @@
 .site-header {
     width: 100%;
     background-color: #ffffff;
-    border-bottom: 4px solid #fbbf24;
-    overflow: hidden; /* ← d lalabas logo */
+    border-bottom: 8px solid #FAD97A;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);/*shadow sa border bottom*/
 }
 
 .site-header__inner {
     padding: 0.5rem 2.5rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     gap: 12px;
     height: 100%;
 }
@@ -27,7 +28,7 @@
 
 /* Full-width variant (default for home / add-student) */
 .site-header__inner--full {
-    padding: 1rem 2.5rem;
+    padding: 0.5rem 2.5rem;
 }
 
 /* Centered / max-width variant */
@@ -35,7 +36,7 @@
     max-width: 72rem;
     margin-left: auto;
     margin-right: auto;
-    padding: 1rem 1.5rem;
+    padding: 0.5rem 2.5rem;
 }
 
 /* ── Left: logo + school name ───────────────────────── */

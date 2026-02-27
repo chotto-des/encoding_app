@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Add Student</title>
-	@vite(['resources/css/site_header.css', 'resources/css/add_student.css'])
+	@vite(['resources/css/add_student.css', 'resources/css/site_header.css','resources/css/site_footer.css'])
 </head>
 <body>
 	@include('partials.site_header', ['active' => 'add-student', 'fullWidth' => true])
@@ -111,6 +111,7 @@
 		</section>
 	</main>
 
+	@include('partials.site_footer')
 	<script>
 		const PSGC = 'https://psgc.gitlab.io/api';
 

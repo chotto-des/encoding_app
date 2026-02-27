@@ -7,6 +7,8 @@
 body {
     background-color: #f8f7d8;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     color: #1e293b;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -15,6 +17,7 @@ body {
 .home-main {
     width: 100%;
     padding: 2rem 2.5rem;
+    flex: 1;
 }
 
 /* ── Page header row (title + add button) ──── */
@@ -81,6 +84,8 @@ body {
     border-radius: 16px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     overflow: hidden;
+    min-height: 505px;
+    
 }
 
 .table-wrapper {
