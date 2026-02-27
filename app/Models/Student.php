@@ -2,22 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    use HasFactory;
-
-    protected $primaryKey = 'student_num';
-    public $incrementing = false;
-    protected $keyType = 'string';
-
     protected $fillable = [
-        'student_num',
         'first_name',
         'middle_name',
         'last_name',
+        'gender',
         'grade_level_id',
         'elementary_school',
         'province',
