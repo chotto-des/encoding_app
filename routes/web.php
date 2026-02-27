@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StudentController;
 
 // Guest routes
 Route::middleware('guest')->group(function () {
@@ -16,7 +17,8 @@ Route::middleware('guest')->group(function () {
 
 // Authenticated routes
 //Route::middleware('auth')->group(function () {
-    Route::get('/home',        fn() => view('home'))->name('home');
-    Route::get('/add-student', fn() => view('add_student'))->name('add-student');
-    Route::post('/logout',     [AuthController::class, 'logout'])->name('logout');
+    Route::get('/home',         fn() => view('home'))->name('home');
+    Route::get('/add-student',  [StudentController::class, 'create'])->name('add-student');
+    Route::post('/add-student', [StudentController::class, 'store'])->name('add-student.store');
+    Route::post('/logout',      [AuthController::class, 'logout'])->name('logout');
 //});
