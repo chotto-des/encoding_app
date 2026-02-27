@@ -6,13 +6,15 @@
     width: 100%;
     background-color: #ffffff;
     border-bottom: 4px solid #fbbf24;
+    overflow: hidden; /* ← d lalabas logo */
 }
 
 .site-header__inner {
-    padding: 1rem 2.5rem;
+    padding: 0.5rem 2.5rem;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    height: 100%;
 }
 
 @media (min-width: 640px) {
@@ -44,21 +46,21 @@
 }
 
 .site-header__logo {
-    width: 44px;
-    height: 44px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    background-color: #fbbf24;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    overflow: hidden;
 }
 
-.site-header__logo svg {
-    width: 20px;
-    height: 20px;
-    color: #ffffff;
-    fill: #ffffff;
+.site-header__logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
 }
 
 .site-header__school-name {

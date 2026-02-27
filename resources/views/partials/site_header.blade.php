@@ -7,9 +7,7 @@
 	<div class="{{ $innerClass }}">
 		<div class="site-header__brand">
 			<div class="site-header__logo">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox=  "0 0 24 24" fill="currentColor">
-					<path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3Zm0 14L5.5 13.45V17L12 21l6.5-4v-3.55L12 17Z"/>
-				</svg>
+				<img src="{{ asset('images/PHS-logo.png') }}" alt="PHS Logo">
 			</div>
 			<div>
 				<h1 class="site-header__school-name">Pampanga High School</h1>
