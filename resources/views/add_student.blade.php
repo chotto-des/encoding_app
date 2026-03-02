@@ -78,7 +78,7 @@
 				<div class="form-group">
 					<label for="province" class="form-label">Province <span class="required">*</span></label>
 					<div class="addr-wrap" id="province-wrap">
-						<input id="province" name="province" type="text" placeholder="Search province..." class="form-input addr-input" autocomplete="off" value="{{ old('province') }}">
+						<input id="province" name="province" type="text" placeholder="Search province..." class="form-input addr-input @error('province') input-error @enderror" autocomplete="off" value="{{ old('province') }}">
 						<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
 						<ul class="addr-options" id="province-options"></ul>
 					</div>
@@ -87,7 +87,7 @@
 				<div class="form-group">
 					<label for="municipality" class="form-label">Municipality / City <span class="required">*</span></label>
 					<div class="addr-wrap addr-disabled" id="municipality-wrap">
-						<input id="municipality" name="municipality" type="text" placeholder="Select a province first..." class="form-input addr-input" autocomplete="off" value="{{ old('municipality') }}" disabled>
+						<input id="municipality" name="municipality" type="text" placeholder="Select a province first..." class="form-input addr-input @error('municipality') input-error @enderror" autocomplete="off" value="{{ old('municipality') }}" disabled>
 						<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
 						<ul class="addr-options" id="municipality-options"></ul>
 					</div>
@@ -96,7 +96,7 @@
 				<div class="form-group col-full">
 					<label for="town_barangay" class="form-label">Barangay <span class="required">*</span></label>
 					<div class="addr-wrap addr-disabled" id="barangay-wrap">
-						<input id="town_barangay" name="barangay" type="text" placeholder="Select a municipality first..." class="form-input addr-input" autocomplete="off" value="{{ old('barangay') }}" disabled>
+						<input id="town_barangay" name="barangay" type="text" placeholder="Select a municipality first..." class="form-input addr-input @error('barangay') input-error @enderror" autocomplete="off" value="{{ old('barangay') }}" disabled>
 						<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
 						<ul class="addr-options" id="barangay-options"></ul>
 					</div>

@@ -29,9 +29,9 @@ class StudentController extends Controller
             'last_name'         => 'required|string|max:255',
             'grade_level_id'    => 'required|exists:grade_levels,grade_level_id',
             'elementary_school' => 'nullable|string|max:255',
-            'province'          => 'nullable|string|max:255',
-            'municipality'      => 'nullable|string|max:255',
-            'barangay'          => 'nullable|string|max:255',
+            'province'          => 'required|string|max:255',
+            'municipality'      => 'required|string|max:255',
+            'barangay'          => 'required|string|max:255',
             'gender'            => 'required|in:Male,Female,Other',
         ]);
 

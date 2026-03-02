@@ -39,29 +39,29 @@
             @csrf
 
             <div class="form-group">
-                <label for="last_name">Last Name</label>
-                <input type="text" id="last_name" name="last_name"
-                    placeholder="Dela Cruz" value="{{ old('last_name') }}"
-                    required autofocus>
-            </div>
-
-            <div class="form-group">
                 <label for="first_name">First Name</label>
                 <input type="text" id="first_name" name="first_name"
-                    placeholder="Juan" value="{{ old('first_name') }}"
+                    placeholder="Enter First Name" value="{{ old('first_name') }}"
                     required>
             </div>
 
             <div class="form-group">
                 <label for="middle_name">Middle Name <span class="optional">(Optional)</span></label>
                 <input type="text" id="middle_name" name="middle_name"
-                    placeholder="Santos" value="{{ old('middle_name') }}">
+                    placeholder="Enter Middle Name" value="{{ old('middle_name') }}">
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name"
+                    placeholder="Enter Last Name" value="{{ old('last_name') }}"
+                    required autofocus>
             </div>
 
             <div class="form-group">
                 <label for="extension_name">Extension Name <span class="optional">(e.g. Jr., Sr., III)</span></label>
                 <input type="text" id="extension_name" name="extension_name"
-                    placeholder="Jr." value="{{ old('extension_name') }}">
+                    placeholder="Enter Extension Name (Optional)" value="{{ old('extension_name') }}">
             </div>
 
             <button type="submit" class="btn-next">Next</button>
