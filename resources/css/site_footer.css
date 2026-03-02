@@ -3,17 +3,42 @@
     border-top: 6px solid #FAD97A;  /* ← yellow border sa taas */
     width: 100%;
     margin-top: auto;
+    
 }
 
 .footer-inner {
-    max-width: 72rem;
-    margin: 0 auto;
+    max-width: 100%;
+    margin:auto;
     padding: 2rem 2.5rem;
 }
 
 .footer-top {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;  /* ← 3 equal columns */
+    display: flex;
+    justify-content: space-between;
     gap: 2rem;
     padding-bottom: 1.5rem;
+}
+
+
+
+.footer-col ul {
+    list-style: none;    
+    padding: 0;         
+}
+
+.footer-col ul li {
+    font-size: 0.875rem;
+    color: #475569;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #475569;
 }
