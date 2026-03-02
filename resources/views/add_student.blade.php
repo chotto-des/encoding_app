@@ -36,22 +36,22 @@
 				@csrf
 				<div class="form-group">
 					<label for="first_name" class="form-label">First Name <span class="required">*</span></label>
-					<input id="first_name" name="first_name" type="text" placeholder="Juan" class="form-input @error('first_name') input-error @enderror" value="{{ old('first_name') }}">
+					<input id="first_name" name="first_name" type="text" placeholder="Juan" autocomplete="given-name" class="form-input @error('first_name') input-error @enderror" value="{{ old('first_name') }}">
 				</div>
 
 				<div class="form-group">
 					<label for="middle_name" class="form-label">Middle Name</label>
-					<input id="middle_name" name="middle_name" type="text" placeholder="Santos" class="form-input" value="{{ old('middle_name') }}">
+					<input id="middle_name" name="middle_name" type="text" placeholder="Santos" autocomplete="additional-name" class="form-input" value="{{ old('middle_name') }}">
 				</div>
 
 				<div class="form-group col-full">
 					<label for="last_name" class="form-label">Last Name <span class="required">*</span></label>
-					<input id="last_name" name="last_name" type="text" placeholder="Dela Cruz" class="form-input @error('last_name') input-error @enderror" value="{{ old('last_name') }}">
+					<input id="last_name" name="last_name" type="text" placeholder="Dela Cruz" autocomplete="family-name" class="form-input @error('last_name') input-error @enderror" value="{{ old('last_name') }}">
 				</div>
 
 				<div class="form-group">
 					<label for="gender" class="form-label">Gender <span class="required">*</span></label>
-					<select id="gender" name="gender" class="form-select">
+					<select id="gender" name="gender" autocomplete="sex" class="form-select">
 						<option value="" disabled selected hidden>Select Gender</option>
 						<option {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
 						<option {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
@@ -60,7 +60,7 @@
 
 				<div class="form-group">
 					<label for="grade_level_id" class="form-label">Grade Level <span class="required">*</span></label>
-					<select id="grade_level_id" name="grade_level_id" class="form-select @error('grade_level_id') input-error @enderror">
+					<select id="grade_level_id" name="grade_level_id" autocomplete="off" class="form-select @error('grade_level_id') input-error @enderror">
 						<option value="" disabled selected hidden>Select Grade Level</option>
 						@foreach($gradeLevels as $level)
 							<option value="{{ $level->grade_level_id }}" {{ old('grade_level_id') == $level->grade_level_id ? 'selected' : '' }}>
@@ -72,7 +72,7 @@
 
 				<div class="form-group col-full">
 					<label for="elementary_school" class="form-label">Elementary School <span class="required">*</span></label>
-					<input id="elementary_school" name="elementary_school" type="text" placeholder="San Fernando Elementary School" class="form-input" value="{{ old('elementary_school') }}">
+					<input id="elementary_school" name="elementary_school" type="text" placeholder="San Fernando Elementary School" autocomplete="off" class="form-input" value="{{ old('elementary_school') }}">
 				</div>
 
 				<div class="form-group">
@@ -113,175 +113,131 @@
 
 	@include('partials.site_footer')
 	<script>
-		const LOCAL = '{{ url("api/address") }}';
+		const API = '{{ url("api/address") }}';
 
-		let provinceMap     = {};
-		let municipalityMap = {};
+		// current items and pick handler per level
+		const state = {
+			province:     { items: [], onPick: null },
+			municipality: { items: [], onPick: null },
+			barangay:     { items: [], onPick: null },
+		};
 
-		// ── Dropdown logic ──────────────────────────────────────
-		function setupDropdown(wrapId, inputEl, optionsEl) {
-			const wrap = document.getElementById(wrapId);
+		// ── Elements ─────────────────────────────────────────────
+		const fields = {
+			province:     document.getElementById('province'),
+			municipality: document.getElementById('municipality'),
+			barangay:     document.getElementById('town_barangay'),
+		};
+		const lists = {
+			province:     document.getElementById('province-options'),
+			municipality: document.getElementById('municipality-options'),
+			barangay:     document.getElementById('barangay-options'),
+		};
+		const wraps = {
+			province:     document.getElementById('province-wrap'),
+			municipality: document.getElementById('municipality-wrap'),
+			barangay:     document.getElementById('barangay-wrap'),
+		};
 
-			function open() {
-				if (inputEl.disabled) return;
-				wrap.classList.add('open');
-			}
-			function close() {
-				wrap.classList.remove('open');
-			}
-			function renderOptions(names, onSelect) {
-				optionsEl.innerHTML = '';
-				if (names.length === 0) {
-					const li = document.createElement('li');
-					li.className = 'addr-opt-empty';
-					li.textContent = 'No results found';
-					optionsEl.appendChild(li);
-					return;
-				}
-				names.forEach(name => {
-					const li = document.createElement('li');
-					li.textContent = name;
-					li.addEventListener('mousedown', e => {
-						e.preventDefault();
-						inputEl.value = name;
-						close();
-						onSelect(name);
-					});
-					optionsEl.appendChild(li);
-				});
-			}
-
-			inputEl.addEventListener('focus', () => {
-				open();
-				const q = inputEl.value.trim().toLowerCase();
-				const filtered = currentNames.filter(n => n.toLowerCase().includes(q));
-				renderOptions(filtered, onPickCallback);
-			});
-			inputEl.addEventListener('blur',  () => close());
-			inputEl.addEventListener('input', function () {
-				open();
-				const q = this.value.trim().toLowerCase();
-				const filtered = currentNames.filter(n => n.toLowerCase().includes(q));
-				renderOptions(filtered, onPickCallback);
-			});
-
-			let currentNames     = [];
-			let onPickCallback   = () => {};
-
-			function enable(names, onPick) {
-				currentNames   = names;
-				onPickCallback = onPick;
-				optionsEl.innerHTML = '';
-				inputEl.disabled = false;
-				wrap.classList.remove('addr-disabled');
-			}
-			function disable(placeholder) {
-				inputEl.value = '';
-				inputEl.placeholder = placeholder;
-				inputEl.disabled = true;
-				wrap.classList.add('addr-disabled');
-				optionsEl.innerHTML = '';
-				close();
-			}
-			function setLoading() {
-				optionsEl.innerHTML = '<li class="addr-opt-loading">Loading...</li>';
-				wrap.classList.add('open');
-			}
-
-			return { enable, disable, setLoading, renderOptions: (n) => renderOptions(n, onPickCallback) };
+		// ── Helpers ───────────────────────────────────────────────
+		function lockField(level, placeholder) {
+			fields[level].value       = '';
+			fields[level].placeholder = placeholder;
+			fields[level].disabled    = true;
+			lists[level].innerHTML    = '';
+			state[level].items        = [];
+			state[level].onPick       = null;
+			wraps[level].classList.add('addr-disabled');
+			wraps[level].classList.remove('open');
 		}
 
-		// ── Wire up the three dropdowns ──────────────────────────
-		const provinceInput     = document.getElementById('province');
-		const municipalityInput = document.getElementById('municipality');
-		const barangayInput     = document.getElementById('town_barangay');
-		const provinceOpts      = document.getElementById('province-options');
-		const municipalityOpts  = document.getElementById('municipality-options');
-		const barangayOpts      = document.getElementById('barangay-options');
+		function unlockField(level, items, placeholder, onPick) {
+			state[level].items        = items;
+			state[level].onPick       = onPick;
+			fields[level].disabled    = false;
+			fields[level].placeholder = placeholder;
+			wraps[level].classList.remove('addr-disabled');
+		}
 
-		const provinceDd     = setupDropdown('province-wrap',     provinceInput,     provinceOpts);
-		const municipalityDd = setupDropdown('municipality-wrap', municipalityInput, municipalityOpts);
-		const barangayDd     = setupDropdown('barangay-wrap',     barangayInput,     barangayOpts);
+		function renderList(level) {
+			const { items, onPick } = state[level];
+			const q = fields[level].value.trim().toLowerCase();
+			const filtered = items.filter(item => item.name.toLowerCase().includes(q));
 
-		// Load all provinces on page load
-		fetch(`${LOCAL}/provinces`)
-			.then(r => r.json())
-			.then(data => {
-				data.sort((a, b) => a.name.localeCompare(b.name));
-				data.forEach(p => { provinceMap[p.name] = p.code; });
-				const names = data.map(p => p.name);
-				provinceDd.enable(names, (selected) => {
-					const code = provinceMap[selected];
-					if (!code) return;
-					municipality_reset();
-					municipality_load(code);
+			lists[level].innerHTML = '';
+			if (filtered.length === 0) {
+				lists[level].innerHTML = '<li class="addr-opt-empty">No results found</li>';
+				return;
+			}
+			filtered.forEach(item => {
+				const li = document.createElement('li');
+				li.textContent = item.name;
+				li.addEventListener('mousedown', e => {
+					e.preventDefault();
+					fields[level].value = item.name;
+					wraps[level].classList.remove('open');
+					if (onPick) onPick(item.code);
 				});
-			})
-			.catch(() => console.error('Failed to load provinces.'));
+				lists[level].appendChild(li);
+			});
+		}
 
-		provinceInput.addEventListener('input', () => {
-			municipality_reset();
-			barangay_reset();
+		// ── Wire events once ──────────────────────────────────────
+		['province', 'municipality', 'barangay'].forEach(level => {
+			fields[level].addEventListener('focus', () => {
+				if (!fields[level].disabled) {
+					renderList(level);
+					wraps[level].classList.add('open');
+				}
+			});
+			fields[level].addEventListener('input', () => {
+				renderList(level);
+				wraps[level].classList.add('open');
+			});
+			fields[level].addEventListener('blur', () => {
+				wraps[level].classList.remove('open');
+			});
 		});
 
-		function municipality_reset() {
-			municipalityMap = {};
-			municipality_disabled();
-			barangay_reset();
-		}
-		function municipality_disabled() {
-			municipality_load_disabled();
-			barangay_reset();
-		}
-		function municipality_load_disabled() {
-			municipalityDd.disable('Select a province first...');
-		}
-		function barangay_reset() {
-			barangayDd.disable('Select a municipality first...');
+		async function fetchData(url) {
+			const res = await fetch(url);
+			return res.json();
 		}
 
-		function municipality_load(provinceCode) {
-			municipalityDd.disable('Loading...');
-			fetch(`${LOCAL}/provinces/${provinceCode}/municipalities`)
-				.then(r => r.json())
-				.then(data => {
-					data.sort((a, b) => a.name.localeCompare(b.name));
-					data.forEach(m => { municipalityMap[m.name] = m.code; });
-					const names = data.map(m => m.name);
-					municipality_input_placeholder_set(names);
-					municipalityDd.enable(names, (selected) => {
-						const code = municipalityMap[selected];
-						if (!code) return;
-						barangay_reset();
-						barangay_load(code);
-					});
-				})
-				.catch(() => console.error('Failed to load municipalities.'));
+		// ── Init ──────────────────────────────────────────────────
+		lockField('municipality', 'Select a province first...');
+		lockField('barangay', 'Select a municipality first...');
+
+		fetchData(`${API}/provinces`).then(rows => {
+			unlockField('province', rows, 'Search province...', onProvincePick);
+		});
+
+		function onProvincePick(provinceCode) {
+			lockField('municipality', 'Loading...');
+			lockField('barangay', 'Select a municipality first...');
+
+			fetchData(`${API}/provinces/${provinceCode}/municipalities`).then(rows => {
+				unlockField('municipality', rows, 'Search municipality / city...', onMunicipalityPick);
+			});
 		}
 
-		function municipality_input_placeholder_set(names) {
-			municipalityInput.placeholder = names.length
-				? 'Search municipality / city...'
-				: 'No municipalities found';
+		function onMunicipalityPick(municipalityCode) {
+			lockField('barangay', 'Loading...');
+
+			fetchData(`${API}/municipalities/${municipalityCode}/barangays`).then(rows => {
+				console.log('barangay rows:', rows);
+				unlockField('barangay', rows, 'Search barangay...', null);
+			});
 		}
 
-		function barangay_load(municipalityCode) {
-			barangayInput.disabled = true;
-			barangayInput.placeholder = 'Loading...';
-			const wrap = document.getElementById('barangay-wrap');
-			wrap.classList.remove('addr-disabled');
-			fetch(`${LOCAL}/municipalities/${municipalityCode}/barangays`)
-				.then(r => r.json())
-				.then(data => {
-					data.sort((a, b) => a.name.localeCompare(b.name));
-					const names = data.map(b => b.name);
-					barangayDd.enable(names, () => {});
-					barangayInput.placeholder = 'Search barangay...';
-				})
-				.catch(() => console.error('Failed to load barangays.'));
-		}
-
-		municipalityInput.addEventListener('input', () => barangay_reset());
+		// Reset lower fields when user manually edits a higher field
+		fields.province.addEventListener('input', () => {
+			lockField('municipality', 'Select a province first...');
+			lockField('barangay', 'Select a municipality first...');
+		});
+		fields.municipality.addEventListener('input', () => {
+			lockField('barangay', 'Select a municipality first...');
+		});
 	</script>
 </body>
 </html>

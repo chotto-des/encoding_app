@@ -24,7 +24,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/logout',      [AuthController::class, 'logout'])->name('logout');
 //});
 
-// Local Philippine address API (served from DB)
+// Local address API (served from DB)
 Route::prefix('api/address')->group(function () {
     Route::get('/provinces',                         [AddressController::class, 'provinces'])->name('address.provinces');
     Route::get('/provinces/{code}/municipalities',   [AddressController::class, 'municipalities'])->name('address.municipalities');

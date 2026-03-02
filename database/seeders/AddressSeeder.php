@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PhilAddressSeeder extends Seeder
+class AddressSeeder extends Seeder
 {
     private const DATA_DIR = __DIR__ . '/../data/address';
     private const CHUNK    = 500;
@@ -37,7 +37,7 @@ class PhilAddressSeeder extends Seeder
                 $chunk->map(fn($b) => [
                     'code'              => $b['code'],
                     'name'              => $b['name'],
-                    'municipality_code' => $b['cityCode'] ?? $b['municipalityCode'] ?? '',
+                    'municipality_code' => $b['cityCode'] ?: ($b['municipalityCode'] ?: ''),
                 ])->values()->all()
             )
         );
