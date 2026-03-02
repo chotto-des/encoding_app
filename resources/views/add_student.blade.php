@@ -113,7 +113,7 @@
 
 	@include('partials.site_footer')
 	<script>
-		const PSGC = 'https://psgc.gitlab.io/api';
+		const LOCAL = '{{ url("api/address") }}';
 
 		let provinceMap     = {};
 		let municipalityMap = {};
@@ -204,7 +204,7 @@
 		const barangayDd     = setupDropdown('barangay-wrap',     barangayInput,     barangayOpts);
 
 		// Load all provinces on page load
-		fetch(`${PSGC}/provinces/`)
+		fetch(`${LOCAL}/provinces`)
 			.then(r => r.json())
 			.then(data => {
 				data.sort((a, b) => a.name.localeCompare(b.name));
@@ -242,7 +242,7 @@
 
 		function municipality_load(provinceCode) {
 			municipalityDd.disable('Loading...');
-			fetch(`${PSGC}/provinces/${provinceCode}/cities-municipalities/`)
+			fetch(`${LOCAL}/provinces/${provinceCode}/municipalities`)
 				.then(r => r.json())
 				.then(data => {
 					data.sort((a, b) => a.name.localeCompare(b.name));
@@ -270,7 +270,7 @@
 			barangayInput.placeholder = 'Loading...';
 			const wrap = document.getElementById('barangay-wrap');
 			wrap.classList.remove('addr-disabled');
-			fetch(`${PSGC}/cities-municipalities/${municipalityCode}/barangays/`)
+			fetch(`${LOCAL}/municipalities/${municipalityCode}/barangays`)
 				.then(r => r.json())
 				.then(data => {
 					data.sort((a, b) => a.name.localeCompare(b.name));

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\AddressController;
 
 // Guest routes
 Route::middleware('guest')->group(function () {
@@ -22,3 +23,10 @@ Route::middleware('guest')->group(function () {
     Route::post('/add-student', [StudentController::class, 'store'])->name('add-student.store');
     Route::post('/logout',      [AuthController::class, 'logout'])->name('logout');
 //});
+
+// Local Philippine address API (served from DB)
+Route::prefix('api/address')->group(function () {
+    Route::get('/provinces',                         [AddressController::class, 'provinces'])->name('address.provinces');
+    Route::get('/provinces/{code}/municipalities',   [AddressController::class, 'municipalities'])->name('address.municipalities');
+    Route::get('/municipalities/{code}/barangays',   [AddressController::class, 'barangays'])->name('address.barangays');
+});
