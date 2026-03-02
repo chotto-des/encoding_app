@@ -10,20 +10,24 @@
 
             <!-- Contact Information -->
             <div class="footer-col">
-                <h3>Contact Information</h3>
-                <ul>
-                    <li>📍 San Fernando, Pampanga</li>
-                    <li>📞 (045) 123-4567</li>
-                    <li>✉️ info@pampangahighschool.edu.ph</li>
-                </ul>
+                <div class="footer-col-center">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li>📍 San Fernando, Pampanga</li>
+                        <li>📞 (045) 123-4567</li>
+                        <li>✉️ info@pampangahighschool.edu.ph</li>
+                    </ul>
+                </div>
             </div>
 
             <!-- Office Hours -->
             <div class="footer-col">
-                <h3>Office Hours</h3>
-                <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
-                <p>Saturday: 8:00 AM - 12:00 PM</p>
-                <p>Sunday: Closed</p>
+                <div class="footer-col-right">
+                    <h3>Office Hours</h3>
+                    <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+                    <p>Saturday: 8:00 AM - 12:00 PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
             </div>
         </div>
 
