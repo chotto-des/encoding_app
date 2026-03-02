@@ -42,6 +42,14 @@ class StudentController extends Controller
 
         //Home page show all students
 
-        
     }
+
+            // Delete student
+        public function destroy(Student $student)
+        {
+            $student->delete();
+
+            return redirect()->route('home')
+                ->with('success', 'Student deleted successfully.');
+        }
 }

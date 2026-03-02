@@ -22,6 +22,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/add-student',  [StudentController::class, 'create'])->name('add-student');
     Route::post('/add-student', [StudentController::class, 'store'])->name('add-student.store');
     Route::post('/logout',      [AuthController::class, 'logout'])->name('logout');
+    Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
 //});
 
 // Local address API (served from DB)

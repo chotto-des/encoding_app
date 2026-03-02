@@ -172,3 +172,75 @@ body {
     width: 20px;
     height: 20px;
 }
+
+/* ── Delete Modal ─────────────────────────── */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-box {
+    background: white;
+    width: 420px;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.75rem;
+}
+
+.modal-message {
+    color: #475569;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn-modal-cancel {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+    background: white;
+    color: #475569;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.btn-modal-cancel:hover {
+    background: #f1f5f9;
+}
+
+.btn-modal-delete {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #ef4444;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.btn-modal-delete:hover {
+    background: #dc2626;
+}
+
