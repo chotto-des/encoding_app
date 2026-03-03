@@ -14,6 +14,9 @@ Route::middleware('guest')->group(function () {
     Route::post('/register',      [AuthController::class, 'registerStep1'])->name('register.submit');
     Route::get('/register/step2', [AuthController::class, 'showRegisterStep2'])->name('register.step2');
     Route::post('/register/step2',[AuthController::class, 'register'])->name('register.step2.submit');
+    Route::get('/verify-email',         [AuthController::class, 'showVerification'])->name('verification.show');
+    Route::post('/verify-email',        [AuthController::class, 'verifyOtp'])->name('verification.submit');
+    Route::post('/verify-email/resend', [AuthController::class, 'resendOtp'])->name('verification.resend');
 });
 
 // Authenticated routes
@@ -28,7 +31,7 @@ Route::middleware('guest')->group(function () {
 //});
 
 // Local address API (served from DB)
-Route::prefix('api/address')->group(function () {
+Route::prefix('address')->group(function () {
     Route::get('/provinces',                         [AddressController::class, 'provinces'])->name('address.provinces');
     Route::get('/provinces/{code}/municipalities',   [AddressController::class, 'municipalities'])->name('address.municipalities');
     Route::get('/municipalities/{code}/barangays',   [AddressController::class, 'barangays'])->name('address.barangays');

@@ -170,7 +170,7 @@
 				lists[level].innerHTML = '<li class="addr-opt-empty">No results found</li>';
 				return;
 			}
-
+			// kapag may results, i-render lahat ng options sa list 
 			filtered.forEach(item => {
 				const li = document.createElement('li');
 				li.textContent = item.name;
@@ -206,7 +206,7 @@
 			return res.json();
 		}
 
-		// Start with all lower fields locked
+		// Start with all lower fields locked 
 		lockField('municipality', 'Select a province first...');
 		lockField('barangay', 'Select a municipality first...');
 
