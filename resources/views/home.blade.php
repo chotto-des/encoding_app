@@ -52,11 +52,11 @@
        						<td><span class="grade-badge">{{ $student->gradeLevel->grade_level_name ?? 'N/A' }}</span></td>
 							<td>
 								<div class="action-btns">
-									<button type="button" class="btn-edit" aria-label="Edit">
+									<a href="{{ route('students.edit', $student) }}" class="btn-edit" aria-label="Edit">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 											<path stroke-linecap="round" stroke-linejoin="round" d="m16.862 3.487 3.651 3.651M4.5 19.5l4.301-.956a2.25 2.25 0 0 0 1.08-.591L20.513 7.322a2.25 2.25 0 0 0 0-3.182l-.653-.653a2.25 2.25 0 0 0-3.182 0L6.047 14.119a2.25 2.25 0 0 0-.591 1.08L4.5 19.5Z" />
 										</svg>
-									</button>
+									</a>
 
 									<form id="delete-form-{{ $student->id }}" action="{{ route('students.destroy', $student) }}" method="POST">
 									@csrf

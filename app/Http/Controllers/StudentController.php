@@ -29,9 +29,9 @@ class StudentController extends Controller
             'last_name'         => 'required|string|max:255',
             'grade_level_id'    => 'required|exists:grade_levels,grade_level_id',
             'elementary_school' => 'nullable|string|max:255',
-            'province'          => 'required|string|max:255',
-            'municipality'      => 'required|string|max:255',
-            'barangay'          => 'required|string|max:255',
+            'province'          => 'nullable|string|max:255',
+            'municipality'      => 'nullable|string|max:255',
+            'barangay'          => 'nullable|string|max:255',
             'gender'            => 'required|in:Male,Female,Other',
         ]);
 
@@ -39,8 +39,6 @@ class StudentController extends Controller
 
         return redirect()->route('add-student')
             ->with('success', "Student {$validated['first_name']} {$validated['last_name']} added successfully!");
-
-        //Home page show all students
 
     }
 
@@ -51,5 +49,33 @@ class StudentController extends Controller
 
             return redirect()->route('home')
                 ->with('success', 'Student deleted successfully.');
+        }
+
+        // Show edit form
+        public function edit(Student $student)
+        {
+            $gradeLevels = GradeLevel::orderBy('grade_level_id')->get();
+            return view('edit_student', compact('student', 'gradeLevels'));
+        }
+
+        // Update student
+        public function update(Request $request, Student $student)
+        {
+            $validated = $request->validate([
+                'first_name'        => 'required|string|max:255',
+                'middle_name'       => 'nullable|string|max:255',
+                'last_name'         => 'required|string|max:255',
+                'grade_level_id'    => 'required|exists:grade_levels,grade_level_id',
+                'elementary_school' => 'nullable|string|max:255',
+                'province'          => 'nullable|string|max:255',
+                'municipality'      => 'nullable|string|max:255',
+                'barangay'          => 'nullable|string|max:255',
+                'gender'            => 'required|in:Male,Female,Other',
+            ]);
+
+            $student->update($validated);
+
+            return redirect()->route('home')
+                ->with('success', "Student {$validated['first_name']} {$validated['last_name']} updated successfully!");
         }
 }
