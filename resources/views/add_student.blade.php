@@ -103,7 +103,7 @@
 				</div>
 
 				<div class="btn-row">
-					<a href="{{ route('home') }}" class="btn-cancel">Cancel</a>
+					<a href="{{ route('home') }}" class="btn-cancel">Back</a>
 					<button type="submit" class="btn-submit">Add Student</button>
 
 				</div>

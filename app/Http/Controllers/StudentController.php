@@ -37,8 +37,8 @@ class StudentController extends Controller
 
         Student::create($validated);
 
-        return redirect()->route('add-student')
-            ->with('success', "Student {$validated['first_name']} {$validated['last_name']} added successfully!");
+        return redirect()->route('home')
+            ->with('success', "Student <strong>{$validated['first_name']} {$validated['last_name']}</strong> added successfully!");
 
     }
 
@@ -76,6 +76,6 @@ class StudentController extends Controller
             $student->update($validated);
 
             return redirect()->route('home')
-                ->with('success', "Student {$validated['first_name']} {$validated['last_name']} updated successfully!");
+                ->with('success', "Student <strong>{$validated['first_name']} {$validated['last_name']}</strong> updated successfully!");
         }
 }
