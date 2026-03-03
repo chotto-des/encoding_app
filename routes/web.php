@@ -14,13 +14,18 @@ Route::middleware('guest')->group(function () {
     Route::post('/register',      [AuthController::class, 'registerStep1'])->name('register.submit');
     Route::get('/register/step2', [AuthController::class, 'showRegisterStep2'])->name('register.step2');
     Route::post('/register/step2',[AuthController::class, 'register'])->name('register.step2.submit');
+<<<<<<< HEAD
+    Route::get('/verify-email',   [AuthController::class, 'showVerification'])->name('verification.show');
+    Route::post('/verify-email',  [AuthController::class, 'verifyOtp'])->name('verification.submit');
+=======
     Route::get('/verify-email',         [AuthController::class, 'showVerification'])->name('verification.show');
     Route::post('/verify-email',        [AuthController::class, 'verifyOtp'])->name('verification.submit');
+>>>>>>> 4c42a6b281396b70294f39b8d8e95d5fafe2fec3
     Route::post('/verify-email/resend', [AuthController::class, 'resendOtp'])->name('verification.resend');
 });
 
 // Authenticated routes
-//Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/home', [StudentController::class, 'index'])->name('home');
     Route::get('/add-student',  [StudentController::class, 'create'])->name('add-student');
     Route::post('/add-student', [StudentController::class, 'store'])->name('add-student.store');
@@ -28,7 +33,7 @@ Route::middleware('guest')->group(function () {
     Route::delete('/students/{student}',      [StudentController::class, 'destroy'])->name('students.destroy');
     Route::get('/students/{student}/edit',   [StudentController::class, 'edit'])->name('students.edit');
     Route::put('/students/{student}',        [StudentController::class, 'update'])->name('students.update');
-//});
+});
 
 // Local address API (served from DB)
 Route::prefix('address')->group(function () {
