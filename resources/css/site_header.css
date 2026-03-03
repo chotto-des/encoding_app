@@ -34,8 +34,6 @@
 /* Centered / max-width variant */
 .site-header__inner--centered {
     max-width: 72rem;
-    margin-left: auto;
-    margin-right: auto;
     padding: 0.5rem 2.5rem;
 }
 
