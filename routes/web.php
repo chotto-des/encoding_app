@@ -27,7 +27,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/home', [StudentController::class, 'index'])->name('home');
     Route::get('/add-student',  [StudentController::class, 'create'])->name('add-student');
     Route::post('/add-student', [StudentController::class, 'store'])->name('add-student.store');
-
+    Route::get('/students/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
+    Route::put('/students/{student}', [StudentController::class, 'update'])->name('students.update');
     Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
 //});
 
