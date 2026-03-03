@@ -28,12 +28,17 @@ Route::middleware('guest')->group(function () {
     Route::get('/add-student',  [StudentController::class, 'create'])->name('add-student');
     Route::post('/add-student', [StudentController::class, 'store'])->name('add-student.store');
 <<<<<<< HEAD
+<<<<<<< HEAD
     Route::post('/logout',      [AuthController::class, 'logout'])->name('logout');
     Route::delete('/students/{student}',      [StudentController::class, 'destroy'])->name('students.destroy');
     Route::get('/students/{student}/edit',   [StudentController::class, 'edit'])->name('students.edit');
     Route::put('/students/{student}',        [StudentController::class, 'update'])->name('students.update');
 =======
 
+=======
+    Route::get('/students/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
+    Route::put('/students/{student}', [StudentController::class, 'update'])->name('students.update');
+>>>>>>> 6b8315ad9e65eafffe79fe023e4c48ed9817ea53
     Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
 >>>>>>> 507ded4432a75a15c4d4821000448b76fa272529
 //});

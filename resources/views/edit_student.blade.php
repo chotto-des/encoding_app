@@ -116,17 +116,14 @@
 	<script>
 		const API = '{{ url("api/address") }}';
 
-		// Existing student address values from PHP
-		const existingProvince     = '{{ $student->province ?? '' }}';
-		const existingMunicipality = '{{ $student->municipality ?? '' }}';
-		const existingBarangay     = '{{ $student->barangay ?? '' }}';
-
+		// current items and pick handler per level
 		const state = {
 			province:     { items: [], onPick: null },
 			municipality: { items: [], onPick: null },
 			barangay:     { items: [], onPick: null },
 		};
 
+		// ── Elements ─────────────────────────────────────────────
 		const fields = {
 			province:     document.getElementById('province'),
 			municipality: document.getElementById('municipality'),
@@ -143,10 +140,11 @@
 			barangay:     document.getElementById('barangay-wrap'),
 		};
 
+		// ── Helpers ───────────────────────────────────────────────
 		function lockField(level, placeholder) {
 			fields[level].value       = '';
 			fields[level].placeholder = placeholder;
-			fields[level].disabled    = true;   // fix: was incorrectly false
+			fields[level].disabled    = false;
 			lists[level].innerHTML    = '';
 			state[level].items        = [];
 			state[level].onPick       = null;
@@ -185,6 +183,7 @@
 			});
 		}
 
+		// ── Wire events once ──────────────────────────────────────
 		['province', 'municipality', 'barangay'].forEach(level => {
 			fields[level].addEventListener('focus', () => {
 				if (!fields[level].disabled) {
@@ -206,35 +205,12 @@
 			return res.json();
 		}
 
-		// ── Init: lock lower fields first ─────────────────────────
+		// ── Init ──────────────────────────────────────────────────
 		lockField('municipality', 'Select a province first...');
 		lockField('barangay', 'Select a municipality first...');
 
-		// ── Load provinces, then auto-restore saved address ───────
 		fetchData(`${API}/provinces`).then(rows => {
 			unlockField('province', rows, 'Search province...', onProvincePick);
-
-			// If student already has a province, auto-load municipalities
-			if (existingProvince) {
-				const match = rows.find(r => r.name === existingProvince);
-				if (match) {
-					fetchData(`${API}/provinces/${match.code}/municipalities`).then(mRows => {
-						unlockField('municipality', mRows, 'Search municipality / city...', onMunicipalityPick);
-						fields.municipality.value = existingMunicipality;
-
-						// If student also has a municipality, auto-load barangays
-						if (existingMunicipality) {
-							const mMatch = mRows.find(r => r.name === existingMunicipality);
-							if (mMatch) {
-								fetchData(`${API}/municipalities/${mMatch.code}/barangays`).then(bRows => {
-									unlockField('barangay', bRows, 'Search barangay...', null);
-									fields.barangay.value = existingBarangay;
-								});
-							}
-						}
-					});
-				}
-			}
 		});
 
 		function onProvincePick(provinceCode) {
@@ -250,11 +226,12 @@
 			lockField('barangay', 'Loading...');
 
 			fetchData(`${API}/municipalities/${municipalityCode}/barangays`).then(rows => {
+				console.log('barangay rows:', rows);
 				unlockField('barangay', rows, 'Search barangay...', null);
 			});
 		}
 
-		// Reset lower fields when user manually clears a higher field
+		// Reset lower fields when user manually edits a higher field
 		fields.province.addEventListener('input', () => {
 			lockField('municipality', 'Select a province first...');
 			lockField('barangay', 'Select a municipality first...');
