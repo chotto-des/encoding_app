@@ -24,6 +24,8 @@
             <div class="step active">1</div>
             <div class="step-line"></div>
             <div class="step">2</div>
+            <div class="step-line"></div>
+            <div class="step">3</div>
         </div>
         <p class="step-label">Step 1: Personal Information</p>
 

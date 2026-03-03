@@ -113,16 +113,17 @@
 
 	@include('partials.site_footer')
 	<script>
-		const API = '{{ url("api/address") }}';
+		const addressUrl = '{{ url("address") }}';
 
-		// current items and pick handler per level
+		// para i-store yung state ng bawat level ng address selection (province, municipality, barangay)
+		// kasama na yung list ng options at yung onPick callback function na tatawagin kapag may napili sa list
 		const state = {
 			province:     { items: [], onPick: null },
 			municipality: { items: [], onPick: null },
 			barangay:     { items: [], onPick: null },
 		};
 
-		// ── Elements ─────────────────────────────────────────────
+		// para i-access yung fields, lists, at wraps ng bawat level nang mas madali sa mga functions below
 		const fields = {
 			province:     document.getElementById('province'),
 			municipality: document.getElementById('municipality'),
@@ -139,7 +140,7 @@
 			barangay:     document.getElementById('barangay-wrap'),
 		};
 
-		// ── Helpers ───────────────────────────────────────────────
+		//para sa pag lock ng field kapag walang napili sa previous field, at para ireset din yung value at placeholder
 		function lockField(level, placeholder) {
 			fields[level].value       = '';
 			fields[level].placeholder = placeholder;
@@ -150,7 +151,7 @@
 			wraps[level].classList.add('addr-disabled');
 			wraps[level].classList.remove('open');
 		}
-
+		//para sa pag unlock ng field kapag nakapili na sa previous field, at para ipopulate yung options ng current field
 		function unlockField(level, items, placeholder, onPick) {
 			state[level].items        = items;
 			state[level].onPick       = onPick;
@@ -158,7 +159,7 @@
 			fields[level].placeholder = placeholder;
 			wraps[level].classList.remove('addr-disabled');
 		}
-
+		//para i-render yung options sa dropdown list base sa current input value
 		function renderList(level) {
 			const { items, onPick } = state[level];
 			const q = fields[level].value.trim().toLowerCase();
@@ -169,6 +170,7 @@
 				lists[level].innerHTML = '<li class="addr-opt-empty">No results found</li>';
 				return;
 			}
+
 			filtered.forEach(item => {
 				const li = document.createElement('li');
 				li.textContent = item.name;
@@ -182,7 +184,7 @@
 			});
 		}
 
-		// ── Wire events once ──────────────────────────────────────
+		// para i-toggle yung dropdown list kapag nag-focus o nag-input sa field, at para i-close yung list kapag nag-blur sa field
 		['province', 'municipality', 'barangay'].forEach(level => {
 			fields[level].addEventListener('focus', () => {
 				if (!fields[level].disabled) {
@@ -198,43 +200,45 @@
 				wraps[level].classList.remove('open');
 			});
 		});
-
+		// para i-fetch yung list ng provinces, municipalities, at barangays mula sa API
 		async function fetchData(url) {
 			const res = await fetch(url);
 			return res.json();
 		}
 
-		// ── Init ──────────────────────────────────────────────────
+		// Start with all lower fields locked
 		lockField('municipality', 'Select a province first...');
 		lockField('barangay', 'Select a municipality first...');
 
-		fetchData(`${API}/provinces`).then(rows => {
+		// pag-load ng page, i-fetch yung provinces para mapopulate yung province field
+		fetchData(`${addressUrl}/provinces`).then(rows => {
 			unlockField('province', rows, 'Search province...', onProvincePick);
 		});
-
+		// kapag nakapili na ng province, i-fetch yung municipalities para sa probinsya na yun
 		function onProvincePick(provinceCode) {
 			lockField('municipality', 'Loading...');
 			lockField('barangay', 'Select a municipality first...');
 
-			fetchData(`${API}/provinces/${provinceCode}/municipalities`).then(rows => {
+			fetchData(`${addressUrl}/provinces/${provinceCode}/municipalities`).then(rows => {
 				unlockField('municipality', rows, 'Search municipality / city...', onMunicipalityPick);
 			});
 		}
-
+		// kapag nakapili na ng municipality, i-fetch yung barangays para sa munisipyo na yun
 		function onMunicipalityPick(municipalityCode) {
 			lockField('barangay', 'Loading...');
-
-			fetchData(`${API}/municipalities/${municipalityCode}/barangays`).then(rows => {
+		// note: wala nang next level after barangay, kaya walang onPick callback na kailangan
+			fetchData(`${addressUrl}/municipalities/${municipalityCode}/barangays`).then(rows => {
 				console.log('barangay rows:', rows);
 				unlockField('barangay', rows, 'Search barangay...', null);
 			});
 		}
 
-		// Reset lower fields when user manually edits a higher field
+		// para i-lock yung dependent fields kapag binago yung value ng province o municipality
 		fields.province.addEventListener('input', () => {
 			lockField('municipality', 'Select a province first...');
 			lockField('barangay', 'Select a municipality first...');
 		});
+		// kapag binago yung value ng municipality, i-lock yung barangay field
 		fields.municipality.addEventListener('input', () => {
 			lockField('barangay', 'Select a municipality first...');
 		});
