@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OtpEmail;
 
 class AuthController extends Controller
 {
@@ -20,8 +22,10 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             'email'    => ['required', 'email'],
-            'password' => ['required'],
+            'password' => ['required', 'string', 'min:8'],
         ]);
+        
+
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -64,7 +68,7 @@ class AuthController extends Controller
         return view('register_step2');
     }
 
-    // Handle final registration
+    // Handle step 2 submission — save to session, send OTP, go to verification
     public function register(Request $request)
     {
         if (!$request->session()->has('register_step1')) {
@@ -76,20 +80,87 @@ class AuthController extends Controller
             'password' => ['required', 'min:8', 'confirmed'],
         ]);
 
-        $step1 = $request->session()->pull('register_step1');
+        // Save step 2 data to session (don't create user yet)
+        $request->session()->put('register_step2', [
+            'email'    => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
 
+        // Generate 6-digit OTP
+        $otp = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+        $request->session()->put('otp', $otp);
+        $request->session()->put('otp_expires_at', now()->addMinutes(10)->timestamp);
+        $request->session()->put('register_email', $validated['email']);
+
+        // Send OTP email
+        Mail::to($validated['email'])->send(new OtpEmail($otp));
+
+        return redirect()->route('verification.show');
+    }
+
+    // Show verification page
+    public function showVerification(Request $request)
+    {
+        if (!$request->session()->has('register_step2')) {
+            return redirect()->route('register');
+        }
+        return view('verification');
+    }
+
+    // Verify OTP and create user
+    public function verifyOtp(Request $request)
+    {
+        $request->validate(['otp' => ['required', 'digits:6']]);
+
+        $sessionOtp     = $request->session()->get('otp');
+        $expiresAt      = $request->session()->get('otp_expires_at');
+        $step1          = $request->session()->get('register_step1');
+        $step2          = $request->session()->get('register_step2');
+
+        if (!$sessionOtp || !$step1 || !$step2) {
+            return redirect()->route('register')->withErrors(['otp' => 'Session expired. Please register again.']);
+        }
+
+        if (now()->timestamp > $expiresAt) {
+            return back()->withErrors(['otp' => 'The OTP has expired. Please request a new one.']);
+        }
+
+        if ($request->otp !== $sessionOtp) {
+            return back()->withErrors(['otp' => 'Invalid OTP. Please try again.']);
+        }
+
+        // OTP correct — create user
         $user = User::create([
             'last_name'      => $step1['last_name'],
             'first_name'     => $step1['first_name'],
             'middle_name'    => $step1['middle_name'] ?? null,
             'extension_name' => $step1['extension_name'] ?? null,
-            'email'          => $validated['email'],
-            'password'       => Hash::make($validated['password']),
+            'email'          => $step2['email'],
+            'password'       => $step2['password'],
         ]);
 
-        Auth::login($user);
+        // Clear registration session data
+        $request->session()->forget(['register_step1', 'register_step2', 'otp', 'otp_expires_at', 'register_email']);
 
+        Auth::login($user);
         return redirect()->route('home');
+    }
+
+    // Resend OTP
+    public function resendOtp(Request $request)
+    {
+        if (!$request->session()->has('register_step2')) {
+            return redirect()->route('register');
+        }
+
+        $email = $request->session()->get('register_email');
+        $otp   = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+        $request->session()->put('otp', $otp);
+        $request->session()->put('otp_expires_at', now()->addMinutes(10)->timestamp);
+
+        Mail::to($email)->send(new OtpEmail($otp));
+
+        return redirect()->route('verification.show')->with('success', 'A new OTP has been sent to your email.');
     }
 
     // Handle logout
