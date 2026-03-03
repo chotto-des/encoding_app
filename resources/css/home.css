@@ -132,6 +132,7 @@ body {
     border-radius: 9999px;
     padding: 4px 12px;
     font-size: 0.95rem;
+    white-space: nowrap; /* para d mag break line pag d kasya grade */
 }
 
 /* ── Action buttons ─────────────────────────── */
@@ -174,6 +175,7 @@ body {
 }
 
 /* ── Delete Modal ─────────────────────────── */
+
 .modal-overlay {
     display: none;
     position: fixed;
@@ -181,7 +183,7 @@ body {
     background: rgba(0, 0, 0, 0.5);
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 1000; /*ensure na nasa pinakaharap yung modal*/
 }
 
 .modal-overlay.active {
@@ -191,9 +193,14 @@ body {
 .modal-box {
     background: white;
     width: 420px;
-    padding: 2rem;
     border-radius: 0.75rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.modal-header {
+    background: #f5a623;
+    padding: 1rem;
     text-align: center;
 }
 
@@ -201,12 +208,23 @@ body {
     font-size: 1.25rem;
     font-weight: 700;
     color: #0f172a;
-    margin-bottom: 0.75rem;
+}
+
+.modal-body {
+    padding: 1.5rem 0.5rem 2rem;
+    text-align: center;
 }
 
 .modal-message {
     color: #475569;
     font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal-student-name {
+    font-size: 1.20rem;
+    font-weight: 700;
+    color: #0f172a;
     margin-bottom: 1.5rem;
 }
 
@@ -217,30 +235,31 @@ body {
 }
 
 .btn-modal-cancel {
-    padding: 0.5rem 1.5rem;
-    border: 1px solid #cbd5e1;
+    padding: 0.5rem 1.75rem;
+    border: none;
     border-radius: 0.5rem;
-    background: white;
-    color: #475569;
+    background: #f5a623;
+    color: white;
     font-size: 0.9rem;
+    font-weight: 600;
     cursor: pointer;
 }
 
 .btn-modal-cancel:hover {
-    background: #f1f5f9;
+    background: #e09515;
 }
 
 .btn-modal-delete {
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1.75rem;
     border: none;
     border-radius: 0.5rem;
     background: #ef4444;
     color: white;
     font-size: 0.9rem;
+    font-weight: 600;
     cursor: pointer;
 }
 
 .btn-modal-delete:hover {
     background: #dc2626;
 }
-

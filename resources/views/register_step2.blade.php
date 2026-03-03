@@ -4,17 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Pampanga High School</title>
-    @vite('resources/css/register.css')
+    @vite(['resources/css/register.css', 'resources/css/site_header.css','resources/css/site_footer.css'])
 </head>
 <body>
-
+    @include('partials.site_header-guest')
     <div class="card">
-        <!-- Icon -->
-        <div class="icon-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
-            </svg>
-        </div>
 
         <h1>Create Account</h1>
         <p class="subtitle">Student Management System</p>
@@ -100,6 +94,7 @@
         </p>
     </div>
 
+    @include('partials.site_footer')
     <script>
         function togglePassword(inputId, iconId) {
             const input = document.getElementById(inputId);

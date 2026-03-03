@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AddressController;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\TestEmail;
+
 
 // Guest routes
 Route::middleware('guest')->group(function () {
@@ -38,7 +38,3 @@ Route::prefix('address')->group(function () {
     Route::get('/municipalities/{code}/barangays',   [AddressController::class, 'barangays'])->name('address.barangays');
 });
 
-Route::get('/send-email', function () {
-Mail::to('recipient@example.com')->send(new TestEmail());
-return "Email sent successfully!";
-});

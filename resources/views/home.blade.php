@@ -58,10 +58,11 @@
 										</svg>
 									</button>
 
-									<form action="{{ route('students.destroy', $student) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this student?');">
+									<form id="delete-form-{{ $student->id }}" action="{{ route('students.destroy', $student) }}" method="POST">
 									@csrf
 									@method('DELETE')
-									<button type="submit" class="btn-delete" aria-label="Delete">
+									<button type="button" class="btn-delete" aria-label="Delete"
+									onclick="openDeleteModal('{{ $student->id }}', '{{ $student->full_name }}')">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 											<path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.167-2.087-2.203a51.964 51.964 0 0 0-3.826 0c-1.178.036-2.087 1.022-2.087 2.203v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
 										</svg>
@@ -83,22 +84,27 @@
 	</main>
 
 	<div id="delete-modal" class="modal-overlay">
-		<div class="modal-box">
-			<h3 class="modal-title">Delete Student</h3>
-			<p class="modal-message">Are you sure you want to delete <strong id="modal-student-name"></strong>?</p>
-			<div class="modal-actions">
-				<button onclick="closeDeleteModal()" class="btn-modal-cancel">Cancel</button>
-				<button onclick="submitDelete()" class="btn-modal-delete">Delete</button>
-			</div>
-		</div>
-	</div>
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3 class="modal-title">Delete Student</h3>
+        </div>
+        <div class="modal-body">
+            <p class="modal-message">Are you sure you want to delete</p>
+            <p class="modal-student-name" id="modal-student-name"></p>
+            <div class="modal-actions">
+                <button type="button" onclick="closeDeleteModal()" class="btn-modal-cancel">Cancel</button>
+                <button type="button" onclick="submitDelete()" class="btn-modal-delete">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 	<script>
 		let currentFormId = null;
 
 		function openDeleteModal(id, name) {
 			currentFormId = id;
-			document.getElementById('modal-student-name').textContent = name;
+			document.getElementById('modal-student-name').textContent = name + '?';
 			document.getElementById('delete-modal').classList.add('active');
 		}
 
