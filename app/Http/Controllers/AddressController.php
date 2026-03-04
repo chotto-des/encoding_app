@@ -7,14 +7,15 @@ use Illuminate\Support\Facades\DB;
 
 class AddressController extends Controller
 {
-    public function provinces(): JsonResponse 
+    //kukunin yung data sa db for pampanga
+    public function provinces(): JsonResponse
     {
         $rows = DB::table('provinces')
             ->orderBy('name')
             ->select('code', 'name')
             ->get();
 
-        return response()->json($rows);
+        return response()->json($rows); //convert to json response or string para mahandle ng js
     }
 
     public function municipalities(string $provinceCode): JsonResponse
