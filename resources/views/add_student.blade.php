@@ -142,22 +142,22 @@
 
 		//para sa pag lock ng field kapag walang napili sa previous field, at para ireset din yung value at placeholder
 		function lockField(level, placeholder) {
-			fields[level].value       = '';
-			fields[level].placeholder = placeholder;
-			fields[level].disabled    = false;
-			lists[level].innerHTML    = '';
-			state[level].items        = [];
-			state[level].onPick       = null;
-			wraps[level].classList.add('addr-disabled');
-			wraps[level].classList.remove('open');
+			fields[level].value       = ''; // para i-reset yung value ng field kapag ni-lock siya
+			fields[level].placeholder = placeholder; // para i-reset yung placeholder ng field kapag ni-lock siya
+			fields[level].disabled    = false; // para i-disable yung field
+			lists[level].innerHTML    = ''; // para i-clear yung options sa list kapag ni-lock siya
+			state[level].items        = []; // para i-reset yung items sa state kapag ni-lock siya
+			state[level].onPick       = null; // para i-reset yung onPick callback sa state kapag ni-lock siya
+			wraps[level].classList.add('addr-disabled'); // para i-add yung disabled styling sa wrap kapag ni-lock siya
+			wraps[level].classList.remove('open'); // para i-close yung list kapag ni-lock siya
 		}
 		//para sa pag unlock ng field kapag nakapili na sa previous field, at para ipopulate yung options ng current field
 		function unlockField(level, items, placeholder, onPick) {
-			state[level].items        = items;
-			state[level].onPick       = onPick;
-			fields[level].disabled    = false;
-			fields[level].placeholder = placeholder;
-			wraps[level].classList.remove('addr-disabled');
+			state[level].items        = items; // para i-store yung items sa state para magamit sa pag-filter ng options habang nagta-type
+			state[level].onPick       = onPick; // para i-store yung onPick callback sa state para magamit kapag may napili sa options
+			fields[level].disabled    = false; // para i-enable yung field
+			fields[level].placeholder = placeholder; // para i-set yung placeholder ng field kapag ni-unlock siya
+			wraps[level].classList.remove('addr-disabled'); // para i-remove yung disabled styling sa wrap kapag ni-unlock siya
 		}
 		//para i-render yung options sa dropdown list base sa current input value
 		function renderList(level) {
