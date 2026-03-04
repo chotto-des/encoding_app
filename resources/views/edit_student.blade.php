@@ -104,7 +104,7 @@
 				</div>
 
 				<div class="btn-row">
-					<a href="{{ route('home') }}" class="btn-cancel">Back</a>
+					<a href="{{ route('students.index') }}" class="btn-cancel">Back</a>
 					<button type="submit" class="btn-submit">Save Changes</button>
 
 				</div>

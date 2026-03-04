@@ -11,8 +11,8 @@ class StudentController extends Controller
     //Home page show all students
     public function index()
     {
-        $students = Student::with('gradeLevel')->get();
-        return view('home', compact('students'));
+        $students = Student::with('gradeLevel')->paginate(7);
+        return view('studentpage', compact('students'));
     }
 
     public function create()
@@ -37,7 +37,7 @@ class StudentController extends Controller
 
         Student::create($validated);
 
-        return redirect()->route('home')
+        return redirect()->route('students.index')
             ->with('success', "Student <strong>{$validated['first_name']} {$validated['last_name']}</strong> added successfully!");
 
     }
@@ -47,7 +47,7 @@ class StudentController extends Controller
         {
             $student->delete();
 
-            return redirect()->route('home')
+            return redirect()->route('students.index')
                 ->with('success', 'Student deleted successfully.');
         }
 
@@ -75,7 +75,7 @@ class StudentController extends Controller
 
             $student->update($validated);
 
-            return redirect()->route('home')
+            return redirect()->route('students.index')
                 ->with('success', "Student <strong>{$validated['first_name']} {$validated['last_name']}</strong> updated successfully!");
         }
 }

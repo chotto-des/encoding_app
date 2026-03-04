@@ -32,21 +32,21 @@
 				</div>
 			@endif
 
-			<form class="form-grid" method="POST" action="{{ route('add-student.store') }}">
+			<form class="form-grid" method="POST" action="{{ route('students.store') }}">
 				@csrf
 				<div class="form-group">
 					<label for="first_name" class="form-label">First Name <span class="required">*</span></label>
-					<input id="first_name" name="first_name" type="text" placeholder="Juan" autocomplete="given-name" class="form-input @error('first_name') input-error @enderror" value="{{ old('first_name') }}">
+					<input id="first_name" name="first_name" type="text" placeholder="Enter First Name" autocomplete="given-name" class="form-input @error('first_name') input-error @enderror" value="{{ old('first_name') }}">
 				</div>
 
 				<div class="form-group">
 					<label for="middle_name" class="form-label">Middle Name</label>
-					<input id="middle_name" name="middle_name" type="text" placeholder="Santos" autocomplete="additional-name" class="form-input" value="{{ old('middle_name') }}">
+					<input id="middle_name" name="middle_name" type="text" placeholder="Enter Middle Name" autocomplete="additional-name" class="form-input" value="{{ old('middle_name') }}">
 				</div>
 
 				<div class="form-group col-full">
 					<label for="last_name" class="form-label">Last Name <span class="required">*</span></label>
-					<input id="last_name" name="last_name" type="text" placeholder="Dela Cruz" autocomplete="family-name" class="form-input @error('last_name') input-error @enderror" value="{{ old('last_name') }}">
+					<input id="last_name" name="last_name" type="text" placeholder="Enter Last Name" autocomplete="family-name" class="form-input @error('last_name') input-error @enderror" value="{{ old('last_name') }}">
 				</div>
 
 				<div class="form-group">
@@ -72,7 +72,7 @@
 
 				<div class="form-group col-full">
 					<label for="elementary_school" class="form-label">Elementary School <span class="required">*</span></label>
-					<input id="elementary_school" name="elementary_school" type="text" placeholder="San Fernando Elementary School" autocomplete="off" class="form-input" value="{{ old('elementary_school') }}">
+					<input id="elementary_school" name="elementary_school" type="text" placeholder="Enter Elementary School" autocomplete="off" class="form-input" value="{{ old('elementary_school') }}">
 				</div>
 
 				<div class="form-group">
@@ -103,7 +103,7 @@
 				</div>
 
 				<div class="btn-row">
-					<a href="{{ route('home') }}" class="btn-cancel">Back</a>
+					<a href="{{ route('students.index') }}" class="btn-cancel">Back</a>
 					<button type="submit" class="btn-submit">Add Student</button>
 
 				</div>
@@ -206,7 +206,7 @@
 			return res.json();
 		}
 
-		// Start with all lower fields locked
+		// start with all lower fields locked
 		lockField('municipality', 'Select a province first...');
 		lockField('barangay', 'Select a municipality first...');
 
