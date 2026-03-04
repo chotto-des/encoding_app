@@ -163,7 +163,7 @@
 		function renderList(level) {
 			const { items, onPick } = state[level];
 			const q = fields[level].value.trim().toLowerCase();
-			const filtered = items.filter(item => item.name.toLowerCase().includes(q));
+			const filtered = items.filter(item => item.name.toLowerCase().includes(q)); 
 
 			lists[level].innerHTML = '';
 			if (filtered.length === 0) {

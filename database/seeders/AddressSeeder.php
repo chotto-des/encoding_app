@@ -9,10 +9,10 @@ class AddressSeeder extends Seeder
 {
     private const DATA_DIR = __DIR__ . '/../data/address';
     private const CHUNK    = 500;
-
+    
     public function run(): void
     {
-        $provinces      = json_decode(file_get_contents(self::DATA_DIR . '/provinces.json'),      true);
+        $provinces      = json_decode(file_get_contents(self::DATA_DIR . '/provinces.json'),      true); 
         $municipalities = json_decode(file_get_contents(self::DATA_DIR . '/municipalities.json'), true);
         $barangays      = json_decode(file_get_contents(self::DATA_DIR . '/barangays.json'),      true);
 

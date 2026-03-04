@@ -82,14 +82,15 @@
     gap: 16px;
 }
 
-.site-header__email {
-    font-size: 0.875rem;
+.site-header__name {
+    font-size: 1rem;
     color: #475569;
     display: none;
+    font-weight: bold;
 }
 
 @media (min-width: 768px) {
-    .site-header__email {
+    .site-header__name {
         display: block;
     }
 }

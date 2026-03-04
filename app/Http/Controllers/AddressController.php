@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class AddressController extends Controller
 {
-    public function provinces(): JsonResponse
+    public function provinces(): JsonResponse 
     {
         $rows = DB::table('provinces')
             ->orderBy('name')

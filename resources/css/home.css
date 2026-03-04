@@ -167,7 +167,7 @@ body {
 .btn-delete:hover {
     color: #dc2626;
 }
-
+    
 .btn-edit svg,
 .btn-delete svg {
     width: 20px;
@@ -218,7 +218,8 @@ body {
 .modal-message {
     color: #475569;
     font-size: 0.95rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
 }
 
 .modal-student-name {
@@ -239,11 +240,12 @@ body {
     border: none;
     border-radius: 0.5rem;
     background: #f5a623;
-    color: white;
+    color: black;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
-}
+    
+}   
 
 .btn-modal-cancel:hover {
     background: #e09515;
@@ -254,9 +256,9 @@ body {
     border: none;
     border-radius: 0.5rem;
     background: #ef4444;
-    color: white;
+    color: black;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
 }
 
