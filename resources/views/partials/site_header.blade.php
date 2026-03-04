@@ -16,7 +16,7 @@
 		</div>
 
 		<div class="site-header__actions">
-			<p class="site-header__email">{{ Auth::user()->email ?? '' }}</p>
+			<p class="site-header__name">{{ trim((Auth::user()->first_name ?? '') . ' ' . (Auth::user()->last_name ?? '')) }}</p>
 			<form method="POST" action="{{ route('logout') }}" style="margin:0">
 				@csrf
 				<button type="submit" class="btn-logout">
