@@ -11,7 +11,7 @@ class StudentController extends Controller
     //Home page show all students
     public function index()
     {
-        $students = Student::with('gradeLevel')->paginate(7);
+        $students = Student::with('gradeLevel')->paginate(5);
         return view('studentpage', compact('students'));
     }
 
