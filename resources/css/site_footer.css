@@ -1,3 +1,4 @@
+
 .site-footer {
     background-color: #ffffff;
     border-top: 6px solid #FAD97A;  /* ← yellow border sa taas */
@@ -38,6 +39,10 @@
     padding: 0;         
 }
 
+.footer-col h3 {
+    margin-bottom: 0.75rem;  
+}
+
 .footer-col ul li {
     font-size: 0.875rem;
     color: #475569;
@@ -45,6 +50,11 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.footer-col ul li svg {
+    color: #f59e0b;
+    flex-shrink: 0;
 }
 
 

@@ -17,6 +17,16 @@
 				<p class="page-subtitle">Manage student information and records.</p>
 			</div>
 
+			<div class="search-actions-row">
+
+			<div class="search-bar-wrapper">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"/>
+            </svg>
+            <input type="text" id="student-search" class="search-input" placeholder="Search...">
+        </div>
+
 			<div class="header-actions">
 				<a href="{{ route('home') }}" class="btn-back-home">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -25,12 +35,13 @@
 					Back to Home
 				</a>
 				<a href="{{ route('students.create') }}" class="btn-add-student">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952l-1.66-2.117a5.25 5.25 0 1 0-8.172 0l-1.66 2.117A9.336 9.336 0 0 0 14.375 19.5c.9 0 1.77-.127 2.625-.372ZM15 10.5a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-						<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5h3m-1.5-1.5v3" />
-					</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+				</svg>
+
 					Add New Student
 				</a>
+			</div>
 			</div>
 		</header>
 
@@ -149,6 +160,16 @@
 				document.getElementById('delete-form-' + currentFormId).submit();
 			}
 		}
+
+		// Search filter
+		document.getElementById('student-search').addEventListener('input', function () {
+			const query = this.value.toLowerCase().trim(); //gagawing lowercase lahat ng tatype ni user para case-insensitive
+			const rows = document.querySelectorAll('.student-table tbody tr');// kinukuha nya lahat ng table row sa student table
+			rows.forEach(function (row) { 
+				const text = row.textContent.toLowerCase(); // gagawin nyang lowercase din yung text ng bawat row para ma-compare sa query
+				row.style.display = text.includes(query) ? '' : 'none'; //itatago yung row na d match
+			});
+		});
 	</script>
 
 @include('partials.site_footer')
