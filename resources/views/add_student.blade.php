@@ -32,21 +32,21 @@
 				</div>
 			@endif
 
-			<form class="form-grid" method="POST" action="{{ route('students.store') }}">
+			<form class="form-grid" method="POST" action="{{ route('add-student.store') }}">
 				@csrf
 				<div class="form-group">
 					<label for="first_name" class="form-label">First Name <span class="required">*</span></label>
-					<input id="first_name" name="first_name" type="text" placeholder="Enter First Name" autocomplete="given-name" class="form-input @error('first_name') input-error @enderror" value="{{ old('first_name') }}">
+					<input id="first_name" name="first_name" type="text" placeholder="First Name" autocomplete="given-name" class="form-input @error('first_name') input-error @enderror" value="{{ old('first_name') }}">
 				</div>
 
 				<div class="form-group">
 					<label for="middle_name" class="form-label">Middle Name</label>
-					<input id="middle_name" name="middle_name" type="text" placeholder="Enter Middle Name" autocomplete="additional-name" class="form-input" value="{{ old('middle_name') }}">
+					<input id="middle_name" name="middle_name" type="text" placeholder="Middle Name" autocomplete="additional-name" class="form-input" value="{{ old('middle_name') }}">
 				</div>
 
 				<div class="form-group col-full">
 					<label for="last_name" class="form-label">Last Name <span class="required">*</span></label>
-					<input id="last_name" name="last_name" type="text" placeholder="Enter Last Name" autocomplete="family-name" class="form-input @error('last_name') input-error @enderror" value="{{ old('last_name') }}">
+					<input id="last_name" name="last_name" type="text" placeholder="Last Name" autocomplete="family-name" class="form-input @error('last_name') input-error @enderror" value="{{ old('last_name') }}">
 				</div>
 
 				<div class="form-group">
@@ -72,7 +72,7 @@
 
 				<div class="form-group col-full">
 					<label for="elementary_school" class="form-label">Elementary School <span class="required">*</span></label>
-					<input id="elementary_school" name="elementary_school" type="text" placeholder="Enter Elementary School" autocomplete="off" class="form-input" value="{{ old('elementary_school') }}">
+					<input id="elementary_school" name="elementary_school" type="text" placeholder="Elementary School" autocomplete="off" class="form-input" value="{{ old('elementary_school') }}">
 				</div>
 
 				<div class="form-group">
@@ -103,7 +103,7 @@
 				</div>
 
 				<div class="btn-row">
-					<a href="{{ route('students.index') }}" class="btn-cancel">Back</a>
+					<a href="{{ route('home') }}" class="btn-cancel">Cancel</a>
 					<button type="submit" class="btn-submit">Add Student</button>
 
 				</div>
@@ -115,8 +115,7 @@
 	<script>
 		const addressUrl = '{{ url("address") }}';
 
-		// para i-store yung state ng bawat level ng address selection (province, municipality, barangay)
-		// kasama na yung list ng options at yung onPick callback function na tatawagin kapag may napili sa list
+		//dito naiistore yung data sa dropdown = state
 		const state = {
 			province:     { items: [], onPick: null },
 			municipality: { items: [], onPick: null },
@@ -140,105 +139,111 @@
 			barangay:     document.getElementById('barangay-wrap'),
 		};
 
-		//para sa pag lock ng field kapag walang napili sa previous field, at para ireset din yung value at placeholder
+		//para sa pag lock ng field kapag walang napili sa previous field
 		function lockField(level, placeholder) {
-			fields[level].value       = ''; // para i-reset yung value ng field kapag ni-lock siya
-			fields[level].placeholder = placeholder; // para i-reset yung placeholder ng field kapag ni-lock siya
-			fields[level].disabled    = false; // para i-disable yung field
-			lists[level].innerHTML    = ''; // para i-clear yung options sa list kapag ni-lock siya
-			state[level].items        = []; // para i-reset yung items sa state kapag ni-lock siya
-			state[level].onPick       = null; // para i-reset yung onPick callback sa state kapag ni-lock siya
-			wraps[level].classList.add('addr-disabled'); // para i-add yung disabled styling sa wrap kapag ni-lock siya
-			wraps[level].classList.remove('open'); // para i-close yung list kapag ni-lock siya
+			fields[level].value       = '';
+			fields[level].placeholder = placeholder;
+			fields[level].disabled    = true;
+			lists[level].innerHTML    = '';
+			state[level].items        = [];
+			state[level].onPick       = null;
+			wraps[level].classList.add('addr-disabled');
+			wraps[level].classList.remove('open');
 		}
-		//para sa pag unlock ng field kapag nakapili na sa previous field, at para ipopulate yung options ng current field
+		//para sa pag unlock ng field kapag nakapili na sa previous field
 		function unlockField(level, items, placeholder, onPick) {
-			state[level].items        = items; // para i-store yung items sa state para magamit sa pag-filter ng options habang nagta-type
-			state[level].onPick       = onPick; // para i-store yung onPick callback sa state para magamit kapag may napili sa options
-			fields[level].disabled    = false; // para i-enable yung field
-			fields[level].placeholder = placeholder; // para i-set yung placeholder ng field kapag ni-unlock siya
-			wraps[level].classList.remove('addr-disabled'); // para i-remove yung disabled styling sa wrap kapag ni-unlock siya
+			state[level].items        = items;
+			state[level].onPick       = onPick;
+			fields[level].disabled    = false;
+			fields[level].placeholder = placeholder;
+			wraps[level].classList.remove('addr-disabled');
 		}
+
 		//para i-render yung options sa dropdown list base sa current input value
 		function renderList(level) {
 			const { items, onPick } = state[level];
 			const q = fields[level].value.trim().toLowerCase();
-			const filtered = items.filter(item => item.name.toLowerCase().includes(q)); 
+			const filtered = items.filter(item => item.name.toLowerCase().includes(q)); //filter yung data base sa input value
 
+			//if walang match, no result found
 			lists[level].innerHTML = '';
 			if (filtered.length === 0) {
 				lists[level].innerHTML = '<li class="addr-opt-empty">No results found</li>';
 				return;
 			}
 
+			//the list sa dropdown and magrerender or display ng filtered results
 			filtered.forEach(item => {
-				const li = document.createElement('li');
+				const li = document.createElement('li'); //gagawa ng list
 				li.textContent = item.name;
-				li.addEventListener('mousedown', e => {
+				li.addEventListener('mousedown', e => { //click handler para sa bawat option
 					e.preventDefault();
 					fields[level].value = item.name;
-					wraps[level].classList.remove('open');
-					if (onPick) onPick(item.code);
+					wraps[level].classList.remove('open');  //close dropdown after makapili
+					if (onPick) onPick(item.code); //pag may input na, ifefetch yung nextlevel data
 				});
 				lists[level].appendChild(li);
 			});
 		}
 
-		// para i-toggle yung dropdown list kapag nag-focus o nag-input sa field, at para i-close yung list kapag nag-blur sa field
+	
 		['province', 'municipality', 'barangay'].forEach(level => {
 			fields[level].addEventListener('focus', () => {
-				if (!fields[level].disabled) {
-					renderList(level);
+				if (!fields[level].disabled) {    	//if disabled, d mag rrender or magoopen yung list
+					renderList(level);				
 					wraps[level].classList.add('open');
 				}
 			});
 			fields[level].addEventListener('input', () => {
-				renderList(level);
+				renderList(level);					//if may input, mag oopen and mag rerender yung list
 				wraps[level].classList.add('open');
 			});
 			fields[level].addEventListener('blur', () => {
-				wraps[level].classList.remove('open');
+				wraps[level].classList.remove('open'); //mag cclose yung list
 			});
 		});
-		// para i-fetch yung list ng provinces, municipalities, at barangays mula sa API
+
+		// i-ffetch yung list of data sa controller then convert js array
 		async function fetchData(url) {
 			const res = await fetch(url);
 			return res.json();
 		}
 
-		// start with all lower fields locked
+		// starts with all lower fields locked
 		lockField('municipality', 'Select a province first...');
 		lockField('barangay', 'Select a municipality first...');
 
-		// pag-load ng page, i-fetch yung provinces para mapopulate yung province field
-		fetchData(`${addressUrl}/provinces`).then(rows => {
+		// pag-load ng page, i-fetch yung provinces 
+		fetchData(`${addressUrl}/provinces`).then(rows => { // fetch province
 			unlockField('province', rows, 'Search province...', onProvincePick);
 		});
-		// kapag nakapili na ng province, i-fetch yung municipalities para sa probinsya na yun
+
+		// kapag nakapili na ng province, i-fetch yung municipalities 
 		function onProvincePick(provinceCode) {
 			lockField('municipality', 'Loading...');
 			lockField('barangay', 'Select a municipality first...');
 
-			fetchData(`${addressUrl}/provinces/${provinceCode}/municipalities`).then(rows => {
+			fetchData(`${addressUrl}/provinces/${provinceCode}/municipalities`).then(rows => { // fetch municipality
 				unlockField('municipality', rows, 'Search municipality / city...', onMunicipalityPick);
 			});
 		}
-		// kapag nakapili na ng municipality, i-fetch yung barangays para sa munisipyo na yun
+
+		// kapag nakapili na ng municipality, i-fetch yung barangays 
 		function onMunicipalityPick(municipalityCode) {
 			lockField('barangay', 'Loading...');
-		// note: wala nang next level after barangay, kaya walang onPick callback na kailangan
-			fetchData(`${addressUrl}/municipalities/${municipalityCode}/barangays`).then(rows => {
+		
+			fetchData(`${addressUrl}/municipalities/${municipalityCode}/barangays`).then(rows => { //fetch barangay
 				console.log('barangay rows:', rows);
 				unlockField('barangay', rows, 'Search barangay...', null);
 			});
 		}
 
-		// para i-lock yung dependent fields kapag binago yung value ng province o municipality
+		// ma llock yung dependent fields kapag binago yung value ng province o municipality
 		fields.province.addEventListener('input', () => {
 			lockField('municipality', 'Select a province first...');
 			lockField('barangay', 'Select a municipality first...');
 		});
-		// kapag binago yung value ng municipality, i-lock yung barangay field
+		// kapag binago yung municipality, i-lock yung barangay field
 		fields.municipality.addEventListener('input', () => {
 			lockField('barangay', 'Select a municipality first...');
 		});

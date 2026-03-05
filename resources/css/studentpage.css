@@ -64,7 +64,7 @@ body {
 .search-input {
     width: 100%;
     padding: 10px 16px 10px 40px;
-    border: 2px solid #fbbf24;
+    border: 2px solid #fbbf24;  
     border-radius: 12px;
     font-size: 1rem;
     background-color: #ffffff;
