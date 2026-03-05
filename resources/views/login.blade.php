@@ -12,11 +12,9 @@
     @include('partials.site_header-guest')
     <div class="card">
 
-        <!-- Title -->
         <h1>Pampanga High School</h1>
         <p class="subtitle">Student Management System</p>
 
-        <!-- Error Messages -->
         @if ($errors->any())
             <div class="error-message">
                 @foreach ($errors->all() as $error)
@@ -25,7 +23,6 @@
             </div>
         @endif
 
-   <!--      Login Form -->
         <form action="{{ route('login.submit') }}" method="POST">
             @csrf
 

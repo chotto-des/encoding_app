@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    //Home page show all students
     public function index()
     {
         $students = Student::with('gradeLevel')->paginate(5);
@@ -42,7 +41,6 @@ class StudentController extends Controller
 
     }
 
-            // Delete student
         public function destroy(Student $student)
         {
             $student->delete();
@@ -51,14 +49,12 @@ class StudentController extends Controller
                 ->with('success', 'Student deleted successfully.');
         }
 
-        // Show edit form
         public function edit(Student $student)
         {
             $gradeLevels = GradeLevel::orderBy('grade_level_id')->get();
             return view('edit_student', compact('student', 'gradeLevels'));
         }
 
-        // Update student
         public function update(Request $request, Student $student)
         {
             $validated = $request->validate([

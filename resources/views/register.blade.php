@@ -14,7 +14,6 @@
         <h1>Create Account</h1>
         <p class="subtitle">Student Management System</p>
 
-        <!-- Step Indicator -->
         <div class="step-indicator">
             <div class="step active">1</div>
             <div class="step-line"></div>
