@@ -19,13 +19,15 @@
 
 			<div class="search-actions-row">
 
-			<div class="search-bar-wrapper">
-            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"/>
-            </svg>
-            <input type="text" id="student-search" class="search-input" placeholder="Search...">
-        </div>
+			<form method="GET" action="{{ route('students.index') }}" class="search-bar-wrapper">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" name="search" id="student-search" class="search-input"
+                    placeholder="Search by name..."
+                    value="{{ $search ?? '' }}">
+            </form>
 
 			<div class="header-actions">
 				<a href="{{ route('home') }}" class="btn-back-home">
@@ -161,15 +163,7 @@
 			}
 		}
 
-		// Search filter
-		document.getElementById('student-search').addEventListener('input', function () {
-			const query = this.value.toLowerCase().trim(); //gagawing lowercase lahat ng tatype ni user para case-insensitive
-			const rows = document.querySelectorAll('.student-table tbody tr');// kinukuha nya lahat ng table row sa student table
-			rows.forEach(function (row) { 
-				const text = row.textContent.toLowerCase(); // gagawin nyang lowercase din yung text ng bawat row para ma-compare sa query
-				row.style.display = text.includes(query) ? '' : 'none'; //itatago yung row na d match
-			});
-		});
+
 	</script>
 
 @include('partials.site_footer')

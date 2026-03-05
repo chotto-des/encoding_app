@@ -8,10 +8,24 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function index()
+    // Display a listing of the students with search and pagination
+    public function index(Request $request) 
     {
-        $students = Student::with('gradeLevel')->paginate(5);
-        return view('studentpage', compact('students'));
+        $search = $request->input('search'); // Get the search query from the request
+
+        //if may search, filter the data, if not, get all students with pagination
+        $students = Student::with('gradeLevel') 
+            ->when($search, function ($query, $search) { // If there's a search query, filter the students by first name or last name
+                $query->where('first_name', 'like', "%{$search}%") 
+                      ->orWhere('middle_name', 'like', "%{$search}%")
+                      ->orWhere('last_name', 'like', "%{$search}%")
+                      ->orWhereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%{$search}%"])
+                      ->orWhereRaw("CONCAT(first_name, ' ', middle_name, ' ', last_name) LIKE ?", ["%{$search}%"]);
+            })
+            ->paginate(5) 
+            ->withQueryString();
+
+        return view('studentpage', compact('students', 'search'));
     }
 
     public function create()

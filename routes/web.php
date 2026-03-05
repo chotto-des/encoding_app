@@ -26,8 +26,8 @@ Route::middleware('guest')->controller(AuthController::class)->group(function ()
     Route::post('/verify-email/resend',  'resendOtp')->name('verification.resend');
 });
 
-//  Authenticated routes
-Route::middleware('auth')->group(function () {
+    //  Authenticated routes
+    Route::middleware('auth')->group(function () {
 
     // Home dashboard
     Route::get('/home', fn() => view('home'))->name('home');
@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/{student}',      'update')->name('update');
         Route::delete('/{student}',   'destroy')->name('destroy');
     });
-});  
+});
 
 
 //  Address API
