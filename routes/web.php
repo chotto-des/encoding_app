@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/{student}',      'update')->name('update');
         Route::delete('/{student}',   'destroy')->name('destroy');
     });
-});
+});  
 
 
 //  Address API
