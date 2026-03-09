@@ -116,7 +116,7 @@
 		const addressUrl = '{{ url("address") }}';
 
 		// para i-store yung state ng bawat level ng address selection (province, municipality, barangay)
-		// kasama na yung list ng options at yung onPick callback function na tatawagin kapag may napili sa list
+		// kasama na yung list ng options at yung onPick callback function na tatawagin kapag may napili sa lisa
 		const state = {
 			province:     { items: [], onPick: null },
 			municipality: { items: [], onPick: null },
