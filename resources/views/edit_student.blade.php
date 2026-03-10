@@ -288,4 +288,4 @@
 			lockField('barangay', 'Select a municipality first...');
 		});
 	</script>
-@endSection
+@endSectionS
