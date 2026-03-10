@@ -13,7 +13,7 @@
 
 		<div class="welcome-section">
 			<h1 class="welcome-title">Welcome back, {{ Auth::user()->first_name }}!</h1>
-			<p class="welcome-subtitle">Manage and monitor student records from here.</p>
+			<p class="welcome-subtitle">Manage and monitor student record from here.</p>
 		</div>
 
 		<div class="cards-grid">
