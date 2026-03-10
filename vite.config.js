@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
     plugins: [
@@ -8,7 +7,6 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/css/login.css', 'resources/css/register.css', 'resources/css/site_header.css', 'resources/css/home.css', 'resources/css/add_student.css', 'resources/js/app.js'],
             refresh: true,
         }),
-        tailwindcss(),
     ],
     server: {
         watch: {

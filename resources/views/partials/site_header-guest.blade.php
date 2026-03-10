@@ -1,13 +1,6 @@
-<header class="site-header">
-    <div class="site-header__inner site-header__inner--centered">
-        <div class="site-header__brand">
-            <div class="site-header__logo">
-                <img src="{{ asset('images/phs-logo.png') }}" alt="PHS Logo">
-            </div>
-            <div>
-                <h1 class="site-header__school-name">Pampanga High School</h1>
-                <p class="site-header__system-name">Student Management System</p>
-            </div>
-        </div>
-    </div>
-</header>
+<!-- As a heading -->
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Navbar</span>
+  </div>
+</nav>
