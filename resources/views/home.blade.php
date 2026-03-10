@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Home – Student Management System</title>
-	@vite(['resources/css/home_dashboard.css', 'resources/css/site_header.css', 'resources/css/site_footer.css'])
-</head>
-<body>
-	@include('partials.site_header', ['active' => 'home', 'fullWidth' => true])
+@extends('layouts.app')
+
+@section('title', 'Home – Student Management System')
+	
+@push('styles')
+    @vite(['resources/css/home_dashboard.css', 'resources/css/site_header.css', 'resources/css/site_footer.css'])
+@endpush
+
+@section('body')
+    @include('partials.site_header', ['active' => 'add-student', 'fullWidth' => true])
 
 	<main class="dashboard-main">
 
@@ -40,5 +40,4 @@
 	</main>
 
 	@include('partials.site_footer')
-</body>
-</html>
+	@endsection

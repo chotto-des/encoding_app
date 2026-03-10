@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Add Student</title>
-	@vite(['resources/css/add_student.css', 'resources/css/site_header.css','resources/css/site_footer.css'])
-</head>
-<body>
-	@include('partials.site_header', ['active' => 'add-student', 'fullWidth' => true])
+@extends('layouts.app')
+
+@section('title', 'Add Student')
+	
+@push('styles')
+    @vite(['resources/css/add_student.css', 'resources/css/site_header.css', 'resources/css/site_footer.css'])
+@endpush
+
+@section('body')
+    @include('partials.site_header', ['active' => 'add-student', 'fullWidth' => true])
+
 
 	<main class="add-main">
 		<header class="add-page-header">
@@ -243,5 +244,4 @@
 			lockField('barangay', 'Select a municipality first...');
 		});
 	</script>
-</body>
-</html>
+@endsection

@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Pampanga High School</title>
-    @vite(['resources/css/register.css', 'resources/css/site_header.css','resources/css/site_footer.css'])
+@extends('layouts.app')
 
-</head>
-<body>
+@section('title', 'Register – Pampanga High School')
+	
+@push('styles')
+    @vite(['resources/css/register.css', 'resources/css/site_header.css', 'resources/css/site_footer.css'])
+@endpush
+
+@section('body')
     @include('partials.site_header-guest')
+
     <div class="card">
 
         <h1>Create Account</h1>
@@ -70,5 +70,4 @@
 
     @include('partials.site_footer')
     
-</body>
-</html>
+@endSection
