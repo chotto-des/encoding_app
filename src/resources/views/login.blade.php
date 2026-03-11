@@ -9,7 +9,19 @@
 @section('body')
     @include('partials.site_header-guest')
 
-<div class="card min-vh-100 d-flex flex-column justify-content-center align-items-center">
+    {{-- Background wrapper --}}
+    <div class="position-relative d-flex align-items-center justify-content-center" style="min-height: 85vh;">
+
+        {{-- Background image --}}
+        <img src="{{ asset('images/phs.jpg') }}" alt=""
+             style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+
+            {{-- Yellow overlay --}}
+            <div class="position-absolute top-0 w-100 h-100"    
+                style="background-color: rgba(245,168,0,0.70);"></div>
+
+        {{-- Card --}}
+        <div class="card position-relative border-5" style="z-index: 1; width: 100%; max-width: 500px; height: 600px; padding: 30px; border-color: #EEEE3D; border-radius: 15px;">
 
         <h1>Pampanga High School</h1>
         <p class="subtitle">Student Management System</p>
@@ -62,7 +74,9 @@
         <p class="register-link">
             Don't have an account? <a href="{{ route('register') }}">Register here</a>
         </p>
-    </div>
+        </div>{{-- end card --}}
+
+    </div>{{-- end background wrapper --}}
 
     @include('partials.site_footer')
     <script>
