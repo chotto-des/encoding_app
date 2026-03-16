@@ -3,16 +3,33 @@
 @section('title', 'Login – Pampanga High School')
 	
 @push('styles')
-    @vite('resources/css/site_header.css')
+    @vite(['resources/css/site_header.css', 'resources/css/site_footer.css', 'resources/css/login.css'])
 @endpush
     
 @section('body')
     @include('partials.site_header-guest')
 
-<div class="card min-vh-100 d-flex flex-column justify-content-center align-items-center">
+    {{-- Background wrapper --}}
+    <div class="position-relative d-flex align-items-center justify-content-center" style="min-height: 85vh;">
 
-        <h1>Pampanga High School</h1>
-        <p class="subtitle">Student Management System</p>
+        {{-- Background image --}}
+        <img src="{{ asset('images/phs.jpg') }}" alt=""
+             style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+
+            {{-- Yellow overlay --}}
+            <div class="position-absolute top-0 w-100 h-100"    
+                style="background-color: rgba(245,168,0,0.70);"></div>
+
+        {{-- Login Card --}}
+        <div class="card position-relative border-5" 
+        style="z-index: 1; width: 100%; max-width: 470px; height: 600px; padding: 20px; border-color: #EEEE3D; border-radius: 15px;">
+
+        <div class="text-center">
+            <img src="{{ asset('images/PHS-Logo.png') }}" class = "mb-0 mt-3    " alt="PHS Logo" 
+            style="width: 100px; height: 100px; border-radius: 50%; background: #fff;">
+        </div>
+        <span class="PHS-text fw-medium text-center" style="color: #41417F;">Pampanga High School</span>
+        <p class="subtitle text-muted text-center mt-1">Student Management System</p>
 
         @if ($errors->any())
             <div class="error-message">
@@ -26,11 +43,12 @@
             @csrf
 
             <div class="form-group">
-                <label for="email">Email Address</label>
+                <label for="email" class="extra-small-text fw-medium" style="color: #41417F;">Email Address</label>
                 <input
                     type="email"
                     id="email"
                     name="email"
+                    class="form-control py-3 mt-2 mb-2 "    
                     placeholder="Enter your email"
                     value="{{ old('email') }}"
                     required
@@ -39,16 +57,17 @@
             </div>
 
             <div class="form-group">
-                <label for="password">Password</label>
-                <div class="input-wrapper">
+                <label for="password" class="extra-small-text fw-medium" style="color: #41417F;">Password</label>
+                <div class="password-wrapper">
                     <input
                         type="password"
                         id="password"
                         name="password"
+                        class="form-control password-input py-3 mt-2"
                         placeholder="Enter your password"
                         required
                     >
-                    <button type="button" class="toggle-password" onclick="togglePassword()">
+                    <button type="button" class="password-eye" onclick="togglePassword()" aria-label="Show password">
                         <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
                         </svg>
@@ -56,13 +75,15 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn-login">Login</button>
+            <button type="submit" class="btn btn-lg w-100 mt-4 py-3" style="background-color: #EEEE3D; color: #41417F; border: none;">Login</button>
         </form>
 
-        <p class="register-link">
-            Don't have an account? <a href="{{ route('register') }}">Register here</a>
+        <p class="register-link text-center mt-4">
+            Don't have an account? <a href="{{ route('register') }}" class ="register-link-color ">Register here</a>
         </p>
-    </div>
+        </div>{{-- end card --}}
+
+    </div>{{-- end background wrapper --}}
 
     @include('partials.site_footer')
     <script>

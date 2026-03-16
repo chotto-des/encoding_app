@@ -3,7 +3,7 @@
 @section('title', 'Home – Student Management System')
 	
 @push('styles')
-	@vite(['resources/css/home_dashboard.css', 'resources/css/site_header.css'])
+    @vite(['resources/css/home_dashboard.css', 'resources/css/site_header.css', 'resources/css/site_footer.css'])
 @endpush
 
 @section('body')

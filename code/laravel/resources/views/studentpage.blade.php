@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Student Records</title>
-	 @vite(['resources/css/studentpage.css', 'resources/css/site_header.css'])
+	 @vite(['resources/css/studentpage.css', 'resources/css/site_header.css','resources/css/site_footer.css'])
 </head>
 <body>
 	@include('partials.site_header', ['active' => 'students', 'fullWidth' => true])
