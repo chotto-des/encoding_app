@@ -1,11 +1,26 @@
 # Encoding App
 
+
 ## Requirements
 - [Git](https://git-scm.com/)
 - [Docker & Docker Compose](https://www.docker.com/)
 - [PHP 8.1+](https://www.php.net/)
 - [Composer](https://getcomposer.org/)
-- [Node.js & npm](https://nodejs.org/)
+- [Node.js & npm] (Recommended: use [nvm](https://github.com/nvm-sh/nvm))
+
+---
+
+## Node.js & npm Setup (Recommended)
+To avoid issues with npm/node on WSL or Linux, run the setup script:
+
+```bash
+./setup.sh
+```
+This will install nvm (Node Version Manager) and the latest LTS version of Node.js for your user.
+
+If you are using a new shell, make sure to reload your shell config or restart your terminal after running the script.
+
+---
 
 ---
 

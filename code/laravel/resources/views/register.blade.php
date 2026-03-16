@@ -3,7 +3,7 @@
 @section('title', 'Register – Pampanga High School')
 	
 @push('styles')
-    @vite(['resources/css/register.css', 'resources/css/site_header.css', 'resources/css/site_footer.css'])
+    @vite(['resources/css/register.css', 'resources/css/site_header.css'])
 @endpush
 
 @section('body')
