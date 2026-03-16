@@ -2,10 +2,11 @@ services:
   app: # <-- You can name this whatever you want, but you will have to change the /vm/ngix/conf.d/default.conf
     image: haroldcris/php8.2.4
     container_name: php
+    working_dir: /var/www/laravel   
     restart: unless-stopped
     volumes:
       - ./vm/php/local.ini:/usr/local/etc/php/conf.d/local.ini
-      - ./code:/var/www
+      - ./code/laravel:/var/www/laravel
     #build:
     #  context: ./vm/php
     #  dockerfile: Dockerfile
@@ -33,7 +34,8 @@ services:
     restart: unless-stopped
     ports:
       - ${ADMINER_PORT}:8080
-
+    networks:
+      - laravel_network
 
   mysql:
     image: mysql:8.0
