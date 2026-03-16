@@ -1,32 +1,18 @@
-@php
-	$innerClass = ($fullWidth ?? false)
-		? 'site-header__inner site-header__inner--full'
-		: 'site-header__inner site-header__inner--centered';
-@endphp
-<header class="site-header">
-	<div class="{{ $innerClass }}">
-		<div class="site-header__brand">
-			<div class="site-header__logo">
-				<img src="{{ asset('images/PHS-logo.png') }}" alt="PHS Logo">
-			</div>
-			<div>
-				<h1 class="site-header__school-name">Pampanga High School</h1>
-				<p class="site-header__system-name">Student Management System</p>
-			</div>
-		</div>
-
-		<div class="site-header__actions">
-			<p class="site-header__name">{{ trim((Auth::user()->first_name ?? '') . ' ' . (Auth::user()->last_name ?? '')) }}</p>
-			<form method="POST" action="{{ route('logout') }}" style="margin:0">
-				@csrf
-				<button type="submit" class="btn-logout">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-7.5a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 6 21h7.5a2.25 2.25 0 0 0 2.25-2.25V15" />
-						<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 12h12m0 0-3-3m3 3-3 3" />
-					</svg>
-					Logout
-				</button>
-			</form>
-		</div>
-	</div>
-</header>
+<nav class="navbar bg-body-tertiary shadow-sm p-2 mb-0 bg-white rounded">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <img src="{{ asset('images/PHS-Logo.png') }}" alt="Logo" width="90" height="90" class="rounded-circle">
+      <div>
+        <div class="fw-medium fs-3 lh-1 header_text_color">Pampanga High School</div>
+        <div class="text-muted small">Excellence in Education</div>
+      </div>
+    </a>
+	<div class="d-flex align-items-center gap-3 ms-auto">
+      <p class="mb-0">{{ trim((Auth::user()->first_name ?? '') . ' ' . (Auth::user()->last_name ?? '')) }}</p>
+      <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-warning fw-semibold text-white px-4">Logout</button>
+      </form>
+    </div>
+  </div>
+</nav>	

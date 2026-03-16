@@ -9,12 +9,24 @@
 @section('body')
     @include('partials.site_header', ['active' => 'add-student', 'fullWidth' => true])
 
-	<main class="dashboard-main">
+	<main>
+		{{-- Background wrapper --}}
+		<div class="position-relative d-flex align-items-flex-start" style="min-height: 60vh; width: 100%; margin-left: -12px; margin-right: -12px;">
 
-		<div class="welcome-section">
-			<h1 class="welcome-title">Welcome back, {{ Auth::user()->first_name }}!</h1>
-			<p class="welcome-subtitle">Manage and monitor student record from here.</p>
-		</div>
+			{{-- Background image --}}
+			<img src="{{ asset('images/phs.jpg') }}" alt=""
+				style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 70%;">
+
+				{{-- Yellow overlay --}}
+				<div class="position-absolute top-0 w-100 h-100"    
+					style="background-color: rgba(245,168,0,0.70);"></div>
+					
+			<div class="d-flex flex-column text-start" style="z-index: 10; margin-left: 5rem; align-self: center;">
+				<h1 class="font-weight-medium" style="color: #333361;">Welcome back, {{ Auth::user()->first_name }}!</h1>
+				<p class="mt-n5" style="color: #1E1E1E;">Manage and monitor student record from here.</p>
+			</div>
+			</div>
+		</div>	
 
 		<div class="cards-grid">
 
