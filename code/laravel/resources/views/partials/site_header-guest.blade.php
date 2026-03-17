@@ -1,4 +1,4 @@
-<nav class="navbar bg-body-tertiary shadow-sm p-2 mb-0 bg-white rounded">
+<nav class="navbar bg-body-tertiary shadow-sm p-2 mb-0 bg-white rounded sticky-top">
   <div class="container-fluid px-4">
     <a class="navbar-brand d-flex align-items-center gap-2" href="#">
       <img src="{{ asset('images/PHS-Logo.png') }}" alt="Logo" width="90" height="90" class="rounded-circle">
