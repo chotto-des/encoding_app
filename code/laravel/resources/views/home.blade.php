@@ -34,25 +34,50 @@
 		<div style="width: 100%; border-bottom: 10px solid #EEEE3D; box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.3);"></div>
 
 		<div class="row" style="background-color: #f8f7d8;">
- 		<div class=" col-12 col-sm-6 col-md-4 col-lg-3 m-5">
+ 			<div class=" col-12 col-sm-6 col-md-4 col-lg-3 m-5 mx-auto z-20 d-flex justify-content-center align-items-center">	
 				
-				<a href="{{ route('students.index') }}" class="h-100 card text-decoration-none text-dark border-card p-3 rounded-4">
-				<div class="card__icon">
-					<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"">
-					<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
-					</svg>
+				<a href="{{ route('students.index') }}" class="h-100 card text-decoration-none text-dark border-gold pe-1 pt-3 pb-3 ps-3 rounded-4">
+					<div class="card__icon">
+						<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" fill="#FFD700" class="bi bi-folder-fill p-3	 rounded-4 ms-3 mt-3" style="background-color: #f8f7d8;" viewBox="0 0 16 16">
+						<path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z"/>
+						</svg>			
+					</div>
 
-				</div>
-				<div class="card-body">
-					<h2 class="card-title">Student Records</h2>	
-					<p class="card-text">View, add, edit, and delete student information and enrollment records.</p>
-				</div>
-				<div class="card-arrow">
-					<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="align-self-end">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-					</svg>
-				</div>
-			</a>
+					<div class="card-body">
+						<h2 class="fs-3 fw-bold" style="color: #333361;">Student Records</h2>	
+						<p class="card-text">View, add, edit, and delete student information and enrollment records.</p>
+					</div>
+
+					<div class="d-flex justify-content-end">
+						<svg width="25" height="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="" stroke="#FFD700" stroke-width="2" class="me-3">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+						</svg>
+					</div>
+				</a>
+			</div>
+
+			<div class=" col-12 col-sm-6 col-md-4 col-lg-3 m-5 mx-auto z-20 d-flex justify-content-center align-items-center">	
+				
+				<a href="{{ route('students.index') }}" class="h-100 card text-decoration-none text-dark border-gold pe-1 pt-3 pb-3 ps-3 rounded-4">
+					<div class="card__icon">
+						<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" fill="#FFD700" class="bi bi-folder-fill p-3	 rounded-4 ms-3 mt-3" style="background-color: #f8f7d8;" viewBox="0 0 16 16">
+						<path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z"/>
+						</svg>			
+					</div>
+
+					<div class="card-body">
+						<h2 class="fs-3 fw-bold" style="color: #333361;">Student Records</h2>	
+						<p class="card-text">View, add, edit, and delete student information and enrollment records.</p>
+					</div>
+					
+					<div class="d-flex justify-content-end">
+						<svg width="25" height="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="" stroke="#FFD700" stroke-width="2" class="me-3">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+						</svg>
+					</div>
+				</a>
+			</div>
+			
 		</div>
 	</main>
 
