@@ -1,12 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify Email - Pampanga High School</title>
-    @vite('resources/css/register.css')
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Verify Email – Pampanga High School')
+
+@push('styles')
+    @vite(['resources/css/register.css', 'resources/css/site_header.css'])
+@endpush
+
+@section('body')
+
+    @include('partials.site_header-guest')
+    {{-- Background wrapper --}}
+    <div class="position-relative d-flex align-items-center justify-content-center" style="min-height: 85vh;">
+
+        {{-- Background image --}}
+        <img src="{{ asset('images/phs.jpg') }}" alt=""
+             style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+
+            {{-- Yellow overlay --}}
+            <div class="position-absolute top-0 w-100 h-100"    
+                style="background-color: rgba(245,168,0,0.70);"></div>
 
     <div class="card">
         <div class="icon-wrapper">
@@ -68,6 +80,11 @@
             </form>
         </p>
     </div>
+</div>
+        @include('partials.site_footer')
+
+
+
 
     <script>
         const inputs = document.querySelectorAll('.otp-input');
@@ -107,5 +124,5 @@
         document.querySelector('form').addEventListener('submit', syncHidden);
     </script>
 
-</body>
-</html>
+
+@endsection

@@ -9,6 +9,17 @@
 @section('body')
     @include('partials.site_header-guest')
 
+    {{-- Background wrapper --}}
+    <div class="position-relative d-flex align-items-center justify-content-center" style="min-height: 85vh;">
+
+        {{-- Background image --}}
+        <img src="{{ asset('images/phs.jpg') }}" alt=""
+             style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+
+            {{-- Yellow overlay --}}
+            <div class="position-absolute top-0 w-100 h-100"    
+                style="background-color: rgba(245,168,0,0.70);"></div>
+
     <div class="card">
 
         <h1>Create Account</h1>
@@ -93,7 +104,7 @@
             Already have an account? <a href="{{ route('login') }}">Login here</a>
         </p>
     </div>
-
+</div>
     @include('partials.site_footer')
     <script>
         function togglePassword(inputId, iconId) {
