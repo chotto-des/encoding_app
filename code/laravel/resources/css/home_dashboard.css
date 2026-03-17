@@ -1,12 +1,9 @@
+/* Custom gold border for cards */
+.border-gold {
+    border: 2px solid #FFD700 !important;
+}
 .welcome-text{
     font-size: 45px
 }
 
-.border-card {
-    border: 4px solid #FFCC00;
-}
-
-.body{
-    background-color: #7c7925;
-    min-height: 100vh;
-}   
+ 
