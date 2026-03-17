@@ -7,6 +7,13 @@
         <div class="text-muted small">Excellence in Education</div>
       </div>
     </a>
-    <a href="{{ route('register') }}" class="btn btn-warning fw-semibold text-white px-4 ms-auto">Sign up</a>
+    <div class="d-flex align-items-center gap-3 ms-auto">
+      @if (Route::currentRouteName() !== 'register')
+        <a href="{{ route('register') }}" class="btn" style="background-color: #333361; color: white;">Sign up</a>
+      @endif
+      @if (Route::currentRouteName() !== 'login')
+        <a class="btn" href="{{ route('login') }}" style="background-color: #333361; color: white;">Login</a>
+      @endif
+    </div>
   </div>
 </nav>

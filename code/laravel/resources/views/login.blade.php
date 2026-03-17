@@ -21,13 +21,8 @@
                 style="background-color: rgba(245,168,0,0.70);"></div>
 
         {{-- Login Card --}}
-        <div class="card position-relative border-5" 
-        style="z-index: 1; width: 100%; max-width: 470px; height: 600px; padding: 20px; border-color: #EEEE3D; border-radius: 15px;">
+        <div class="card p-4" style="width: 100%; max-width: 470px; border-radius: 0.75rem;">
 
-        <div class="text-center">
-            <img src="{{ asset('images/PHS-Logo.png') }}" class = "mb-0 mt-3    " alt="PHS Logo" 
-            style="width: 100px; height: 100px; border-radius: 50%; background: #fff;">
-        </div>
         <span class="PHS-text fw-medium text-center" style="color: #41417F;">Pampanga High School</span>
         <p class="subtitle text-muted text-center mt-1">Student Management System</p>
 
@@ -81,6 +76,7 @@
         <p class="register-link text-center mt-4">
             Don't have an account? <a href="{{ route('register') }}" class ="register-link-color ">Register here</a>
         </p>
+        
         </div>{{-- end card --}}
 
     </div>{{-- end background wrapper --}}

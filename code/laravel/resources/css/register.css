@@ -14,7 +14,7 @@
 }
 
 .icon-wrapper {
-    background-color: #F5A800;
+    background-color: #eeee3d;
     border-radius: 50%;
     width: 64px;
     height: 64px;
@@ -73,7 +73,7 @@
 }
 
 .form-group input:focus {
-    border-color: #F5A800;
+    border-color: #eeee3d;
     background-color: #ffffff;
 }
 
@@ -190,7 +190,7 @@
 }
 
 .step.active {
-    background-color: #F5A800;
+    background-color: #eeee3d;
     color: #1a1a2e;
 }
 
@@ -221,7 +221,7 @@
 .btn-next {
     width: 100%;
     padding: 14px;
-    background-color: #F5A800;
+    background-color: #eeee3d;
     color: #1a1a2e;
     font-size: 1rem;
     font-weight: 700;
@@ -233,7 +233,7 @@
 }
 
 .btn-next:hover {
-    background-color: #e09900;
+    background-color: #efb100
 }
 
 .btn-next:active {
@@ -270,7 +270,7 @@
 .btn-register {
     flex: 2;
     padding: 14px;
-    background-color: #F5A800;
+    background-color: #eeee3d;
     color: #1a1a2e;
     font-size: 1rem;
     font-weight: 700;
@@ -281,7 +281,7 @@
 }
 
 .btn-register:hover {
-    background-color: #e09900;
+    background-color: #efb100;
 }
 
 .btn-register:active {
