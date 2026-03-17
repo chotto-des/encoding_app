@@ -8,10 +8,10 @@
       </div>
     </a>
 	<div class="d-flex align-items-center gap-3 ms-auto">
-      <p class="mb-0">{{ trim((Auth::user()->first_name ?? '') . ' ' . (Auth::user()->last_name ?? '')) }}</p>
+      <p class="mb-0 fs-6 fw-semibold" >{{ trim((Auth::user()->first_name ?? '') . ' ' . (Auth::user()->last_name ?? '')) }}</p>
       <form action="{{ route('logout') }}" method="POST">
         @csrf
-        <button type="submit" class="btn btn-warning fw-semibold text-white px-4">Logout</button>
+        <button type="submit" class="btn" style="background-color: #333361; color: white;">Logout</button>
       </form>
     </div>
   </div>

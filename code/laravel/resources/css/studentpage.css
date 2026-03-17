@@ -1,24 +1,14 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    background-color: #f8f7d8;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    color: #1e293b;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
 /* ── Main content area ─────────────────────── */
 .home-main {
     width: 100%;
     padding: 2rem 2.5rem;
     flex: 1;
+    position: relative;
+    overflow: hidden;
 }
+
 
 /* ── Page header row (title + add button) ──── */
 .page-header {
@@ -64,17 +54,17 @@ body {
 .search-input {
     width: 100%;
     padding: 10px 16px 10px 40px;
-    border: 2px solid #fbbf24;
+    border: 2px solid #eeee3d;
     border-radius: 12px;
     font-size: 1rem;
     background-color: #ffffff;
-    color: #1e293b;
+    color: #333361;
     outline: none;
     transition: border-color 0.2s;
 }   
 
 .search-input:focus {
-    border-color: #fbbf24;
+    border-color: #eeee3d;
     box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.2);
 }
 
@@ -82,7 +72,7 @@ body {
     font-size: 2.5rem;
     font-weight: 700;
     line-height: 1.2;
-    color: #0f172a;
+    color: #333361;
 }
 
 .page-subtitle {
@@ -106,12 +96,12 @@ body {
     gap: 8px;
     justify-content: center;
     background-color: #ffffff;
-    border: 2px solid #fbbf24;
+    border: 2px solid #eeee4d;
     border-radius: 12px;
     padding: 11px 22px;
     font-size: 1.125rem;
     font-weight: 600;
-    color: #0f172a;
+    color: #333361;
     text-decoration: none;
     box-shadow: 0 4px 12px rgba(0,0,0,0.07);
     transition: background-color 0.2s, border-color 0.2s;
@@ -120,7 +110,7 @@ body {
 
 .btn-back-home:hover {
     background-color: #fef9e7;
-    border-color: #f59e0b;
+    border-color: #fcd34d;
 }
 
 .btn-back-home svg {
@@ -134,12 +124,12 @@ body {
     align-items: center;
     gap: 8px;
     justify-content: center;
-    background-color: #fbbf24;
+    background-color: #eeee3d;
     border-radius: 12px;
     padding: 12px 24px;
     font-size: 1.125rem;
     font-weight: 600;
-    color: #0f172a;
+    color: #333361;
     text-decoration: none;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     transition: background-color 0.2s;
@@ -159,7 +149,7 @@ body {
 /* ── Table card ─────────────────────────────── */
 .table-card {
     background-color: #ffffff;
-    border: 2px solid #fbbf24;
+    border: 2px solid #eeee3d;
     border-radius: 16px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     overflow: hidden;
@@ -179,8 +169,8 @@ body {
 }
 
 .student-table thead {
-    background-color: #fbbf24;
-    color: #0f172a;
+    background-color: #eeee3d;
+    color: #333361;
 }
 
 .student-table th {

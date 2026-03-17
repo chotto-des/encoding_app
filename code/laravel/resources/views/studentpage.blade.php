@@ -1,20 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Student Records</title>
-	 @vite(['resources/css/studentpage.css', 'resources/css/site_header.css'])
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Register – Pampanga High School')
+	
+@push('styles')
+    @vite(['resources/css/studentpage.css', 'resources/css/site_header.css'])
+@endpush
+@section('body')
 	@include('partials.site_header', ['active' => 'students', 'fullWidth' => true])
 
-	<main class="home-main">
+		{{-- Background wrapper --}}
+	<div class="position-relative d-flex align-items-flex-start" style="min-height: 60vh; width: 100%;">
 
+		{{-- Background image --}}
+		<img src="{{ asset('images/phs.jpg') }}" alt=""
+			 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 70%;">
+	
+			 {{-- Yellow overlay --}}
+			 <div class="position-absolute top-0 w-100 h-100"    
+				 style="background-color: rgba(245,168,0, 0.7);"></div>
+
+
+	<main class="home-main">
+	
 		<header class="page-header">
+			
 			<div>
-				<h1 class="page-title">Student Records</h1>
-				<p class="page-subtitle">Manage student information and records.</p>
+				<h1 class="fs-1	fw-bold" style="color: #333361">Student Records</h1>
+				<p class="fs-5" style="color:white;">Manage student information and records.</p>
 			</div>
 
 			<div class="search-actions-row">
@@ -100,10 +112,11 @@
 					</tbody>
 				</table>
 			</div>
+
 		</section>
 
 		{{ $students->links('partials.pagination') }}
-
+	
 	</main>
 
 	@if(session('success'))
@@ -171,7 +184,7 @@
 			});
 		});
 	</script>
-
+</div>
 @include('partials.site_footer')
-</body>
-</html>
+
+@endsection
