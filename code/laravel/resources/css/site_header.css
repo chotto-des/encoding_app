@@ -1,4 +1,14 @@
-.header_text_color {
-    color: #41417F;
+/* Logout button custom style */
+.btn.logout-btn {
+    background-color: #333361;
+    color: #fff;
+    border: none;
+    transition: background 0.3s ease-out, color 0.3s ease-out;
 }
+.btn.logout-btn:hover, .btn.logout-btn:focus {
+    background-color: #7e78ab;
+    color: #fff;
+}
+
+
 

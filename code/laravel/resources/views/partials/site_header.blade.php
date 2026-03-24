@@ -11,7 +11,7 @@
       <p class="mb-0 fs-6 fw-semibold" >{{ trim((Auth::user()->first_name ?? '') . ' ' . (Auth::user()->last_name ?? '')) }}</p>
       <form action="{{ route('logout') }}" method="POST">
         @csrf
-        <button type="submit" class="btn" style="background-color: #333361; color: white;">Log out</button>
+        <button type="submit" class="btn logout-btn">Log out</button>
       </form>
     </div>
   </div>
