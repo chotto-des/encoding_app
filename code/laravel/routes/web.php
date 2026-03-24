@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AddressController;
-
+use App\Http\Controllers\EmployeeController;
 
 //  Auth routes (guest only)
 Route::middleware('guest')->controller(AuthController::class)->group(function () {
@@ -34,6 +34,16 @@ Route::middleware('auth')->group(function () {
 
     // Logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Employees
+    Route::controller(EmployeeController::class)->prefix('employees')->name('employees.')->group(function () {
+        Route::get('/',                'index')->name('index');
+        Route::get('/create',          'create')->name('create');
+        Route::post('/',               'store')->name('store');
+        Route::get('/{employee}/edit', 'edit')->name('edit');
+        Route::put('/{employee}',      'update')->name('update');
+        Route::delete('/{employee}',   'destroy')->name('destroy');
+    });
 
     // Students 
     Route::controller(StudentController::class)->prefix('students')->name('students.')->group(function () {

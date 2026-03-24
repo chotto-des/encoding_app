@@ -67,7 +67,7 @@
 							<th>Elementary School</th>
 							<th>Address</th>
 							<th>Grade Level</th>
-							<th>Actions</th>
+							<th>Edit/Delete</th>
 						</tr>
 					</thead>
 					<tbody>
