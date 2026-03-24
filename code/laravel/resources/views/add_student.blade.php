@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add Student')
+@section('title', 'Add Student – Pampanga High School')
 	
 @push('styles')
 	@vite(['resources/css/add_student.css', 'resources/css/site_header.css'])

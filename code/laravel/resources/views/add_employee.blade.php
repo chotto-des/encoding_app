@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Add Employee – Pampanga High School')
 @section('content')
 <div class="container mt-5">
     <div class="row justify-content-center">
