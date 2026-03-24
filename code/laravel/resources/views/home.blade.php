@@ -33,7 +33,7 @@
 
 		<div style="width: 100%; border-bottom: 10px solid #EEEE3D; box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.3);"></div>
 
-		<div class="row" style="background-color: #f8f7d8;">
+		<div class="row justify-content-center" style="background-color: #f8f7d8;">
 			
  			<div class=" col-12 col-sm-6 col-md-4 col-lg-3 z-20 my-5 margin-card d-flex justify-content-center align-items-center">	
 				
