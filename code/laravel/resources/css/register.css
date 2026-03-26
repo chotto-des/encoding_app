@@ -3,14 +3,14 @@
 .card {
     background-color: #ffffff;
     border-radius: 16px;
-    margin-top: 40px;
-    margin-bottom: 40px;    
-    padding: 40px 40px;
+    margin-top: 0;
+    margin-bottom: 10;
+    padding: 28px 28px;
     width: 100%;
-    max-width: 420px;
-    max-height: 110vh;
+    max-width: 520px;
+    max-height: 90vh;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-    text-align: center;
+    text-align: left;
 }
 
 .icon-wrapper {
@@ -54,6 +54,7 @@
     font-weight: 600;
     color: #374151;
     margin-bottom: 8px;
+    text-align: left;
 }
 
 .input-wrapper {
@@ -171,34 +172,53 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 6px;
-    gap: 0;
+    margin: 0.75rem 0 0.75rem 0;
+    gap: 0.75rem;
 }
 
-.step {
-    width: 30px;
-    height: 30px;
+.step-indicator .step {
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background-color: #e5e7eb;
     color: #9ca3af;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.2s, color 0.2s, transform 0.12s, box-shadow 0.12s;
 }
 
-.step.active {
+.step-indicator .step.active {
     background-color: #eeee3d;
     color: #1a1a2e;
 }
 
-.step.done {
+.step-indicator .step.done {
     background-color: #1a1a2e;
     color: #ffffff;
 }
 
+/* Explicitly grey-out inactive steps */
+.step-indicator .step:not(.active):not(.done) {
+    background-color: #f1f3f5;
+    color: #9ca3af;
+    opacity: 0.95;
+}
+
+/* Hover/interaction: subtle lift and shadow for non-active steps */
+.step-indicator .step:not(.active):not(.done):hover {
+    background-color: #e9ecef;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    cursor: default;
+}
+
+/* If steps are clickable in future, change cursor to pointer on hover */
+.step-indicator .step.clickable:hover { cursor: pointer; }
+
+.step-indicator .step-line,
 .step-line {
     flex: 1;
     max-width: 60px;
@@ -313,3 +333,31 @@
     margin-bottom: 16px;
     text-align: left;
 }
+
+/* Styles previously in register.blade.php <style> block */
+.register-wrapper {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 0;
+}
+.register-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.register-overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(245,168,0,0.70);
+}
+.step-indicator { display:flex; align-items:center; gap:.5rem; margin: .75rem 0; }
+.step-indicator .step { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#eeee3d; }
+.step-indicator .step.active { background:#eeee3d; color:#fff; }
+.step-line { flex:1; height:2px; background:#e9ecef; }
