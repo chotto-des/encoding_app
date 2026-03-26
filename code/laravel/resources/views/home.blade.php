@@ -9,8 +9,8 @@
 @section('body')
     @include('partials.site_header', ['active' => 'add-student', 'fullWidth' => true])
 
-	<main style="height: 85vh; background-color: #f8f7d8;">
-		
+	<main style="height: 87vh; background-color: #f8f7d8;">
+
 		{{-- Top border --}}
 		<div style="width: 100%; border-top: 10px solid #EEEE3D; box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.3);"></div>
 
