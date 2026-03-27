@@ -8,11 +8,9 @@
       </div>
     </a>
     <div class="d-flex align-items-center gap-3 ms-auto">
-      @if (Route::currentRouteName() !== 'register')
-        <a href="{{ route('register') }}" class="btn" style="background-color: #333361; color: white;">Sign up</a>
-      @endif
+      <a href="{{ route('register') }}" class="btn signup-btn">Sign up</a>
       @if (Route::currentRouteName() !== 'login')
-        <a class="btn" href="{{ route('login') }}" style="background-color: #333361; color: white;">Login</a>
+        <a class="btn login-btn" href="{{ route('login') }}">Login</a>
       @endif
     </div>
   </div>

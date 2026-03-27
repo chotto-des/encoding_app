@@ -10,5 +10,32 @@
     color: #fff;
 }
 
+/* Logout button custom style */
+.btn.login-btn {
+    background-color: #333361;
+    color: #fff;
+    border: none;
+    transition: background 0.3s ease-out, color 0.3s ease-out;
+}
+.btn.login-btn:hover, .btn.login-btn:focus {
+    background-color: #7e78ab;
+    color: #fff;
+}
+
+/* Sign-up button shares the same style as login */
+.btn.signup-btn {
+    background-color: #333361;
+    color: #fff;
+    border: none;
+    transition: background 0.3s ease-out, color 0.3s ease-out;
+}
+.btn.signup-btn:hover, .btn.signup-btn:focus {
+    background-color: #7e78ab;
+    color: #fff;
+}
+
+
+
+
 
 
