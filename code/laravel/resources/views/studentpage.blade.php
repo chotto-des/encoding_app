@@ -25,7 +25,7 @@
 		<header class="page-header">
 			
 			<div>
-				<h1 class="fs-1	fw-bold" style="color: #333361">Student Records</h1>
+				<h1 class="fs-1	fw-medium " style="color: #333361">Student Records</h1>
 				<p class="fs-5" style="color:white;">Manage student information and records.</p>
 			</div>
 

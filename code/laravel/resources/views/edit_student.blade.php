@@ -9,15 +9,30 @@
 @section('body')
     @include('partials.site_header', ['active' => 'add-student', 'fullWidth' => true])
 
-	<main class="add-main">
-		<header class="add-page-header">
-			<h1 class="add-title">Student Records</h1>
-			<p class="add-subtitle">Manage student information and records</p>
+	<main>
+		
+	{{-- Background wrapper --}}
+	<div class="position-relative d-flex align-items-flex-start" style="min-height: 60vh; width: 100%;">
+
+		{{-- Background image --}}
+		<img src="{{ asset('images/phs.jpg') }}" alt=""
+			 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 70%; z-index: -10;">
+
+		{{-- Yellow overlay --}}
+		<div class="position-absolute top-0 w-100 h-100"
+			 style="background-color: rgba(245,168,0, 0.7); z-index: -1;"></div>
+
+		<div class="d-flex flex-column text-start mx-auto" style="z-index: 10; width: 100%; max-width: 1200px;">
+
+		<header class=" mb-1 pt-5" style="">
+			<h1 class="fs-1" style="color: #333361;">Student Records</h1>
+			<p class="add-subtitle fs-5">Manage student information and records</p>
 		</header>
 
-		<section class="form-card">
-			<h2 class="form-heading">Edit Student</h2>
-
+		<section class="card mb-5" style="border-radius: 0.75rem; border-color: #EEEE3D; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+			<div class="card-header mb-3 pt-3" style="background-color: #EEEE3D; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; border-color: #EEEE3D;">
+			<h4 class="ps-2">Edit Student</h4>
+			</div>
 			@if(session('success'))
 				<div class="alert alert-success">{{ session('success') }}</div>
 			@endif
@@ -31,85 +46,99 @@
 					</ul>
 				</div>
 			@endif
+			<div class="card-body px-4 pt-2 pb-1">
+				<form class="form-grid" method="POST" action="{{ route('students.store') }}">
+					@csrf
+					<div class="row col-gap-4">
+					
+						<div class="col-md-6">
+								<label for="first_name" class="fw-medium mb-1">First Name <span class="required align-middle ms-1">*</span></label>
+								<input id="first_name" name="first_name" type="text" placeholder="Enter First Name" autocomplete="given-name" class="mb-1 form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}">
+						</div>
+						
+						<div class="col-md-6">
+								<label for="middle_name" class="fw-medium mb-1">Middle Name</label>
+								<input id="middle_name" name="middle_name" type="text" placeholder="Enter Middle Name" autocomplete="additional-name" class="form-control" value="{{ old('middle_name') }}">
+						</div>
 
-			<form class="form-grid" method="POST" action="{{ route('students.update', $student) }}">
-				@csrf
-				@method('PUT')
-				<div class="form-group">
-					<label for="first_name" class="form-label">First Name <span class="required">*</span></label>
-					<input id="first_name" name="first_name" type="text" placeholder="First Name" autocomplete="given-name" class="form-input @error('first_name') input-error @enderror" value="{{ old('first_name', $student->first_name) }}">
-				</div>
+						<div class="col-full">
+							<label for="last_name" class="fw-medium mb-1">Last Name <span class="required">*</span></label>
+							<input id="last_name" name="last_name" type="text" placeholder="Enter Last Name" autocomplete="family-name" class="mb-1 form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}">
+						</div>
 
-				<div class="form-group">
-					<label for="middle_name" class="form-label">Middle Name</label>
-					<input id="middle_name" name="middle_name" type="text" placeholder="Middle Name" autocomplete="additional-name" class="form-input" value="{{ old('middle_name', $student->middle_name) }}">
-				</div>
-
-				<div class="form-group col-full">
-					<label for="last_name" class="form-label">Last Name <span class="required">*</span></label>
-					<input id="last_name" name="last_name" type="text" placeholder="Last Name" autocomplete="family-name" class="form-input @error('last_name') input-error @enderror" value="{{ old('last_name', $student->last_name) }}">
-				</div>
-
-				<div class="form-group">
-					<label for="gender" class="form-label">Gender <span class="required">*</span></label>
-					<select id="gender" name="gender" autocomplete="sex" class="form-select">
+						<div class="col-md-6">
+							<label for="gender" class="form-label mb-1 fw-medium">Gender <span class="required">*</span></label>
+					<select id="gender" name="gender" autocomplete="sex" class="form-select @error('gender') is-invalid @enderror">
 						<option value="" disabled selected hidden>Select Gender</option>
-						<option {{ old('gender', $student->gender) == 'Female' ? 'selected' : '' }}>Female</option>
-						<option {{ old('gender', $student->gender) == 'Male' ? 'selected' : '' }}>Male</option>
+						<option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
+						<option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
 					</select>
-				</div>
+						</div>
 
-				<div class="form-group">
-					<label for="grade_level_id" class="form-label">Grade Level <span class="required">*</span></label>
-					<select id="grade_level_id" name="grade_level_id" autocomplete="off" class="form-select @error('grade_level_id') input-error @enderror">
-						<option value="" disabled selected hidden>Select Grade Level</option>
-						@foreach($gradeLevels as $level)
-							<option value="{{ $level->grade_level_id }}" {{ old('grade_level_id', $student->grade_level_id) == $level->grade_level_id ? 'selected' : '' }}>
-								{{ $level->grade_level_name }}
-							</option>
-						@endforeach
-					</select>
-				</div>
+						<div class="col-md-6">
+								<label for="grade_level_id" class="fw-medium mb-1">Grade Level <span class="required">*</span></label>
+								<select id="grade_level_id" name="grade_level_id" autocomplete="off" class="mb-1 form-select @error('grade_level_id') @enderror">
+									<option class= "addr-options" value="" disabled selected hidden>Select Grade Level</option>
+									@foreach($gradeLevels as $level)
+										<option value="{{ $level->grade_level_id }}" {{ old('grade_level_id') == $level->grade_level_id ? 'selected' : '' }}>
+											{{ $level->grade_level_name }}
+										</option>
+									@endforeach
+								</select>
+						</div>
 
-				<div class="form-group col-full">
-					<label for="elementary_school" class="form-label">Elementary School <span class="required">*</span></label>
-					<input id="elementary_school" name="elementary_school" type="text" placeholder="Elementary School" autocomplete="off" class="form-input" value="{{ old('elementary_school', $student->elementary_school) }}">
-				</div>
+						<div class="col-full">
+							<label for="elementary_school" class="fw-medium mb-1">Elementary School <span class="required">*</span></label>
+							<input id="elementary_school" name="elementary_school" type="text" placeholder="Enter Elementary School" autocomplete="off" class="mb-1 form-control @error('elementary_school') @enderror" value="{{ old('elementary_school') }}">
+						</div>
 
-				<div class="form-group">
-					<label for="province" class="form-label">Province <span class="required">*</span></label>
-					<div class="addr-wrap" id="province-wrap">
-						<input id="province" name="province" type="text" placeholder="Search province..." class="form-input addr-input @error('province') input-error @enderror" autocomplete="off" value="{{ old('province', $student->province) }}">
-						<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
-						<ul class="addr-options" id="province-options"></ul>
-					</div>
-				</div>
+						<div class="col-md-6">
+							<label for="province" class="fw-medium mb-1">Province <span class="required">*</span></label>
+							<div class="addr-wrap" id="province-wrap">
+								<input id="province" name="province" type="text" placeholder="Search province..." class="form-input addr-input @error('province') input-error @enderror" autocomplete="off" value="{{ old('province') }}">
+								<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
+								<ul class="addr-options" id="province-options"></ul>
+							</div>
+						</div>
 
-				<div class="form-group">
-					<label for="municipality" class="form-label">Municipality / City <span class="required">*</span></label>
-					<div class="addr-wrap addr-disabled" id="municipality-wrap">
-						<input id="municipality" name="municipality" type="text" placeholder="Select a province first..." class="form-input addr-input @error('municipality') input-error @enderror" autocomplete="off" value="{{ old('municipality', $student->municipality) }}" disabled>
-						<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
-						<ul class="addr-options" id="municipality-options"></ul>
-					</div>
-				</div>
+						<div class="col-md-6 mb-1">
+							<label for="municipality" class="fw-medium mb-1">Municipality / City <span class="required">*</span></label>
+							<div class="addr-wrap addr-disabled" id="municipality-wrap">
+								<input id="municipality" name="municipality" type="text" placeholder="Select a province first..." class="form-input addr-input @error('municipality') input-error @enderror" autocomplete="off" value="{{ old('municipality') }}" disabled>
+								<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
+								<ul class="addr-options" id="municipality-options"></ul>
+							</div>
+						</div>
 
-				<div class="form-group col-full">
-					<label for="town_barangay" class="form-label">Barangay <span class="required">*</span></label>
-					<div class="addr-wrap addr-disabled" id="barangay-wrap">
-						<input id="town_barangay" name="barangay" type="text" placeholder="Select a municipality first..." class="form-input addr-input @error('barangay') input-error @enderror" autocomplete="off" value="{{ old('barangay', $student->barangay) }}" disabled>
-						<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
-						<ul class="addr-options" id="barangay-options"></ul>
-					</div>
+						<div class="col-full pb-4">
+							<label for="town_barangay" class=" fw-medium mb-1">Barangay <span class="required">*</span></label>
+							<div class="addr-wrap addr-disabled" id="barangay-wrap">
+								<input id="town_barangay" name="barangay" type="text" placeholder="Select a municipality first..." class="form-input addr-input @error('barangay') input-error @enderror" autocomplete="off" value="{{ old('barangay') }}" disabled>
+								<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
+								<ul class="addr-options" id="barangay-options"></ul>
+							</div>
+						</div>
+						
+						<div class="d-flex w-100">
+							<a href="{{ route('students.index') }}"
+							class="btn w-50 rounded-3 me-3 p-2 fw-medium"
+							style="background-color: #d6d6d6; color: #222; border: none;">
+								Back
+							</a>
+							
+							<button type="submit"
+									class="btn w-50 rounded-3 p-2 fw-medium"
+									style="background-color: #f8f33a; color: #222; border: none;">
+								Save Changes
+							</button>
+						</div>
 				</div>
+			</div>
 
-				<div class="btn-row">
-					<a href="{{ route('students.index') }}" class="btn-cancel">Back</a>
-					<button type="submit" class="btn-submit">Save Changes</button>
-
-				</div>
 			</form>
 		</section>
+		</div>
+</div>	
 	</main>
 
 	@include('partials.site_footer')

@@ -1,15 +1,146 @@
 
 
 /* ── Page header (title above card) ─────────── */
-.add-page-header {
+.page-margin {
     margin-left: 16rem;
     margin-top: 3rem;
 }
 
-.add-title {
-
+/* ── Inputs ─────────────────────────────────── */
+.form-input {
+    width: 100%;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.875rem;
+    color: #374151;
+    background-color: #ffffff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.add-subtitle {
-
+.form-input::placeholder {
+    color: #94a3b8;
 }
+
+.form-input:focus {
+    border-color: #fcd34d !important;
+    box-shadow: 0 0 0 2px rgba(252, 211, 77, 0.35);
+}
+
+/* ── Selects ─────────────────────────────────── */
+.form-select {
+    width: 100%;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.875rem;
+    color: #1e293b;
+    background-color: #ffffff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.form-select:focus {
+    border-color: #fcd34d !important;
+    box-shadow: 0 0 0 2px rgba(252, 211, 77, 0.35) !important;
+}
+
+/* ── Input error state ─────────────────────── */
+.input-error {
+    border-color: #ef4444 !important;
+    outline-color: #ef4444;
+}
+
+/* ── Address custom dropdown ───────────────── */
+.addr-wrap {
+    position: relative;
+}
+
+.addr-input {
+    padding-right: 34px;
+    cursor: pointer;
+}
+
+.addr-disabled .addr-input {
+    background-color: #f1f5f9;
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+
+.addr-chevron {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: #94a3b8;
+    pointer-events: none;
+    transition: transform 0.2s;
+}
+
+.addr-wrap.open .addr-chevron {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.addr-options {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 1.5px solid #020203;    
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 200;
+    list-style: none;
+    padding: 4px 0;
+    margin: 0;
+}
+
+.addr-wrap.open .addr-options {
+    display: block;
+}
+
+.addr-options li {
+    padding: 8px 12px;
+    font-size: 0.875rem;
+    color: #374151;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+
+.addr-options li.selected,
+.addr-options li:hover {
+    background-color: #767676;
+    color: #fff;
+}
+
+.addr-opt-empty,
+.addr-opt-loading {
+    color: #94a3b8 !important;
+    cursor: default !important;
+    font-style: italic;
+}
+
+.addr-opt-loading::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #cbd5e1;
+    border-top-color: #fbbf24;
+    border-radius: 50%;
+    animation: addr-spin 0.6s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes addr-spin {
+    to { transform: rotate(360deg); }
+}
+
