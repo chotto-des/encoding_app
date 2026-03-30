@@ -3,7 +3,7 @@
 @section('title', 'Add Student – Pampanga High School')
 	
 @push('styles')
-	@vite(['resources/css/add_student.css', 'resources/css/site_header.css', 'resources/css/site_footer.css'])
+	@vite(['resources/css/add_student.css', 'resources/css/site_header.css'])
 @endpush
 
 @section('body')
@@ -21,7 +21,7 @@
 
 		{{-- Yellow overlay --}}
 		<div class="position-absolute top-0 w-100 h-100"
-			 style="background-color: rgba(245,168,0, 0.7); z-index: -1;"></div>
+			 style="background-color: rgba(105, 97, 79, 0.7); z-index: -1;"></div>
 
 		<div class="d-flex flex-column text-start mx-auto" style="z-index: 10; width: 100%; max-width: 1200px;">
 
