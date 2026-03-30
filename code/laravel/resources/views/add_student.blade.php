@@ -10,7 +10,7 @@
     @include('partials.site_header', ['active' => 'add-student', 'fullWidth' => true])
 
 
-	<main class="add-main">
+	<main>
 		
 	{{-- Background wrapper --}}
 	<div class="position-relative d-flex align-items-flex-start" style="min-height: 60vh; width: 100%;">
@@ -25,14 +25,14 @@
 
 		<div class="d-flex flex-column text-start mx-auto" style="z-index: 10; width: 100%; max-width: 1200px;">
 
-		<header class=" mb-2 pt-5" style="">
+		<header class=" mb-1 pt-5" style="">
 			<h1 class="fs-1" style="color: #333361;">Student Records</h1>
 			<p class="add-subtitle fs-5">Manage student information and records</p>
 		</header>
 
 		<section class="card mb-5" style="border-radius: 0.75rem; border-color: #EEEE3D; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
-			<div class="card-header mb-3 pt-3 pb-2" style="background-color: #EEEE3D; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; border-color: #EEEE3D;">
-			<h4 class="form-heading">Add New Student</h4>
+			<div class="card-header mb-3 pt-3" style="background-color: #EEEE3D; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; border-color: #EEEE3D;">
+			<h4 class="ps-2">Add New Student</h4>
 			</div>
 			@if(session('success'))
 				<div class="alert alert-success">{{ session('success') }}</div>
@@ -53,81 +53,69 @@
 					<div class="row col-gap-4">
 					
 						<div class="col-md-6">
-							<div class="form-group">
 								<label for="first_name" class="fw-medium mb-1">First Name <span class="required align-middle ms-1">*</span></label>
-								<input id="first_name" name="first_name" type="text" placeholder="Enter First Name" autocomplete="given-name" class="mb-1 form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}">
-							</div>
+								<input id="first_name" name="first_name" type="text" placeholder="Enter First Name" autocomplete="given-name" class="form-border mb-1 form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}">
 						</div>
 						
 						<div class="col-md-6">
-							<div class="form-group">
 								<label for="middle_name" class="fw-medium mb-1">Middle Name</label>
-								<input id="middle_name" name="middle_name" type="text" placeholder="Enter Middle Name" autocomplete="additional-name" class="form-control" value="{{ old('middle_name') }}">
-							</div>
+								<input id="middle_name" name="middle_name" type="text" placeholder="Enter Middle Name" autocomplete="additional-name" class="form-border form-control" value="{{ old('middle_name') }}">
 						</div>
 
-						<div class="form-group col-full">
+						<div class="col-full">
 							<label for="last_name" class="fw-medium mb-1">Last Name <span class="required">*</span></label>
-							<input id="last_name" name="last_name" type="text" placeholder="Enter Last Name" autocomplete="family-name" class="mb-1 form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}">
+							<input id="last_name" name="last_name" type="text" placeholder="Enter Last Name" autocomplete="family-name" class="form-border mb-1 form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}">
 						</div>
 
 						<div class="col-md-6">
-							<div class="form-group">
-								<label for="gender" class="fw-medium mb-1">Gender <span class="required">*</span></label>
-								<select id="gender" name="gender" autocomplete="sex" class=" mb-1 form-select">
-									<option value="" disabled selected hidden>Select Gender</option>
-									<option {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
-									<option {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
-								</select>
-							</div>
+							<label for="gender" class="form-label mb-1 fw-medium">Gender <span class="required">*</span></label>
+					<select id="gender" name="gender" autocomplete="sex" class="form-select @error('gender') is-invalid @enderror">
+						<option value="" disabled selected hidden>Select Gender</option>
+						<option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
+						<option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
+					</select>
 						</div>
 
 						<div class="col-md-6">
-							<div class="form-group">
 								<label for="grade_level_id" class="fw-medium mb-1">Grade Level <span class="required">*</span></label>
-								<select id="grade_level_id" name="grade_level_id" autocomplete="off" class="mb-1 form-select @error('grade_level_id') input-error @enderror">
-									<option value="" disabled selected hidden>Select Grade Level</option>
+								<select id="grade_level_id" name="grade_level_id" autocomplete="off" class="mb-1 form-select @error('grade_level_id') @enderror">
+									<option class= "addr-options" value="" disabled selected hidden>Select Grade Level</option>
 									@foreach($gradeLevels as $level)
 										<option value="{{ $level->grade_level_id }}" {{ old('grade_level_id') == $level->grade_level_id ? 'selected' : '' }}>
 											{{ $level->grade_level_name }}
 										</option>
 									@endforeach
 								</select>
-							</div>
 						</div>
 
-						<div class="form-group col-full">
+						<div class="col-full">
 							<label for="elementary_school" class="fw-medium mb-1">Elementary School <span class="required">*</span></label>
-							<input id="elementary_school" name="elementary_school" type="text" placeholder="Enter Elementary School" autocomplete="off" class="mb-1 form-control @error('elementary_school') input-error @enderror" value="{{ old('elementary_school') }}">
+							<input id="elementary_school" name="elementary_school" type="text" placeholder="Enter Elementary School" autocomplete="off" class="form-border mb-1 form-control @error('elementary_school') @enderror" value="{{ old('elementary_school') }}">
 						</div>
 
 						<div class="col-md-6">
-							<div class="form-group">
-								<label for="province" class="fw-medium mb-1">Province <span class="required">*</span></label>
-								<div class="addr-wrap" id="province-wrap">
-									<input id="province" name="province" type="text" placeholder="Search province..." class="mb-1 form-control addr-input @error('province') input-error @enderror" autocomplete="off" value="{{ old('province') }}">
-									<svg width="20" height="20" class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
-									<ul class="addr-options" id="province-options"></ul>
-								</div>
+							<label for="province" class="fw-medium mb-1">Province <span class="required">*</span></label>
+							<div class="addr-wrap" id="province-wrap">
+								<input id="province" name="province" type="text" placeholder="Search province..." class="form-input addr-input @error('province') input-error @enderror" autocomplete="off" value="{{ old('province') }}">
+								<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
+								<ul class="addr-options" id="province-options"></ul>
 							</div>
 						</div>
 
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="municipality" class="fw-medium mb-1">Municipality / City <span class="required">*</span></label>
-								<div class="addr-wrap addr-disabled" id="municipality-wrap">
-									<input id="municipality" name="municipality" type="text" placeholder="Select a province first..." class="mb-1 form-control addr-input @error('municipality') input-error @enderror" autocomplete="off" value="{{ old('municipality') }}" disabled>
-									<svg width="20" height="20" class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
-									<ul class="addr-options" id="municipality-options"></ul>
-								</div>
+						<div class="col-md-6 mb-1">
+							<label for="municipality" class="fw-medium mb-1">Municipality / City <span class="required">*</span></label>
+							<div class="addr-wrap addr-disabled" id="municipality-wrap">
+								<input id="municipality" name="municipality" type="text" placeholder="Select a province first..." class="form-input addr-input @error('municipality') input-error @enderror" autocomplete="off" value="{{ old('municipality') }}" disabled>
+								<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
+								<ul class="addr-options" id="municipality-options"></ul>
 							</div>
 						</div>
 
-						<div class="form-group col-full">
-							<label for="town_barangay" class="fw-medium mb-1">Barangay <span class="required">*</span></label>
+						<div class="col-full pb-4">
+							<label for="town_barangay" class=" fw-medium mb-1">Barangay <span class="required">*</span></label>
 							<div class="addr-wrap addr-disabled" id="barangay-wrap">
-								<input id="town_barangay" name="barangay" type="text" placeholder="Select a municipality first..." class="mb-1 form-control addr-input @error('barangay') input-error @enderror" autocomplete="off" value="{{ old('barangay') }}" disabled>
-								<svg width="20" height="20" class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
+								<input id="town_barangay" name="barangay" type="text" placeholder="Select a municipality first..." class="form-input addr-input @error('barangay') input-error @enderror" autocomplete="off" value="{{ old('barangay') }}" disabled>
+								<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
 								<ul class="addr-options" id="barangay-options"></ul>
 							</div>
 						</div>
