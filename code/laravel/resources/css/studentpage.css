@@ -261,7 +261,7 @@
     height: 38px;
     padding: 0 10px;
     border-radius: 8px;
-    border: 2px solid #fbbf24;
+    border: 2px solid #eeee3d;
     background-color: #ffffff;
     color: #0f172a;
     font-size: 0.95rem;
@@ -282,8 +282,8 @@
 }
 
 .page-btn--active {
-    background-color: #fbbf24;
-    border-color: #fbbf24;
+    background-color: #eeee3d;
+    border-color: #eeee3d;
     color: #0f172a;
     cursor: default;
 }

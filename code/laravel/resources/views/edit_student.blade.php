@@ -52,18 +52,18 @@
 					<div class="row col-gap-4">
 					
 						<div class="col-md-6">
-								<label for="first_name" class="fw-medium mb-1">First Name <span class="required align-middle ms-1">*</span></label>
-								<input id="first_name" name="first_name" type="text" placeholder="Enter First Name" autocomplete="given-name" class="mb-1 form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}">
+								<label for="first_name" class="form-border fw-medium mb-1">First Name <span class="required align-middle ms-1">*</span></label>
+								<input id="first_name" name="first_name" type="text" placeholder="Enter First Name" autocomplete="given-name" class="form-border mb-1 form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}">
 						</div>
 						
 						<div class="col-md-6">
-								<label for="middle_name" class="fw-medium mb-1">Middle Name</label>
-								<input id="middle_name" name="middle_name" type="text" placeholder="Enter Middle Name" autocomplete="additional-name" class="form-control" value="{{ old('middle_name') }}">
+								<label for="middle_name" class="form-border fw-medium mb-1">Middle Name</label>
+								<input id="middle_name" name="middle_name" type="text" placeholder="Enter Middle Name" autocomplete="additional-name" class="form-border form-control" value="{{ old('middle_name') }}">
 						</div>
 
 						<div class="col-full">
-							<label for="last_name" class="fw-medium mb-1">Last Name <span class="required">*</span></label>
-							<input id="last_name" name="last_name" type="text" placeholder="Enter Last Name" autocomplete="family-name" class="mb-1 form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}">
+							<label for="last_name" class="form-border fw-medium mb-1">Last Name <span class="required">*</span></label>
+							<input id="last_name" name="last_name" type="text" placeholder="Enter Last Name" autocomplete="family-name" class="form-border mb-1 form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}">
 						</div>
 
 						<div class="col-md-6">
@@ -88,8 +88,8 @@
 						</div>
 
 						<div class="col-full">
-							<label for="elementary_school" class="fw-medium mb-1">Elementary School <span class="required">*</span></label>
-							<input id="elementary_school" name="elementary_school" type="text" placeholder="Enter Elementary School" autocomplete="off" class="mb-1 form-control @error('elementary_school') @enderror" value="{{ old('elementary_school') }}">
+							<label for="elementary_school" class="fw-medium mb-1">Elementary School <span class="form-border required">*</span></label>
+							<input id="elementary_school" name="elementary_school" type="text" placeholder="Enter Elementary School" autocomplete="off" class="form-border mb-1 form-control @error('elementary_school') @enderror" value="{{ old('elementary_school') }}">
 						</div>
 
 						<div class="col-md-6">
