@@ -53,5 +53,7 @@ RUN chown -R www-data:www-data storage bootstrap/cache \
 EXPOSE 9000
 
 CMD ["sh", "-c", \
-    "if [ \"$MIGRATE_ON_START\" = \"true\" ]; then php artisan migrate --force; fi; \
+    "chown -R www-data:www-data storage bootstrap/cache && \
+    chmod -R 775 storage bootstrap/cache && \
+    if [ \"$MIGRATE_ON_START\" = \"true\" ]; then php artisan migrate --force; fi; \
     php-fpm"]
