@@ -1,3 +1,8 @@
-data/
-.env
-/db/
+code/laravel/node_modules
+code/laravel/vendor
+code/laravel/storage/framework/cache/*
+code/laravel/storage/framework/sessions/*
+code/laravel/storage/framework/views/*
+code/laravel/storage/logs/*
+.git
+db

@@ -1,20 +1,22 @@
 services:
-  app: # <-- You can name this whatever you want, but you will have to change the /vm/ngix/conf.d/default.conf
-    image: haroldcris/php8.2.4
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: php
-    working_dir: /var/www/laravel   
+    working_dir: /var/www/laravel
     restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
     volumes:
       - ./vm/php/local.ini:/usr/local/etc/php/conf.d/local.ini
       - ./code/laravel:/var/www/laravel
-    #build:
-    #  context: ./vm/php
-    #  dockerfile: Dockerfile
     networks:
       - laravel_network
 
 
-  webserver:  # <-- You can name this whatever you want
+  webserver: 
     image: nginx
     container_name: nginx
     restart: unless-stopped
@@ -23,12 +25,12 @@ services:
     volumes:
       - ./vm/nginx/conf.d:/etc/nginx/conf.d/
       - ./code:/var/www
+    depends_on:
+      - app
     networks:
       - laravel_network
       
-
-
-  adminer: # <-- You can name this whatever you want
+  adminer: 
     image: adminer:latest
     container_name: adminer
     restart: unless-stopped
@@ -38,21 +40,27 @@ services:
       - laravel_network
 
   mysql:
-    image: mysql:8.0
-    container_name: laravel_mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: laravel_db
-      MYSQL_USER: laravel_user
-      MYSQL_PASSWORD: laravel_password
-    ports:
-      - "3307:3306"
-    volumes:
-      - ./db/mysql:/var/lib/mysql
-    networks:
-      - laravel_network
+      image: mysql:8.0
+      container_name: laravel_mysql
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: root123
+        MYSQL_DATABASE: laravel_db
+        MYSQL_USER: laravel_user
+        MYSQL_PASSWORD: laravel_password
+      ports:
+        - "3307:3306"
+      volumes:
+        - ./db/mysql:/var/lib/mysql
+      networks:
+        - laravel_network
+      healthcheck:
+        test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot123"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+        start_period: 30s
 
 networks:
   laravel_network:
-    driver: bridge
+    driver: bridge  
