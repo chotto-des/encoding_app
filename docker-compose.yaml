@@ -9,10 +9,10 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-    volumes:
+    volumes: 
+    - ./code/laravel:/var/www/laravel
     - ./vm/php/local.ini:/usr/local/etc/php/conf.d/local.ini
-    - ./code/laravel/storage:/var/www/laravel/storage        
-    - ./code/laravel/.env:/var/www/laravel/.env              
+         
     networks:
       - laravel_network
 

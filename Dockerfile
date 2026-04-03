@@ -28,8 +28,7 @@ RUN composer install \
     --prefer-dist
 
 COPY code/laravel/ .
-RUN composer dump-autoload --no-dev --classmap-authoritative
-
+RUN composer dump-autoload --optimize --classmap-authoritative
 
 # ─── Stage 3: Final ──────────────────────────────────────────────────────────
 FROM php:8.3-fpm-alpine

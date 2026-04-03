@@ -21,13 +21,13 @@
 
 		{{-- Yellow overlay --}}
 		<div class="position-absolute top-0 w-100 h-100"
-			 style="background-color: rgba(105, 97, 79, 0.7); z-index: -1;"></div>
+			 style="background-color: rgba(245,168,0, 0.7); z-index: -1;"></div>
 
 		<div class="d-flex flex-column text-start mx-auto" style="z-index: 10; width: 100%; max-width: 1200px;">
 
 		<header class=" mb-1 pt-5">
 			<h1 class="fs-1" style="color: #333361;">Student Records</h1>
-			<p class="add-subtitle fs-5">Manage student information and records</p>
+			<p class="fs-5">Manage student information and records</p>
 		</header>
 
 		<section class="card mb-5" style="border-radius: 0.75rem; border-color: #EEEE3D; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
