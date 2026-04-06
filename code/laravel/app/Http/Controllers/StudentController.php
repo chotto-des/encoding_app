@@ -45,8 +45,7 @@ class StudentController extends Controller
         {
             $student->delete();
 
-            return redirect()->route('students.index')
-                ->with('success', 'Student deleted successfully.');
+            return redirect()->route('students.index');
         }
 
         public function edit(Student $student)

@@ -21,7 +21,7 @@
 			 style="background-color: rgba(245,168,0, 0.7); z-index: -1;"></div>
 
 
-	<main class="w-100 pb-3">
+	<main class="w-100">
 	
 		<header class="pt-4 ps-5 mt-3 pe-5">
 			
@@ -44,7 +44,7 @@
 						</button>
 					</div>
 				</div>
-				<div class="col-auto">
+				<div class="col-auto d-flex gap-2">
 					<a href="{{ route('home') }}" class="btn btn-light d-inline-flex	 align-items-center" style="border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: none; font-weight: 500; padding: 0.5rem 1.25rem; min-height: 44px; color: #333361;">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" class="me-2">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
@@ -61,7 +61,7 @@
 			</div>
 		</header>
 
-		<section class="ps-5 mt-3 pe-5">
+		<section class="ps-5 mt-3 pe-5 pb-4">
 			<div class="card overflow-hidden" style="min-height: 400px; border-color: #EEEE3D; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
 				<table class="student-table">
 					<thead class="card-header pt-3 fs-5" style="background-color: #EEEE3D; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; border-color: #EEEE3D;">
@@ -87,7 +87,7 @@
 							</td>
 
 							<td>
-								<span class="badge rounded-pill px-4 py-2 fw-normal" style="background:#eeee3d; color:#333361; font-size:0.98rem;  min-width:80px;">
+								<span class="badge rounded-pill px-4 py-2 fw-normal d-flex align-items-center justify-content-center" style="width: 100px; background:#eeee3d; color:#333361; font-size:0.98rem;  min-width:80px;">
 									{{ $student->gradeLevel->grade_level_name ?? 'N/A' }}
 								</span>
 							</td>
@@ -102,7 +102,7 @@
 									<form id="delete-form-{{ $student->id }}" action="{{ route('students.destroy', $student) }}" method="POST" style="display: inline;">
 										@csrf
 										@method('DELETE')
-										<button type="button" aria-label="Delete" onclick="openDeleteModal('{{ $student->id }}', '{{ $student->full_name }}')" style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: none; border: none; padding: 0; color: #ef4444; transition: background 0.15s;">
+										<button type="button" aria-label="Delete" data-bs-toggle="modal" data-bs-target="#delete-modal" onclick="openDeleteModal('{{ $student->id }}', '{{ $student->full_name }}')" style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: none; border: none; padding: 0; color: #ef4444; transition: background 0.15s;">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
 												<path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.167-2.087-2.203a51.964 51.964 0 0 0-3.826 0c-1.178.036-2.087 1.022-2.087 2.203v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
 											</svg>
@@ -122,60 +122,85 @@
 				</table>
 			</div>
 
-		</section>
-
 		{{ $students->links('partials.pagination') }}
-	
+
+		</section>
 	</main>
 	</div> <!-- End background wrapper -->
 
 		@if(session('success'))
-	<div id="success-modal" class="modal-overlay active" onclick="closeSuccessModal()">
-	<div class="modal-box" onclick="event.stopPropagation()">
-		<div class="modal-header">
-			<h3 class="modal-title">Success</h3>
-		</div>
-		<div class="modal-body">
-			<p class="modal-message">{!! session('success') !!}</p>
-			<p style="font-size:0.78rem; color:#94a3b8; margin-top:0.5rem;">Click anywhere to continue</p>
+	<div id="success-modal" class="modal fade show" tabindex="-1" style="display: block;">
+		<div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #eeee3b; border: none; text-align: center; justify-content: center;">
+					<h5 class="modal-title" style="color: #0f172a; font-weight: 600;">Success</h5>
+				</div>
+				<div class="modal-body pb-0 mb-0" style="text-align: center;">
+					<p class="fs-5 pb-0 mb-1">{!! session('success') !!}</p>
+				</div>
+				<div class="modal-footer mb-1" style="border: none; justify-content: center;">
+				<button type="button" class="btn btn-secondary" style="background-color: #eeee3b; border: none; color: #0f172a; font-weight: 500;" onclick="closeSuccessModal()">Close</button>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-@endif
+	<div class="modal-backdrop show"></div>
+	@endif
 
-<div id="delete-modal" class="modal-overlay">
-    <div class="modal-box">	
-        <div class="modal-header">
-            <h3 class="modal-title">Delete Student</h3>
-        </div>
-        <div class="modal-body">
-            <p class="modal-message">Are you sure you want to delete</p>
-            <p class="modal-student-name" id="modal-student-name"></p>
-            <div class="modal-actions">
-                <button type="button" onclick="closeDeleteModal()" class="btn-modal-cancel">Cancel</button>
-                <button type="button" onclick="submitDelete()" class="btn-modal-delete">Delete</button>
+<div id="delete-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #eeee3b	; border: none; text-align: center; justify-content: center;">
+                <h5 class="modal-title" style="color: #0f172a; font-weight: 600;">Delete Student</h5>
+            </div>
+            <div class="modal-body pb-0 mb-0" style="text-align: center;">
+                <p>Are you sure you want to delete</p>
+                <p id="modal-student-name" class="fs-5 pb-0 mb-1" style="font-weight: 600; color: #0f172a;"></p>
+            </div>
+            <div class="modal-footer mb-1" style="border: none; justify-content: center; gap: 1rem; ">
+                <button type="button" class="btn btn-secondary" style="background-color: #eeee3b; border: none; color: #0f172a; font-weight: 500;" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" style="border: none; font-weight: 500;" onclick="submitDelete()">Delete</button>
             </div>
         </div>
     </div>
 </div>
 
 	<script>
+		let deleteModalInstance = null;
+
+		// Initialize Bootstrap modals once
+		document.addEventListener('DOMContentLoaded', function() {
+			// Delete modal
+			const deleteModalElement = document.getElementById('delete-modal');
+			if (deleteModalElement) {
+				deleteModalInstance = new bootstrap.Modal(deleteModalElement);
+			}
+		});
+
+		//success modal
 		function closeSuccessModal() {
 			const m = document.getElementById('success-modal');
-			if (m) m.classList.remove('active');
+			if (m) {
+				m.style.display = 'none';
+				const backdrop = document.querySelector('.modal-backdrop');
+				if (backdrop) backdrop.remove();
+			}
 		}
 
-		let currentFormId = null;
+		//delete modal
+		let currentFormId = null;// Store the ID of the student to be deleted when opening the modal
 
 		function openDeleteModal(id, name) {
 			currentFormId = id;
 			document.getElementById('modal-student-name').textContent = name + '?';
-			document.getElementById('delete-modal').classList.add('active');
 		}
 
+		
 		function closeDeleteModal() {
 			currentFormId = null;
-			document.getElementById('delete-modal').classList.remove('active');
+			if (deleteModalInstance) {
+				deleteModalInstance.hide();
+			}
 		}
 
 		function submitDelete() {
