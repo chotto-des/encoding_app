@@ -43,7 +43,7 @@
 }
 
 .form-select:focus {
-    border-color: #fcd34d !important;
+    border-color: transparent !important;
     box-shadow: 0 0 0 2px rgba(252, 211, 77, 0.35) !important;
 }
 
@@ -97,12 +97,13 @@
     left: 0;
     right: 0;
     background: #ffffff;
-    border: 1.5px solid #020203;    
+    border: 1.5px solid #cbd5e1;    
+    border-radius: 8px;
     max-height: 200px;
     overflow-y: auto;
     z-index: 200;
     list-style: none;
-    padding: 4px 0;
+    padding: 0;
     margin: 0;
 }
 
@@ -111,6 +112,7 @@
 }
 
 .addr-options li {
+    display: block;
     padding: 8px 12px;
     font-size: 0.875rem;
     color: #374151;
