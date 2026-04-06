@@ -1,20 +1,4 @@
-/* Grade badge style */
-.grade-badge {
-    display: inline-block;
-    background: #eeee3d;
-    color: #333361;
-    border-radius: 999px;
-    padding: 0.25em 1.1em;
-    font-size: 0.98rem;
-    font-weight: 500;
-    min-width: 80px;
-    text-align: center;
-}
-/* table row hover */
-.student-table tbody tr:hover {
-    background-color: #fffbe6;
-    transition: background 0.18s;
-}
+
 /* font weight and color for table header */
 .student-table th {
     color: #333361;
