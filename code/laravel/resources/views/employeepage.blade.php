@@ -133,7 +133,7 @@
                     <p class="fs-5 pb-0 mb-1">{!! session('success') !!}</p>
                 </div>
                 <div class="modal-footer mb-1" style="border: none; justify-content: center;">
-                <button type="button" class="btn btn-secondary" style="background-color: #eeee3b; border: none; color: #0f172a; font-weight: 500;" onclick="closeSuccessModal()">Close</button>
+                <button type="button" class="btn btn-secondary" style="background-color: #eeee3b; border: none; color: #0f172a; font-weight: 500;" onclick="location.reload()">Close</button>
                 </div>
             </div>
         </div>
@@ -171,16 +171,6 @@
             }
         });
 
-        //success modal
-        function closeSuccessModal() {
-            const m = document.getElementById('success-modal');
-            if (m) {
-                m.style.display = 'none';
-                const backdrop = document.querySelector('.modal-backdrop');
-                if (backdrop) backdrop.remove();
-            }
-        }
-
         //delete modal
         let currentFormId = null;// Store the ID of the employee to be deleted when opening the modal
 
@@ -191,6 +181,7 @@
 
         function submitDelete() {
             if (currentFormId) {
+                // Clear search and reset filter after delete
                 var searchInput = document.getElementById('employee-search');
                 if (searchInput) {
                     searchInput.value = '';
@@ -202,16 +193,18 @@
 
         // Search filter
         function filterEmployees() {
-            const query = document.getElementById('employee-search').value.toLowerCase().trim();
-            const rows = document.querySelectorAll('.student-table tbody tr');
+            
+            const query = document.getElementById('employee-search').value.toLowerCase().trim(); // kukunin yung tinype ng user sa search box, gagawing lowercase at tatanggalin ang extra spaces para mas accurate ang search
+            const rows = document.querySelectorAll('.student-table tbody tr');  // Kukunin lahat ng rows sa employee table
             rows.forEach(function (row) {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.includes(query) ? '' : 'none';
+                const text = row.textContent.toLowerCase();// Gagawing lowercasen yung text sa row para macompare sa query
+                row.style.display = text.includes(query) ? '' : 'none';// isshow yungrow na may match sa query, itatago yung rows na walang match
             });
         }
 
         var searchInput = document.getElementById('employee-search');
         var searchBtn = document.getElementById('employee-search-btn');
+        // Filter on button click or Enter
         if (searchBtn) {
             searchBtn.addEventListener('click', filterEmployees);
         }
@@ -221,6 +214,7 @@
                     filterEmployees();
                 }
             });
+            // If input is cleared, show all rows immediately
             searchInput.addEventListener('input', function() {
                 if (this.value.trim() === '') {
                     filterEmployees();

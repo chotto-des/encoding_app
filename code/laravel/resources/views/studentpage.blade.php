@@ -139,7 +139,7 @@
 					<p class="fs-5 pb-0 mb-1">{!! session('success') !!}</p>
 				</div>
 				<div class="modal-footer mb-1" style="border: none; justify-content: center;">
-				<button type="button" class="btn btn-secondary" style="background-color: #eeee3b; border: none; color: #0f172a; font-weight: 500;" onclick="closeSuccessModal()">Close</button>
+				<button type="button" class="btn btn-secondary" style="background-color: #eeee3b; border: none; color: #0f172a; font-weight: 500;" onclick="location.reload()">Close</button>
 				</div>
 			</div>
 		</div>
@@ -176,16 +176,6 @@
 				deleteModalInstance = new bootstrap.Modal(deleteModalElement);
 			}
 		});
-
-		//success modal
-		function closeSuccessModal() {
-			const m = document.getElementById('success-modal');
-			if (m) {
-				m.style.display = 'none';
-				const backdrop = document.querySelector('.modal-backdrop');
-				if (backdrop) backdrop.remove();
-			}
-		}
 
 		//delete modal
 		let currentFormId = null;// Store the ID of the student to be deleted when opening the modal
