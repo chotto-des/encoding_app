@@ -24,7 +24,7 @@
 
 		<div class="d-flex flex-column text-start mx-auto" style="z-index: 10; width: 100%; max-width: 1200px;">
 
-		<header class=" mb-1 pt-5" style="">
+		<header class=" mb-1 pt-5">
 			<h1 class="fs-1" style="color: #333361;">Student Records</h1>
 			<p class="add-subtitle fs-5">Manage student information and records</p>
 		</header>
