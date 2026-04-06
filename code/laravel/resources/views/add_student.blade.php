@@ -175,7 +175,7 @@
 		function lockField(level, placeholder) {
 			fields[level].value       = ''; // para i-reset yung value ng field kapag ni-lock siya
 			fields[level].placeholder = placeholder; // para i-reset yung placeholder ng field kapag ni-lock siya
-			fields[level].disabled    = false; // para i-disable yung field
+			fields[level].disabled    = true; // para i-disable yung field
 			lists[level].innerHTML    = ''; // para i-clear yung options sa list kapag ni-lock siya
 			state[level].items        = []; // para i-reset yung items sa state kapag ni-lock siya
 			state[level].onPick       = null; // para i-reset yung onPick callback sa state kapag ni-lock siya
