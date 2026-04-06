@@ -28,17 +28,29 @@
 
 .btn-eeee3d {
     background-color: #EEEE3D;
-    color: #41417F;
+    color: #1a1a2e;
     border: none;
 }
 .btn-eeee3d:hover {
-    background-color: #D6D62B;
-    color: #222255;
+    background-color: #D7DA32;
+    color: #1a1a2e;
 }
 
 .form-control:focus {
     box-shadow: none !important;
     border-color: #ced4da !important;
+}
+
+/* Hover for login button with inline #EEEE3D background */
+button[style*="#EEEE3D"]:hover, button[style*="EEEE3D"]:hover {
+    background-color: #D7DA32 !important;
+    color: #1a1a2e !important;
+}
+
+/* Button text styling */
+button[style*="EEEE3D"] {
+    font-weight: 700 !important;
+    color: #1a1a2e !important;
 }
 
 .register-link-color {

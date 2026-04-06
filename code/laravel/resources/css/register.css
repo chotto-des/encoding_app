@@ -253,7 +253,7 @@
 }
 
 .btn-next:hover {
-    background-color: #efb100
+    background-color: #D7DA32;
 }
 
 .btn-next:active {
@@ -301,7 +301,7 @@
 }
 
 .btn-register:hover {
-    background-color: #efb100;
+    background-color: #D7DA32;
 }
 
 .btn-register:active {
@@ -333,7 +333,7 @@
     margin-bottom: 16px;
     text-align: left;
 }
-
+ 
 /* Styles previously in register.blade.php <style> block */
 .register-wrapper {
     min-height: calc(100vh - 120px);

@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('province');
             $table->string('municipality')->nullable();
             $table->string('barangay')->nullable();
+            $table->string('position')->nullable();
+            $table->string('department')->nullable();
             $table->integer('age');
             $table->string('gender')->nullable();
             $table->timestamps();

@@ -70,7 +70,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-lg w-100 mt-4 py-3" style="background-color: #EEEE3D; color: #41417F; border: none;">Login</button>
+            <button type="submit" class="btn btn-lg w-100 mt-4 py-3" style="background-color: #EEEE3D; color: #1a1a2e; border: none; font-weight: 700;">Login</button>
         </form>
 
         <p class="register-link text-center mt-4">

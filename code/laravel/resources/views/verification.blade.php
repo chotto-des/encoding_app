@@ -7,7 +7,6 @@
 @endpush
 
 @section('body')
-
     @include('partials.site_header-guest')
     {{-- Background wrapper --}}
     <div class="position-relative d-flex align-items-center justify-content-center" style="min-height: 85vh;">
@@ -20,65 +19,94 @@
             <div class="position-absolute top-0 w-100 h-100"    
                 style="background-color: rgba(245,168,0,0.70);"></div>
 
-    <div class="card">
-        <div class="icon-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>
-        </div>
+            <style>
+                #btn-verify{
+                    transition: background-color .12s ease, transform .06s ease, box-shadow .12s ease;
+                }
+                #btn-verify:hover{
+                    background-color: #D7DA32!important;
+                }
+                #btn-verify:active{
+                    transform: translateY(0);
+                }
+            </style>
 
-        <h1>Verify Email</h1>
-        <p class="subtitle">Student Management System</p>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card shadow p-4 mx-auto">
 
-        <div class="step-indicator">
-            <div class="step done">1</div>
-            <div class="step-line"></div>
-            <div class="step done">2</div>
-            <div class="step-line"></div>
-            <div class="step active">3</div>
-        </div>
-        <p class="step-label">Step 3: Email Verification</p>
+                    <div class="d-flex justify-content-center mb-3">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="56" height="56">
+                                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </div>
+                    </div>
 
-        <p class="otp-info">
-            We sent a 6-digit code to<br>
-            <strong>{{ session('register_email') }}</strong>
-        </p>
+                    <h1 class="h4 mb-1 text-center">Verify Email</h1>
+                    <p class="text-muted mb-3 text-center">Student Management System</p>
 
-        @if ($errors->any())
-            <div class="error-message">
-                @foreach ($errors->all() as $error)
-                    <div>{{ $error }}</div>
-                @endforeach
+                    <div class="step-indicator d-flex justify-content-center mb-2">
+                        <div class="step done">1</div>
+                        <div class="step-line mx-2"></div>
+                        <div class="step done">2</div>
+                        <div class="step-line mx-2"></div>
+                        <div class="step active">3</div>
+                    </div>
+                    <p class="mb-3 small text-center text-muted">Step 3: Email Verification</p>
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if (session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+
+                    <p class="otp-info text-center mb-3">
+                        We sent a 6-digit code to<br>
+                        <strong>{{ session('register_email') }}</strong>
+                    </p>
+
+                    <form action="{{ route('verification.submit') }}" method="POST">
+                        @csrf
+
+                        <div class="otp-group">
+                            <div class="d-flex justify-content-center gap-2 mb-3">
+                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" autofocus style="width:3.5rem;">
+                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem;">
+                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem;">
+                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem;">
+                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem;">
+                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem;">
+                            </div>
+                        </div>
+                        <input type="hidden" name="otp" id="otp-hidden">
+
+                        <div class="step-buttons">
+                            <a href="{{ route('register.step2') }}" class="btn-back">&#8592; Back</a>
+                            <button type="submit" class="btn-register" id="btn-verify">Verify</button>
+                        </div>
+                    </form>
+
+                    <div class="resend-link text-center mt-2 w-100">
+                        <div class="text-muted small mb-1">Didn't receive a code?</div>
+                        <form action="{{ route('verification.resend') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-link p-0">Resend OTP</button>
+                        </form>
+                    </div>
+
+                </div>
             </div>
-        @endif
-
-        @if (session('success'))
-            <div class="success-message">{{ session('success') }}</div>
-        @endif
-
-        <form action="{{ route('verification.submit') }}" method="POST">
-            @csrf
-
-            <div class="otp-group">
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric" pattern="[0-9]" autofocus>
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric" pattern="[0-9]">
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric" pattern="[0-9]">
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric" pattern="[0-9]">
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric" pattern="[0-9]">
-                <input type="text" maxlength="1" class="otp-input" inputmode="numeric" pattern="[0-9]">
-            </div>
-            <input type="hidden" name="otp" id="otp-hidden">
-
-            <button type="submit" class="btn-next" id="btn-verify">Verify</button>
-        </form>
-
-        <p class="resend-link">
-            Didn't receive a code?
-            <form action="{{ route('verification.resend') }}" method="POST" style="display:inline">
-                @csrf
-                <button type="submit" class="btn-resend">Resend OTP</button>
-            </form>
-        </p>
+        </div>
     </div>
 </div>
         @include('partials.site_footer')
