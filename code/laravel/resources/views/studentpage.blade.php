@@ -77,7 +77,7 @@
 					</thead>
 					<tbody>
 						@forelse($students as $student)
-						<tr>
+						<tr style="border-bottom: 1px solid #dee2e6;">
 							<td>{{ $student->full_name }}</td>
 							<td>{{ $student->gender }}</td>
 							<td>{{ $student->elementary_school }}</td>
