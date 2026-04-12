@@ -9,15 +9,27 @@
 @section('body')
     @include('partials.site_header-guest')
 
+
+    <main>
+
+    		{{-- Background wrapper --}}
+	<div class="position-relative d-flex align-items-flex-start" style="min-height: 60vh; width: 100%;">
+
+		{{-- Background image --}}
+		<img src="{{ asset('images/phs.jpg') }}" alt=""
+			 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 70%; z-index: -10;">
+
+		{{-- Yellow overlay --}}
+		<div class="position-absolute top-0 w-100 h-100"
+			 style="background-color: rgba(245,168,0, 0.7); z-index: -1;"></div>
+
+
     <div class="position-relative d-flex align-items-center justify-content-center register-wrapper">
 
-        <img src="{{ asset('images/phs.jpg') }}" alt="" class="register-bg">
-        <div class="register-overlay"></div>
-
-        <div class="container">
-            <div class="row justify-content-center"> 
+        <div class="container d-flex align-items-center justify-content-center" style="min-height: 60vh;">
+            <div class="row"> 
                 <div class="col-12 col-md-8 col-lg-6"> 
-                    <div class="card shadow p-4 mx-auto">
+                    <div class="card shadow p-4 m-4" style="border-radius: 15px; width:450px; margin: auto;">
 
                         <h1 class="h4 mb-1 text-center">Create Account</h1>
                         <p class="text-muted mb-3 text-center">Student Management System</p>
@@ -74,6 +86,10 @@
         </div>
 
     </div>
+
+    </div> <!-- End background wrapper -->  
+    <main>
+    
 
     @include('partials.site_footer')
 
