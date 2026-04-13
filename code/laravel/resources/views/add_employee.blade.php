@@ -39,13 +39,9 @@
             @endif
 
             @if($errors->any())
-                <div class="alert alert-error">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                @foreach($errors->all() as $error)
+                    <div class="alert alert-danger mb-1" style="padding: 0.5rem 1rem; font-size: 0.9rem;">{{ $error }}</div>
+                @endforeach
             @endif
             <div class="card-body px-4 pt-2 pb-4">
                 <form class="form-grid" method="POST" action="{{ route('employees.store') }}">

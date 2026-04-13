@@ -34,19 +34,11 @@
 			<div class="card-header mb-3 pt-3" style="background-color: #EEEE3D; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; border-color: #EEEE3D;">
 			<h4 class="ps-2">Add New Student</h4>
 			</div>
-			@if(session('success'))
-				<div class="alert alert-success">{{ session('success') }}</div>
-			@endif
 
-			@if($errors->any())
-				<div class="alert alert-error">
-					<ul>
-						@foreach($errors->all() as $error)
-							<li>{{ $error }}</li>
-						@endforeach
-					</ul>
-				</div>
-			@endif
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
 			<div class="card-body px-4 pt-2 pb-4">
 				<form class="form-grid" method="POST" action="{{ route('students.store') }}">
 					@csrf
@@ -55,6 +47,9 @@
 						<div class="col-md-6">
 								<label for="first_name" class="fw-medium mb-1">First Name <span class="required align-middle ms-1">*</span></label>
 								<input id="first_name" name="first_name" type="text" placeholder="Enter First Name" autocomplete="given-name" class="form-border mb-1 form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}">
+								@error('first_name')
+									<small class="text-danger">{{ $message }}</small>
+								@enderror
 						</div>
 						
 						<div class="col-md-6">
@@ -65,20 +60,26 @@
 						<div class="col-full">
 							<label for="last_name" class="fw-medium mb-1">Last Name <span class="required">*</span></label>
 							<input id="last_name" name="last_name" type="text" placeholder="Enter Last Name" autocomplete="family-name" class="form-border mb-1 form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}">
+							@error('last_name')
+								<small class="text-danger">{{ $message }}</small>
+							@enderror
 						</div>
 
 						<div class="col-md-6">
 							<label for="gender" class="form-label mb-1 fw-medium">Gender <span class="required">*</span></label>
-					<select id="gender" name="gender" autocomplete="sex" class="form-select @error('gender') is-invalid @enderror">
-						<option value="" disabled selected hidden>Select Gender</option>
-						<option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
-						<option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
-					</select>
+							<select id="gender" name="gender" autocomplete="sex" class="form-select @error('gender') is-invalid @enderror">
+								<option value="" disabled selected hidden>Select Gender</option>
+								<option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
+								<option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
+							</select>
+							@error('gender')
+								<small class="text-danger">{{ $message }}</small>
+							@enderror
 						</div>
 
 						<div class="col-md-6">
 								<label for="grade_level_id" class="fw-medium mb-1">Grade Level <span class="required">*</span></label>
-								<select id="grade_level_id" name="grade_level_id" autocomplete="off" class="mb-1 form-select @error('grade_level_id') @enderror">
+								<select id="grade_level_id" name="grade_level_id" autocomplete="off" class="mb-1 form-select @error('grade_level_id') is-invalid @enderror">
 									<option class= "addr-options" value="" disabled selected hidden>Select Grade Level</option>
 									@foreach($gradeLevels as $level)
 										<option value="{{ $level->grade_level_id }}" {{ old('grade_level_id') == $level->grade_level_id ? 'selected' : '' }}>
@@ -86,11 +87,17 @@
 										</option>
 									@endforeach
 								</select>
+								@error('grade_level_id')
+									<small class="text-danger">{{ $message }}</small>
+								@enderror
 						</div>
 
 						<div class="col-full">
 							<label for="elementary_school" class="fw-medium mb-1">Elementary School <span class="required">*</span></label>
-							<input id="elementary_school" name="elementary_school" type="text" placeholder="Enter Elementary School" autocomplete="off" class="form-border mb-1 form-control @error('elementary_school') @enderror" value="{{ old('elementary_school') }}">
+							<input id="elementary_school" name="elementary_school" type="text" placeholder="Enter Elementary School" autocomplete="off" class="form-border mb-1 form-control @error('elementary_school') is-invalid @enderror" value="{{ old('elementary_school') }}">
+							@error('elementary_school')
+								<small class="text-danger">{{ $message }}</small>
+							@enderror
 						</div>
 
 						<div class="col-md-6">
@@ -100,6 +107,9 @@
 								<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
 								<ul class="addr-options" id="province-options"></ul>
 							</div>
+							@error('province')
+								<small class="text-danger">{{ $message }}</small>
+							@enderror
 						</div>
 
 						<div class="col-md-6 mb-1">
@@ -109,6 +119,9 @@
 								<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
 								<ul class="addr-options" id="municipality-options"></ul>
 							</div>
+							@error('municipality')
+								<small class="text-danger">{{ $message }}</small>
+							@enderror
 						</div>
 
 						<div class="col-full pb-4">
@@ -118,6 +131,9 @@
 								<svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
 								<ul class="addr-options" id="barangay-options"></ul>
 							</div>
+							@error('barangay')
+								<small class="text-danger">{{ $message }}</small>
+							@enderror
 						</div>
 						
 						<div class="d-flex w-100">
@@ -272,6 +288,21 @@
 		// kapag binago yung value ng municipality, i-lock yung barangay field
 		fields.municipality.addEventListener('input', () => {
 			lockField('barangay', 'Select a municipality first...');
+		});
+
+		// Real-time error removal - removes error styling when user fills field
+		document.querySelectorAll('#first_name, #last_name, #gender, #grade_level_id, #elementary_school, #province, #municipality, #town_barangay').forEach(field => {
+			const removeError = () => {
+				if (field.value.trim() !== '') {
+					field.classList.remove('is-invalid', 'input-error');
+					const errorMsg = field.closest('[class*="col-"]')?.querySelector('small.text-danger');
+					if (errorMsg) errorMsg.style.display = 'none';
+				}
+			};
+			
+			field.addEventListener('input', removeError);
+			field.addEventListener('change', removeError);
+			setInterval(removeError, 300);
 		});
 	</script>
 @endsection
