@@ -119,7 +119,7 @@
 							</div>
 						</div>
 						
-						<div class="d-flex w-100">
+						<div class="d-flex w-100 pb-3">
 							<a href="{{ route('students.index') }}"
 							class="btn w-50 rounded-3 me-3 p-2 fw-medium"
 							style="background-color: #d6d6d6; color: #222; border: none;">
@@ -317,4 +317,4 @@
 			lockField('barangay', 'Select a municipality first...');
 		});
 	</script>
-@endSectionS
+@endSection

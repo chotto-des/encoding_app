@@ -3,7 +3,7 @@
     <a class="navbar-brand d-flex align-items-center gap-2" href="#">
       <img src="{{ asset('images/PHS-Logo.png') }}" alt="Logo" width="90" height="90" class="rounded-circle">
       <div>
-        <div class="fw-medium fs-3 lh-1 header_text_color">Pampanga High School</div>
+        <div class="fw-medium fs-3 lh-1" style="color: #41417F;">Pampanga High School</div>
         <div class="text-muted small">Excellence in Education</div>
       </div>
     </a>

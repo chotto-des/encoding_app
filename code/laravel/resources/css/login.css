@@ -47,12 +47,6 @@ button[style*="#EEEE3D"]:hover, button[style*="EEEE3D"]:hover {
     color: #1a1a2e !important;
 }
 
-/* Button text styling */
-button[style*="EEEE3D"] {
-    font-weight: 700 !important;
-    color: #1a1a2e !important;
-}
-
 .register-link-color {
     color: #EFB100;
 }

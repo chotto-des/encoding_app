@@ -8,44 +8,26 @@
 
 @section('body')
     @include('partials.site_header-guest')
+
+    <main>
     {{-- Background wrapper --}}
-    <div class="position-relative d-flex align-items-center justify-content-center" style="min-height: 85vh;">
+	<div class="position-relative d-flex align-items-flex-start" style="min-height: 60vh; width: 100%;">
 
-        {{-- Background image --}}
-        <img src="{{ asset('images/phs.jpg') }}" alt=""
-             style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+		{{-- Background image --}}
+		<img src="{{ asset('images/phs.jpg') }}" alt=""
+			 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 70%; z-index: -10;">
 
-            {{-- Yellow overlay --}}
-            <div class="position-absolute top-0 w-100 h-100"    
-                style="background-color: rgba(245,168,0,0.70);"></div>
+		{{-- Yellow overlay --}}
+		<div class="position-absolute top-0 w-100 h-100"
+			 style="background-color: rgba(245,168,0, 0.7); z-index: -1;"></div>
 
-            <style>
-                #btn-verify{
-                    transition: background-color .12s ease, transform .06s ease, box-shadow .12s ease;
-                }
-                #btn-verify:hover{
-                    background-color: #D7DA32!important;
-                }
-                #btn-verify:active{
-                    transform: translateY(0);
-                }
-            </style>
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-6">
-                <div class="card shadow p-4 mx-auto">
+    <div class="d-flex align-items-center justify-content-center" style="min-height: 60vh; width: 100%;">
 
-                    <div class="d-flex justify-content-center mb-3">
-                        <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="56" height="56">
-                                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                            </svg>
-                        </div>
-                    </div>
+                    <div class="card shadow p-4 mt-4 mb-4" style="border-radius: 15px; width: 450px; max-width: 90%;" >
 
-                    <h1 class="h4 mb-1 text-center">Verify Email</h1>
-                    <p class="text-muted mb-3 text-center">Student Management System</p>
+                    <h1 class="h2 pt-2 text-center" style="color: #41417F;">Verify Email</h1>
+                    <p class="text-muted small mb-3 text-center">Student Management System</p>
 
                     <div class="step-indicator d-flex justify-content-center mb-2">
                         <div class="step done">1</div>
@@ -70,9 +52,9 @@
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
 
-                    <p class="otp-info text-center mb-3">
+                    <p class="otp-info text-center text-muted mb-3">
                         We sent a 6-digit code to<br>
-                        <strong>{{ session('register_email') }}</strong>
+                        <strong style="color: #41417F;">{{ session('register_email') }}</strong>
                     </p>
 
                     <form action="{{ route('verification.submit') }}" method="POST">
@@ -90,29 +72,27 @@
                         </div>
                         <input type="hidden" name="otp" id="otp-hidden">
 
-                        <div class="step-buttons">
-                            <a href="{{ route('register.step2') }}" class="btn-back">&#8592; Back</a>
-                            <button type="submit" class="btn-register" id="btn-verify">Verify</button>
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('register.step2') }}" class="btn-next p-2" style="background-color: #d3d3d3; border: none; width: 100%; border-radius: 5px; text-decoration: none; text-align: center; color: #000;">&#8592; Back</a>
+                            <button type="submit" class="btn-next p-2" style="background-color: #eeee3d; border: none; width: 100%; border-radius: 5px; ">Verify</button>
                         </div>
                     </form>
 
-                    <div class="resend-link text-center mt-2 w-100">
-                        <div class="text-muted small mb-1">Didn't receive a code?</div>
-                        <form action="{{ route('verification.resend') }}" method="POST">
+                    <div class="resend-link text-center mt-3 w-100" style="display: flex; justify-content: center; align-items: center; gap: 0.25rem;">
+                        <span class="text-muted small">Didn't receive a code?</span>    
+                        <form action="{{ route('verification.resend') }}" method="POST" style="display: inline;">
                             @csrf
-                            <button type="submit" class="btn btn-link p-0">Resend OTP</button>
+                            <button type="submit" class="btn btn-link p-0" style="font-size: inherit; color: #eeee3d; line-height: 2;">Resend OTP</button>
                         </form>
                     </div>
 
-                </div>
-            </div>
-        </div>
+                    </div>
+
     </div>
-</div>
-        @include('partials.site_footer')
 
-
-
+    </div> <!-- End background wrapper -->
+    </main>
+    @include('partials.site_footer')
 
     <script>
         const inputs = document.querySelectorAll('.otp-input');
@@ -151,6 +131,5 @@
 
         document.querySelector('form').addEventListener('submit', syncHidden);
     </script>
-
 
 @endsection

@@ -47,11 +47,11 @@
 
 .step-indicator .step.active {
     background-color: #eeee3d;
-    color: #1a1a2e;
+    color: #41417F;
 }
 
 .step-indicator .step.done {
-    background-color: #1a1a2e;
+    background-color:  #41417F;
     color: #ffffff;
 }
 

@@ -27,8 +27,8 @@
         <div class="card shadow pt-4 ps-4 pe-4 pb-2 mt-4 mb-4" style="border-radius: 15px; width: 450px; max-width: 90%;" >
 
 
-            <h1 class="h4 mb-1 p-2 text-center">Create Account</h1>
-            <p class="text-muted mb-3 text-center">Student Management System</p>
+            <h1 class="h2 pt-2 text-center" style="color: #41417F;">Create Account</h1>
+            <p class="text-muted small mb-3 text-center">Student Management System</p>
 
                 <div class="step-indicator">
                     <div class="step done">1</div>
@@ -111,7 +111,7 @@
             </div>
         </form>
 
-        <p class="text-center mt-3 small">Already have an account? <a href="{{ route('login') }}">Login here</a></p>
+        <p class="text-center mt-3 small">Already have an account? <a href="{{ route('login') }}" style="color: #eeee3d;">Login here</a></p>
         </div>
 
     </div>

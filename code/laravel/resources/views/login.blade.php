@@ -38,12 +38,12 @@
             @csrf
 
             <div class="form-group">
-                <label for="email" class="extra-small-text fw-medium" style="color: #41417F;">Email Address</label>
+                <label for="email" class="form-label">Email Address</label>
                 <input
                     type="email"
                     id="email"
                     name="email"
-                    class="form-control py-3 mt-2 mb-2 "    
+                    class="form-control py-3 mb-2 "    
                     placeholder="Enter your email"
                     value="{{ old('email') }}"
                     required
@@ -52,13 +52,13 @@
             </div>
 
             <div class="form-group">
-                <label for="password" class="extra-small-text fw-medium" style="color: #41417F;">Password</label>
+                <label for="password" class="form-label">Password</label>
                 <div class="password-wrapper">
                     <input
                         type="password"
                         id="password"
                         name="password"
-                        class="form-control password-input py-3 mt-2"
+                        class="form-control password-input py-3"    
                         placeholder="Enter your password"
                         required
                     >
@@ -70,10 +70,10 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-lg w-100 mt-4 py-3" style="background-color: #EEEE3D; color: #1a1a2e; border: none; font-weight: 700;">Login</button>
+            <button type="submit" class="btn btn-lg w-100 mt-4 py-3" style="background-color: #EEEE3D; color: #41417F; border: none; font-weight: 600;">Login</button>
         </form>
 
-        <p class="register-link text-center mt-4">
+        <p class="register-link text-center text-muted mt-4">
             Don't have an account? <a href="{{ route('register') }}" class ="register-link-color ">Register here</a>
         </p>
         
