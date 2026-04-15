@@ -21,7 +21,7 @@
         <div class="position-absolute top-0 w-100 h-100"
              style="background-color: rgba(245,168,0, 0.7); z-index: -1;"></div>
 
-    <main class="w-100 pb-3">
+    <main class="w-100">
 
         <header class="pt-4 ps-5 mt-3 pe-5">
             <div>
@@ -61,7 +61,7 @@
         </header>
 
         <section class="ps-5 mt-3 pe-5 pb-4">
-            <div class="card overflow-hidden" style="min-height: 400px; border-color: #EEEE3D; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            <div class="card overflow-hidden" style="min-height: 450px; border-color: #EEEE3D; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
                 <table class="student-table">
                     <thead class="card-header pt-3 fs-5" style="background-color: #EEEE3D; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; border-color: #EEEE3D;">
                         <tr>
@@ -75,7 +75,7 @@
                     </thead>
                     <tbody>
                         @forelse($employees as $employee)
-                        <tr>
+                        <tr style="border-bottom: 1px solid #dee2e6;">
                             <td>{{ $employee->first_name }}{{ $employee->middle_name ? ' ' . $employee->middle_name : '' }} {{ $employee->last_name }}</td>
                             <td>{{ $employee->gender }}</td>
                             <td>{{ $employee->position }}</td>
@@ -105,7 +105,7 @@
                             </td>
                         </tr>
                         @empty
-                            <tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
                                 <td colspan="6" style="text-align:center; padding: 2rem; color: #94a3b8;">
                                     No employees found.
                                 </td>

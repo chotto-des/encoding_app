@@ -41,12 +41,10 @@
                     <p class="mb-3 small text-center text-muted">Step 1: Personal Information</p>
                     
                         @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+                        <div class="alert alert-danger p-2 mb-2" style="font-size: 0.85rem;">
+                            @foreach ($errors->all() as $error)
+                                <div style="margin: 2px 0;">{{ $error }}</div>
+                            @endforeach
                         </div>
                         @endif
 

@@ -62,7 +62,7 @@
 		</header>
 
 		<section class="ps-5 mt-3 pe-5 pb-4">
-			<div class="card overflow-hidden" style="min-height: 400px; border-color: #EEEE3D; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+			<div class="card overflow-hidden" style="min-height: 450px; border-color: #EEEE3D; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
 				<table class="student-table">
 					<thead class="card-header pt-3 fs-5" style="background-color: #EEEE3D; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; border-color: #EEEE3D;">
 
@@ -139,7 +139,7 @@
 					<p class="fs-5 pb-0 mb-1">{!! session('success') !!}</p>
 				</div>
 				<div class="modal-footer mb-1" style="border: none; justify-content: center;">
-				<button type="button" class="btn btn-secondary" style="background-color: #eeee3b; border: none; color: #0f172a; font-weight: 500;" onclick="location.reload()">Close</button>
+				<button type="button" class="btn btn-secondary" style="background-color: #eeee3b; border: none; color: #0f172a; font-weight: 500;" onclick="closeSuccessModal()">Close</button>
 				</div>
 			</div>
 		</div>
@@ -176,6 +176,16 @@
 				deleteModalInstance = new bootstrap.Modal(deleteModalElement);
 			}
 		});
+
+		//success modal
+		function closeSuccessModal() {
+			const m = document.getElementById('success-modal');
+			if (m) {
+				m.style.display = 'none';
+				const backdrop = document.querySelector('.modal-backdrop');
+				if (backdrop) backdrop.remove();
+			}
+		}
 
 		//delete modal
 		let currentFormId = null;// Store the ID of the student to be deleted when opening the modal
