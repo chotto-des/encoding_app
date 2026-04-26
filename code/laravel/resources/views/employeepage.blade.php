@@ -86,7 +86,7 @@
                             </td>
 
                             <td>
-                                <div class="d-flex ps-4 gap-2 align-items-center">
+                                <div class="d-flex gap-1 align-items-center">
                                     <a href="{{ route('employees.edit', $employee) }}" class="btn-edit" aria-label="Edit">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 3.487 3.651 3.651M4.5 19.5l4.301-.956a2.25 2.25 0 0 0 1.08-.591L20.513 7.322a2.25 2.25 0 0 0 0-3.182l-.653-.653a2.25 2.25 0 0 0-3.182 0L6.047 14.119a2.25 2.25 0 0 0-.591 1.08L4.5 19.5Z" />

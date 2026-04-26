@@ -21,3 +21,4 @@
     @yield('body')
 </body>
 </html>
+
