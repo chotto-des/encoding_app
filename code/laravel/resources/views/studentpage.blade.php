@@ -62,7 +62,7 @@
 		</header>
 
 		<section class="ps-5 mt-3 pe-5 pb-4">
-			<div class="card overflow-hidden" style="min-height: 450px; border-color: #EEEE3D; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+			<div class="card overflow-hidden" style="min-height: 450px; border-radius: 0.75rem; border-color: #EEEE3D; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
 				<table class="student-table">
 					<thead class="card-header pt-3 fs-5" style="background-color: #EEEE3D; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; border-color: #EEEE3D;">
 

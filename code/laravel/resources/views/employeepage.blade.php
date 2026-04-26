@@ -61,23 +61,23 @@
         </header>
 
         <section class="ps-5 mt-3 pe-5 pb-4">
-            <div class="card overflow-hidden" style="min-height: 450px; border-color: #EEEE3D; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            <div class="card overflow-hidden" style="min-height: 450px; border-radius: 0.75rem; border-color: #EEEE3D; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
                 <table class="student-table">
                     <thead class="card-header pt-3 fs-5" style="background-color: #EEEE3D; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; border-color: #EEEE3D;">
                         <tr>
-                            <th>Full Name</th>
-                            <th>Date of Birth</th>
-                            <th>Contact Number</th>
+                            <th style="min-width: 160px;">Full Name</th>
+                            <th style="min-width: 100px;">Date of Birth</th>
+                            <th style="min-width: 120px;">Contact Number</th>
                             <th>Education Level</th>
                             <th>Address</th>
-                            <th>Actions</th>
+                            <th>Edit/Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($employees as $employee)
                         <tr style="border-bottom: 1px solid #dee2e6;">
                             <td>{{ $employee->first_name }}{{ $employee->middle_name ? ' ' . $employee->middle_name : '' }} {{ $employee->last_name }}</td>
-                            <td>{{ $employee->date_of_birth ? \Carbon\Carbon::parse($employee->date_of_birth)->format('m/d/y') : '-' }}</td>
+                            <td>{{ $employee->date_of_birth ? \Carbon\Carbon::parse($employee->date_of_birth)->format('m/d/Y') : '-' }}</td>
                             <td>{{ $employee->contact_number ?? '-' }}</td>
                             <td>{{ $employee->education_level ?? '-' }}</td>
                             <td class="address">
@@ -86,7 +86,7 @@
                             </td>
 
                             <td>
-                                <div class="d-flex gap-1 align-items-center">
+                                <div class="d-flex gap-2 align-items-center justify-content-center">
                                     <a href="{{ route('employees.edit', $employee) }}" class="btn-edit" aria-label="Edit">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 3.487 3.651 3.651M4.5 19.5l4.301-.956a2.25 2.25 0 0 0 1.08-.591L20.513 7.322a2.25 2.25 0 0 0 0-3.182l-.653-.653a2.25 2.25 0 0 0-3.182 0L6.047 14.119a2.25 2.25 0 0 0-.591 1.08L4.5 19.5Z" />

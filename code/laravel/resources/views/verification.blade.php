@@ -24,15 +24,15 @@
 
     <div class="d-flex align-items-center justify-content-center" style="min-height: 60vh; width: 100%;">
 
-                    <div class="card shadow p-4 mt-4 mb-4" style="border-radius: 15px; width: 450px; max-width: 90%;" >
+                    <div class="card shadow p-4 mt-5 mb-5" style="border-radius: 15px; width: 450px; max-width: 90%;" >
 
                     <h1 class="h2 pt-2 text-center" style="color: #41417F;">Verify Email</h1>
                     <p class="text-muted small mb-3 text-center">Student Management System</p>
 
                     <div class="step-indicator d-flex justify-content-center mb-2">
-                        <div class="step done">1</div>
+                        <div class="step done" style="background-color: #41417F; color: #ffffff;">1</div>
                         <div class="step-line mx-2"></div>
-                        <div class="step done">2</div>
+                        <div class="step done" style="background-color: #41417F; color: #ffffff;">2</div>
                         <div class="step-line mx-2"></div>
                         <div class="step active">3</div>
                     </div>
@@ -73,8 +73,8 @@
                         <input type="hidden" name="otp" id="otp-hidden">
 
                         <div class="d-flex gap-2">
-                            <a href="{{ route('register.step2') }}" class="btn-next p-2" style="background-color: #d3d3d3; border: none; width: 100%; border-radius: 5px; text-decoration: none; text-align: center; color: #000;">&#8592; Back</a>
-                            <button type="submit" class="btn-next p-2" style="background-color: #eeee3d; border: none; width: 100%; border-radius: 5px; ">Verify</button>
+                            <a href="{{ route('register.step2') }}" class="btn-next p-2" style="background-color: #d3d3d3; border: none; width: 100%; border-radius: 5px; text-decoration: none; text-align: center; color: #000; font-weight: 600;">&#8592; Back</a>
+                            <button type="submit" class="btn-next p-2" style="background-color: #eeee3d; border: none; width: 100%; border-radius: 5px; font-weight: 600;">Verify</button>
                         </div>
                     </form>
 

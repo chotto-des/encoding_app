@@ -22,16 +22,16 @@
 			 style="background-color: rgba(245,168,0, 0.7); z-index: -1;"></div>
 
 
-    <div class="d-flex align-items-center justify-content-center" style="min-height: 60vh; width: 100%;">
+    <div class="d-flex align-items-center justify-content-center" style="width: 100%;">
 
-        <div class="card shadow pt-4 ps-4 pe-4 pb-2 mt-4 mb-4" style="border-radius: 15px; width: 450px; max-width: 90%;" >
+        <div class="card shadow pt-4 ps-4 pe-4 pb-2 mt-5 mb-5" style="border-radius: 15px; width: 450px; max-width: 95%; min-width: 300px;" >
 
 
             <h1 class="h2 pt-2 text-center" style="color: #41417F;">Create Account</h1>
             <p class="text-muted small mb-3 text-center">Student Management System</p>
 
                 <div class="step-indicator">
-                    <div class="step done">1</div>
+                    <div class="step done" style="background-color: #41417F; color: #ffffff;">1</div>
                     <div class="step-line"></div>
                     <div class="step active">2</div>
                     <div class="step-line"></div>
@@ -104,12 +104,12 @@
             </div>
 
             <div class="d-flex gap-2 pt-1">
-                <a href="{{ route('register') }}" class="btn-next p-2" style="background-color: #d3d3d3; border: none; width: 100%; border-radius: 5px; text-decoration: none; text-align: center; color: #000;">&#8592; Back</a>
-                <button type="submit" class="btn-next p-2" style="background-color: #eeee3d; border: none; width: 100%; border-radius: 5px; ">Register</button>
+                <a href="{{ route('register') }}" class="btn-next p-2" style="background-color: #d3d3d3; border: none; width: 100%; border-radius: 5px; text-decoration: none; text-align: center; color: #000; font-weight: 600;">&#8592; Back</a>
+                <button type="submit" class="btn-next p-2" style="background-color: #eeee3d; border: none; width: 100%; border-radius: 5px; font-weight: 600;">Register</button>
             </div>
         </form>
 
-        <p class="text-center mt-3 small">Already have an account? <a href="{{ route('login') }}" style="color: #eeee3d;">Login here</a></p>
+        <p class="text-center mt-3 mb-4 small">Already have an account? <a href="{{ route('login') }}" style="color: #eeee3d;">Login here</a></p>
         </div>
 
     </div>

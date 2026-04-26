@@ -38,11 +38,6 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
-            @if($errors->any())
-                @foreach($errors->all() as $error)
-                    <div class="alert alert-danger mb-1" style="padding: 0.5rem 1rem; font-size: 0.9rem;">{{ $error }}</div>
-                @endforeach
-            @endif
             <div class="card-body px-4 pt-2 pb-4">
                 <form class="form-grid" method="POST" action="{{ route('employees.store') }}">
                     @csrf
@@ -51,6 +46,9 @@
                         <div class="col-md-6">
                             <label for="first_name" class="fw-medium mb-1">First Name <span class="required">*</span></label>
                             <input id="first_name" name="first_name" type="text" placeholder="Enter First Name" autocomplete="given-name" class="form-border mb-1 form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}">
+                            @error('first_name')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="col-md-6">
@@ -61,20 +59,29 @@
                         <div class="col-12">
                             <label for="last_name" class="fw-medium mb-1">Last Name <span class="required">*</span></label>
                             <input id="last_name" name="last_name" type="text" placeholder="Enter Last Name" autocomplete="family-name" class="form-border mb-1 form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}">
+                            @error('last_name')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="col-md-6">
-                            <label for="date_of_birth" class="fw-medium mb-1">Date of Birth</label>
+                            <label for="date_of_birth" class="fw-medium mb-1">Date of Birth <span class="required">*</span></label>
                             <input id="date_of_birth" name="date_of_birth" type="date" class="form-control @error('date_of_birth') is-invalid @enderror" value="{{ old('date_of_birth') }}">
+                            @error('date_of_birth')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="col-md-6">
-                            <label for="contact_number" class="fw-medium mb-1">Contact Number</label>
+                            <label for="contact_number" class="fw-medium mb-1">Contact Number <span class="required">*</span></label>
                             <input id="contact_number" name="contact_number" type="text" placeholder="Enter contact number" class="form-control @error('contact_number') is-invalid @enderror" value="{{ old('contact_number') }}">
+                            @error('contact_number')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="col-12">
-                            <label for="education_level" class="fw-medium mb-1">Education Level</label>
+                            <label for="education_level" class="fw-medium mb-1">Education Level <span class="required">*</span></label>
                             <select id="education_level" name="education_level" class="form-select @error('education_level') is-invalid @enderror">
                                 <option value="" disabled selected hidden>Select Education Level</option>
                                 <option value="Elementary Graduate" {{ old('education_level') == 'Elementary Graduate' ? 'selected' : '' }}>Elementary Graduate</option>
@@ -87,15 +94,21 @@
                                 <option value="Master's Degree" {{ old('education_level') == 'Master\'s Degree' ? 'selected' : '' }}>Master's Degree</option>
                                 <option value="Doctorate Degree (PhD / EdD)" {{ old('education_level') == 'Doctorate Degree (PhD / EdD)' ? 'selected' : '' }}>Doctorate Degree (PhD / EdD)</option>
                             </select>
+                            @error('education_level')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-md-6">
                             <label for="province" class="fw-medium mb-1">Province <span class="required">*</span></label>
                             <div class="addr-wrap" id="province-wrap">
                                 <input id="province" name="province" type="text" placeholder="Search province..." class="form-input addr-input @error('province') input-error @enderror" autocomplete="off" value="{{ old('province') }}">
                                 <svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
                                 <ul class="addr-options" id="province-options"></ul>
                             </div>
+                            @error('province')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="col-md-6">
@@ -105,15 +118,21 @@
                                 <svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
                                 <ul class="addr-options" id="municipality-options"></ul>
                             </div>
+                            @error('municipality')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-12">
                             <label for="town_barangay" class="fw-medium mb-1">Barangay <span class="required">*</span></label>
                             <div class="addr-wrap addr-disabled" id="barangay-wrap">
                                 <input id="town_barangay" name="barangay" type="text" placeholder="Select a municipality first..." class="form-input addr-input @error('barangay') input-error @enderror" autocomplete="off" value="{{ old('barangay') }}" disabled>
                                 <svg class="addr-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
                                 <ul class="addr-options" id="barangay-options"></ul>
                             </div>
+                            @error('barangay')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         
                         <div class="d-flex w-100">

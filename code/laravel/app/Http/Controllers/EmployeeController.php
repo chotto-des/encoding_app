@@ -25,12 +25,12 @@ class EmployeeController extends Controller
             'first_name' => 'required|string',
             'middle_name' => 'nullable|string',
             'last_name' => 'required|string',
+            'date_of_birth' => 'required|date',
+            'contact_number' => 'required|string',
+            'education_level' => 'required|string',
             'province' => 'required|string',
             'municipality' => 'nullable|string',
             'barangay' => 'nullable|string',
-            'position' => 'required|string|max:255',
-            'department' => 'nullable|string|max:255',
-            'gender' => 'nullable|string',
         ]);
 
         if (empty($data['employee_id'])) {
@@ -54,12 +54,12 @@ class EmployeeController extends Controller
             'first_name' => 'required|string',
             'middle_name' => 'nullable|string',
             'last_name' => 'required|string',
+            'date_of_birth' => 'required|date',
+            'contact_number' => 'required|string',
+            'education_level' => 'required|string',
             'province' => 'required|string',
             'municipality' => 'nullable|string',
             'barangay' => 'nullable|string',
-            'position' => 'required|string|max:255',
-            'department' => 'nullable|string|max:255',
-            'gender' => 'nullable|string',
         ]);
 
         $employee->update($data);

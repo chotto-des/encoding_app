@@ -26,7 +26,7 @@
 
         <div class="d-flex align-items-center justify-content-center" style="min-height: 60vh; width: 100%;">
 
-                <div class="card shadow pt-4 ps-4 pe-4 pb-2 mt-4 mb-4" style="border-radius: 15px; width: 450px; max-width: 90%;" >
+            <div class="card shadow pt-4 ps-4 pe-4 pb-4 mt-5 mb-5" style="border-radius: 15px; width: 450px; max-width: 95%; min-width: 300px;" >
 
                     <h1 class="h2 pt-2 text-center" style="color: #41417F;">Create Account</h1>
                     <p class="text-muted small mb-3 text-center">Student Management System</p>
@@ -71,7 +71,7 @@
                         <input type="text" id="extension_name" name="extension_name" class="form-control" placeholder="Enter Extension Name (Optional)" value="{{ old('extension_name') }}">
                     </div>
 
-                    <button type="submit" class="btn-next p-2" style="background-color: #eeee3d; border: none; width: 100%; border-radius: 5px; " >Next</button>
+                    <button type="submit" class="btn-next p-2" style="background-color: #eeee3d; border: none; width: 100%; border-radius: 5px; font-weight: 600;" >Next</button>
                 </form>
                     
                 <p class="text-center mt-3 text-muted small">Already have an account? <a href="{{ route('login') }}" style="color: #eeee3d;">Login here</a></p>
