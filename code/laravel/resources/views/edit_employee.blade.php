@@ -73,7 +73,7 @@
 
                         <div class="col-md-6">
                             <label for="date_of_birth" class="fw-medium mb-1">Date of Birth</label>
-                            <input id="date_of_birth" name="date_of_birth" type="date" class="form-control @error('date_of_birth') is-invalid @enderror" value="{{ old('date_of_birth', $employee->date_of_birth) }}">
+                            <input id="date_of_birth" name="date_of_birth" type="date" class="form-border form-control @error('date_of_birth') is-invalid @enderror" value="{{ old('date_of_birth', $employee->date_of_birth) }}">
                             @error('date_of_birth')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -81,7 +81,7 @@
 
                         <div class="col-md-6">
                             <label for="contact_number" class="fw-medium mb-1">Contact Number</label>
-                            <input id="contact_number" name="contact_number" type="text" placeholder="Enter contact number" class="form-control @error('contact_number') is-invalid @enderror" value="{{ old('contact_number', $employee->contact_number) }}">
+                            <input id="contact_number" name="contact_number" type="text" placeholder="Enter contact number" class="form-border form-control @error('contact_number') is-invalid @enderror" value="{{ old('contact_number', $employee->contact_number) }}">
                             @error('contact_number')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
