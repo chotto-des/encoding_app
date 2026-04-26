@@ -66,20 +66,20 @@
                     <thead class="card-header pt-3 fs-5" style="background-color: #EEEE3D; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; border-color: #EEEE3D;">
                         <tr>
                             <th>Full Name</th>
-                            <th>Gender</th>
-                            <th>Position</th>
-                            <th>Department</th>
+                            <th>Date of Birth</th>
+                            <th>Contact Number</th>
+                            <th>Education Level</th>
                             <th>Address</th>
-                            <th>Edit/Delete</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($employees as $employee)
                         <tr style="border-bottom: 1px solid #dee2e6;">
                             <td>{{ $employee->first_name }}{{ $employee->middle_name ? ' ' . $employee->middle_name : '' }} {{ $employee->last_name }}</td>
-                            <td>{{ $employee->gender }}</td>
-                            <td>{{ $employee->position }}</td>
-                            <td>{{ $employee->department }}</td>
+                            <td>{{ $employee->date_of_birth ? \Carbon\Carbon::parse($employee->date_of_birth)->format('m/d/y') : '-' }}</td>
+                            <td>{{ $employee->contact_number ?? '-' }}</td>
+                            <td>{{ $employee->education_level ?? '-' }}</td>
                             <td class="address">
                                 {{ $employee->barangay }}, {{ $employee->municipality }}<br>
                                 {{ $employee->province }}

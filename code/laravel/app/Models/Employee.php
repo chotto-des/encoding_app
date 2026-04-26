@@ -14,8 +14,8 @@ class Employee extends Model
         'province',
         'municipality',
         'barangay',
-        'position',
-        'department',
-        'gender',
+        'date_of_birth',
+        'contact_number',
+        'education_level',
     ];
 }

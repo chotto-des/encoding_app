@@ -63,21 +63,29 @@
                             <input id="last_name" name="last_name" type="text" placeholder="Enter Last Name" autocomplete="family-name" class="form-border mb-1 form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}">
                         </div>
 
-                        <div class="col-md-4">
-                            <label for="position" class="fw-medium mb-1">Position <span class="required">*</span></label>
-                            <input id="position" name="position" type="text" class="form-control @error('position') is-invalid @enderror" value="{{ old('position') }}">
-                        </div>
-                        <div class="col-md-8">
-                            <label for="department" class="fw-medium mb-1">Department</label>
-                            <input id="department" name="department" type="text" class="form-control @error('department') is-invalid @enderror" value="{{ old('department') }}">
+                        <div class="col-md-6">
+                            <label for="date_of_birth" class="fw-medium mb-1">Date of Birth</label>
+                            <input id="date_of_birth" name="date_of_birth" type="date" class="form-control @error('date_of_birth') is-invalid @enderror" value="{{ old('date_of_birth') }}">
                         </div>
 
-                        <div class="col-md-8">
-                            <label for="gender" class="fw-medium mb-1">Gender <span class="required">*</span></label>
-                            <select id="gender" name="gender" autocomplete="sex" class="mb-1 form-select @error('gender') is-invalid @enderror">
-                                <option value="" disabled selected hidden>Select Gender</option>
-                                <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
-                                <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
+                        <div class="col-md-6">
+                            <label for="contact_number" class="fw-medium mb-1">Contact Number</label>
+                            <input id="contact_number" name="contact_number" type="text" placeholder="Enter contact number" class="form-control @error('contact_number') is-invalid @enderror" value="{{ old('contact_number') }}">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="education_level" class="fw-medium mb-1">Education Level</label>
+                            <select id="education_level" name="education_level" class="form-select @error('education_level') is-invalid @enderror">
+                                <option value="" disabled selected hidden>Select Education Level</option>
+                                <option value="Elementary Graduate" {{ old('education_level') == 'Elementary Graduate' ? 'selected' : '' }}>Elementary Graduate</option>
+                                <option value="High School Undergraduate" {{ old('education_level') == 'High School Undergraduate' ? 'selected' : '' }}>High School Undergraduate</option>
+                                <option value="High School Graduate" {{ old('education_level') == 'High School Graduate' ? 'selected' : '' }}>High School Graduate</option>
+                                <option value="Senior High School Graduate" {{ old('education_level') == 'Senior High School Graduate' ? 'selected' : '' }}>Senior High School Graduate</option>
+                                <option value="Vocational / TESDA Graduate" {{ old('education_level') == 'Vocational / TESDA Graduate' ? 'selected' : '' }}>Vocational / TESDA Graduate</option>
+                                <option value="College Undergraduate" {{ old('education_level') == 'College Undergraduate' ? 'selected' : '' }}>College Undergraduate</option>
+                                <option value="College Graduate" {{ old('education_level') == 'College Graduate' ? 'selected' : '' }}>College Graduate</option>
+                                <option value="Master's Degree" {{ old('education_level') == 'Master\'s Degree' ? 'selected' : '' }}>Master's Degree</option>
+                                <option value="Doctorate Degree (PhD / EdD)" {{ old('education_level') == 'Doctorate Degree (PhD / EdD)' ? 'selected' : '' }}>Doctorate Degree (PhD / EdD)</option>
                             </select>
                         </div>
 

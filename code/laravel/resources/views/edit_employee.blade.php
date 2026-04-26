@@ -47,22 +47,28 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                    <label for="position" class="form-label">Position</label>
-                                    <input type="text" class="form-control" id="position" name="position" value="{{ old('position', $employee->position) }}" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="department" class="form-label">Department</label>
-                                    <input type="text" class="form-control" id="department" name="department" value="{{ old('department', $employee->department) }}">
-                                </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="gender" class="form-label">Gender</label>
-                                <select class="form-control" id="gender" name="gender">
-                                    <option value="">Select</option>
-                                    <option value="Male" {{ old('gender', $employee->gender) == 'Male' ? 'selected' : '' }}>Male</option>
-                                    <option value="Female" {{ old('gender', $employee->gender) == 'Female' ? 'selected' : '' }}>Female</option>
-                                    <option value="Other" {{ old('gender', $employee->gender) == 'Other' ? 'selected' : '' }}>Other</option>
-                                </select>
+                                <label for="date_of_birth" class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth', $employee->date_of_birth) }}">
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="contact_number" class="form-label">Contact Number</label>
+                                <input type="text" class="form-control" id="contact_number" name="contact_number" value="{{ old('contact_number', $employee->contact_number) }}">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="education_level" class="form-label">Education Level</label>
+                            <select class="form-control" id="education_level" name="education_level">
+                                <option value="" disabled selected hidden>Select Education Level</option>
+                                <option value="Elementary Graduate" {{ old('education_level', $employee->education_level) == 'Elementary Graduate' ? 'selected' : '' }}>Elementary Graduate</option>
+                                <option value="High School Undergraduate" {{ old('education_level', $employee->education_level) == 'High School Undergraduate' ? 'selected' : '' }}>High School Undergraduate</option>
+                                <option value="High School Graduate" {{ old('education_level', $employee->education_level) == 'High School Graduate' ? 'selected' : '' }}>High School Graduate</option>
+                                <option value="Senior High School Graduate" {{ old('education_level', $employee->education_level) == 'Senior High School Graduate' ? 'selected' : '' }}>Senior High School Graduate</option>
+                                <option value="Vocational / TESDA Graduate" {{ old('education_level', $employee->education_level) == 'Vocational / TESDA Graduate' ? 'selected' : '' }}>Vocational / TESDA Graduate</option>
+                                <option value="College Undergraduate" {{ old('education_level', $employee->education_level) == 'College Undergraduate' ? 'selected' : '' }}>College Undergraduate</option>
+                                <option value="College Graduate" {{ old('education_level', $employee->education_level) == 'College Graduate' ? 'selected' : '' }}>College Graduate</option>
+                                <option value="Master's Degree" {{ old('education_level', $employee->education_level) == 'Master\'s Degree' ? 'selected' : '' }}>Master's Degree</option>
+                                <option value="Doctorate Degree (PhD / EdD)" {{ old('education_level', $employee->education_level) == 'Doctorate Degree (PhD / EdD)' ? 'selected' : '' }}>Doctorate Degree (PhD / EdD)</option>
+                            </select>
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary me-2">Save</button>
