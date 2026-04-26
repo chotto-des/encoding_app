@@ -62,12 +62,12 @@
 
                         <div class="otp-group">
                             <div class="d-flex justify-content-center gap-2 mb-3">
-                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" autofocus style="width:3.5rem;">
-                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem;">
-                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem;">
-                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem;">
-                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem;">
-                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem;">
+                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" autofocus style="width:3.5rem; height:3.5rem;">
+                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem; height:3.5rem;">
+                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem; height:3.5rem;">
+                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem; height:3.5rem;">
+                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem; height:3.5rem;">
+                                <input type="text" maxlength="1" class="form-control otp-input text-center" inputmode="numeric" pattern="[0-9]" style="width:3.5rem; height:3.5rem;">
                             </div>
                         </div>
                         <input type="hidden" name="otp" id="otp-hidden">

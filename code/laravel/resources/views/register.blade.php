@@ -24,9 +24,9 @@
 			 style="background-color: rgba(245,168,0, 0.7); z-index: -1;"></div>
 
 
-        <div class="d-flex align-items-center justify-content-center" style="min-height: 60vh; width: 100%;">
+        <div class="d-flex align-items-center justify-content-center" style="width: 100%;">
 
-            <div class="card shadow pt-4 ps-4 pe-4 pb-4 mt-5 mb-5" style="border-radius: 15px; width: 450px; max-width: 95%; min-width: 300px;" >
+            <div class="card shadow pt-4 ps-4 pe-4 pb-3 mt-5 mb-5" style="border-radius: 15px; width: 450px; max-width: 95%; min-width: 300px;" >
 
                     <h1 class="h2 pt-2 text-center" style="color: #41417F;">Create Account</h1>
                     <p class="text-muted small mb-3 text-center">Student Management System</p>
