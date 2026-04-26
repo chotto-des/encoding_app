@@ -106,7 +106,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-md-6">
                             <label for="province" class="fw-medium mb-1">Province <span class="required">*</span></label>
                             <div class="addr-wrap" id="province-wrap">
                                 <input id="province" name="province" type="text" placeholder="Search province..." class="form-input addr-input @error('province') input-error @enderror" autocomplete="off" value="{{ old('province', $employee->province) }}">
@@ -118,7 +118,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-md-6">
                             <label for="municipality" class="fw-medium mb-1">Municipality / City</label>
                             <div class="addr-wrap" id="municipality-wrap">
                                 <input id="municipality" name="municipality" type="text" placeholder="Search municipality..." class="form-input addr-input @error('municipality') input-error @enderror" autocomplete="off" value="{{ old('municipality', $employee->municipality) }}">
