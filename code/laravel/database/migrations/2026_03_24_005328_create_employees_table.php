@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
+            $table->date('date_of_birth')->nullable();
+            $table->string('contact_number')->nullable();
+            $table->string('education_level')->nullable();
             $table->string('province');
             $table->string('municipality')->nullable();
             $table->string('barangay')->nullable();
-            $table->string('position')->nullable();
-            $table->string('department')->nullable();
-            $table->string('gender')->nullable();
             $table->timestamps();
         });
     }
